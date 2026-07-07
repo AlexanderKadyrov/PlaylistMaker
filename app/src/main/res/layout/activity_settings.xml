@@ -14,14 +14,14 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_height="61dp">
+            android:layout_height="@dimen/title_settings_height">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:textColor="@color/black"
                 android:fontFamily="sans-serif"
-                android:textSize="16sp"
+                android:textSize="@dimen/title_settings_text_size"
                 android:gravity="center"
                 android:text="@string/dark_theme" />
             <Switch
@@ -35,14 +35,14 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_height="61dp">
+            android:layout_height="@dimen/title_settings_height">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:textColor="@color/black"
                 android:fontFamily="sans-serif"
-                android:textSize="16sp"
+                android:textSize="@dimen/title_settings_text_size"
                 android:gravity="center"
                 android:text="@string/share_the_app" />
             <ImageView
@@ -56,14 +56,14 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_height="61dp">
+            android:layout_height="@dimen/title_settings_height">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:textColor="@color/black"
                 android:fontFamily="sans-serif"
-                android:textSize="16sp"
+                android:textSize="@dimen/title_settings_text_size"
                 android:gravity="center"
                 android:text="@string/write_to_support" />
             <ImageView
@@ -77,14 +77,14 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_height="61dp">
+            android:layout_height="@dimen/title_settings_height">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:textColor="@color/black"
                 android:fontFamily="sans-serif"
-                android:textSize="16sp"
+                android:textSize="@dimen/title_settings_text_size"
                 android:gravity="center"
                 android:text="@string/user_agreement" />
             <ImageView
