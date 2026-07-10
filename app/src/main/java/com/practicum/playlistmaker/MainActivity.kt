@@ -1,11 +1,12 @@
 package com.practicum.playlistmaker
 
+import androidx.appcompat.app.AppCompatActivity
+
+import android.content.Intent
 import android.widget.FrameLayout
 import android.widget.Toast
 import android.os.Bundle
 import android.view.View
-
-import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         val settingsOnClickListener: View.OnClickListener = object : View.OnClickListener {
             override fun onClick(v: View?) {
-                showToast("On click elementId: ${R.id.settings}")
+                val displayIntent = Intent(this@MainActivity, SettingsActivity::class.java)
+                startActivity(displayIntent)
             }
         }
         val settingsFrameLayout = findViewById<FrameLayout>(R.id.settings)
