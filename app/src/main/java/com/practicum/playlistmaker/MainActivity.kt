@@ -2,9 +2,8 @@ package com.practicum.playlistmaker
 
 import androidx.appcompat.app.AppCompatActivity
 
-import android.content.Intent
 import android.widget.FrameLayout
-import android.widget.Toast
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 
@@ -18,22 +17,28 @@ class MainActivity : AppCompatActivity() {
             .forEach { elementId ->
                 val element = findViewById<FrameLayout>(elementId)
                 element.setOnClickListener {
-                    showToast("On click elementId: $elementId")
+                    when (elementId) {
+                        R.id.search -> {
+                            startActivity<SearchActivity>()
+                        }
+                        R.id.media -> {
+                            startActivity<MediaActivity>()
+                        }
+                    }
                 }
             }
 
         val settingsOnClickListener: View.OnClickListener = object : View.OnClickListener {
             override fun onClick(v: View?) {
-                val displayIntent = Intent(this@MainActivity, SettingsActivity::class.java)
-                startActivity(displayIntent)
+                startActivity<SettingsActivity>()
             }
         }
         val settingsFrameLayout = findViewById<FrameLayout>(R.id.settings)
         settingsFrameLayout.setOnClickListener(settingsOnClickListener)
     }
 
-    private fun showToast(text: String) {
-        Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT)
-            .show()
+    private inline fun <reified T: Any>startActivity() {
+        val intent = Intent(this@MainActivity, T::class.java)
+        startActivity(intent)
     }
 }
