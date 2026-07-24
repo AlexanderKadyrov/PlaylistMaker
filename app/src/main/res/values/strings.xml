@@ -13,4 +13,5 @@
     <string name="write_to_support_extra_email">alexander-kad@yandex.ru</string>
     <string name="write_to_support_extra_subject">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
     <string name="write_to_support_extra_text">Спасибо разработчикам и разработчицам за крутое приложение!</string>
+    <string name="search_input_hint">Поиск</string>
 </resources>
