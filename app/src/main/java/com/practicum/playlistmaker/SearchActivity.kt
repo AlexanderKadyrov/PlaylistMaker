@@ -1,6 +1,7 @@
 package com.practicum.playlistmaker
 
 import com.practicum.playlistmaker.extensions.configureToolbar
+import com.practicum.playlistmaker.extensions.hideKeyboard
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -41,9 +42,10 @@ class SearchActivity : AppCompatActivity() {
         }
         clearImageView.setOnClickListener {
             searchEditText.text.clear()
+            searchEditText.hideKeyboard()
         }
     }
-    
+
     private fun searchEditText(): EditText {
         return findViewById<EditText>(R.id.searchEditText)
     }
