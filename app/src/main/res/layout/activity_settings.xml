@@ -13,11 +13,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            app:title="@string/settings"
-            app:titleTextColor="@android:color/black"
-            app:navigationIcon="?attr/homeAsUpIndicator"
-            app:navigationIconTint="@color/black" />
+            android:theme="@style/Theme.Toolbar"
+            app:title="@string/settings" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -32,83 +29,63 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
             <FrameLayout
+                android:id="@+id/dark_theme"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="@dimen/title_settings_height">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start"
-                    android:textColor="@color/black"
-                    android:fontFamily="sans-serif"
-                    android:textSize="@dimen/title_settings_text_size"
-                    android:gravity="center"
+                    style="@style/SettingsTextViewStyle"
                     android:text="@string/dark_theme" />
                 <Switch
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="end"
-                    android:checked="true">
-                </Switch>
+                    android:id="@+id/settings_switch"
+                    style="@style/SettingsSwitchStyle" />
             </FrameLayout>
             <FrameLayout
+                android:id="@+id/share_the_app"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="@dimen/title_settings_height">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start"
-                    android:textColor="@color/black"
-                    android:fontFamily="sans-serif"
-                    android:textSize="@dimen/title_settings_text_size"
-                    android:gravity="center"
+                    style="@style/SettingsTextViewStyle"
                     android:text="@string/share_the_app" />
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
-                    android:src="@drawable/ic_share">
+                    android:src="@drawable/ic_share"
+                    app:tint="@color/iconTint">
                 </ImageView>
             </FrameLayout>
             <FrameLayout
+                android:id="@+id/write_to_support"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="@dimen/title_settings_height">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start"
-                    android:textColor="@color/black"
-                    android:fontFamily="sans-serif"
-                    android:textSize="@dimen/title_settings_text_size"
-                    android:gravity="center"
+                    style="@style/SettingsTextViewStyle"
                     android:text="@string/write_to_support" />
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
-                    android:src="@drawable/ic_support">
+                    android:src="@drawable/ic_support"
+                    app:tint="@color/iconTint">
                 </ImageView>
             </FrameLayout>
             <FrameLayout
+                android:id="@+id/user_agreement"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="@dimen/title_settings_height">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start"
-                    android:textColor="@color/black"
-                    android:fontFamily="sans-serif"
-                    android:textSize="@dimen/title_settings_text_size"
-                    android:gravity="center"
+                    style="@style/SettingsTextViewStyle"
                     android:text="@string/user_agreement" />
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
-                    android:src="@drawable/ic_arrow_right_gray">
+                    android:src="@drawable/ic_arrow_right_gray"
+                    app:tint="@color/iconTint">
                 </ImageView>
             </FrameLayout>
         </LinearLayout>
