@@ -14,5 +14,7 @@
         <item name="android:background">@color/white</item>
         <item name="navigationIcon">?attr/homeAsUpIndicator</item>
         <item name="navigationIconTint">@color/black</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textSize">22sp</item>
     </style>
 </resources>
