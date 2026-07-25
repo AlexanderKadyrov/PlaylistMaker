@@ -30,28 +30,28 @@
         <FrameLayout
             android:id="@+id/search"
             style="@style/MainLinearLayoutStyle">
-            <TextView
+            <Button
                 android:drawableLeft="@drawable/ic_search"
                 android:text="@string/search"
-                style="@style/MainTextViewStyle" />
+                style="@style/MainButtonStyle" />
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/media"
             style="@style/MainLinearLayoutStyle">
-            <TextView
+            <Button
                 android:drawableLeft="@drawable/ic_media"
                 android:text="@string/media"
-                style="@style/MainTextViewStyle" />
+                style="@style/MainButtonStyle" />
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/settings"
             style="@style/MainLinearLayoutStyle">
-            <TextView
+            <Button
                 android:drawableLeft="@drawable/ic_settings"
                 android:text="@string/settings"
-                style="@style/MainTextViewStyle" />
+                style="@style/MainButtonStyle" />
         </FrameLayout>
 
     </LinearLayout>
