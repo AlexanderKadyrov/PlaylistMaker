@@ -3,14 +3,16 @@ package com.practicum.playlistmaker
 import com.practicum.playlistmaker.repositories.TrackRepository
 import com.practicum.playlistmaker.extensions.configureToolbar
 import com.practicum.playlistmaker.extensions.hideKeyboard
+import com.practicum.playlistmaker.adapters.TrackAdapter
 
+import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-
 import androidx.core.widget.doOnTextChanged
+
 import android.widget.ImageView
 import android.widget.EditText
 import android.view.View
+import android.os.Bundle
 
 class SearchActivity : AppCompatActivity() {
 
@@ -20,8 +22,6 @@ class SearchActivity : AppCompatActivity() {
 
         configureToolbar()
         configureUI()
-
-        configureData()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -47,6 +47,12 @@ class SearchActivity : AppCompatActivity() {
             searchEditText.text.clear()
             searchEditText.hideKeyboard()
         }
+        configureRecyclerView()
+    }
+
+    private fun configureRecyclerView() {
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.adapter = TrackAdapter(TrackRepository.getTrackList(resources))
     }
 
     private fun searchEditText(): EditText {
@@ -59,10 +65,6 @@ class SearchActivity : AppCompatActivity() {
         } else {
             View.VISIBLE
         }
-    }
-
-    private fun configureData() {
-        val list = TrackRepository.getTrackList(resources)
     }
 
     companion object {
