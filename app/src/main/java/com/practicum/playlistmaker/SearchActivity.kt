@@ -1,5 +1,6 @@
 package com.practicum.playlistmaker
 
+import com.practicum.playlistmaker.repositories.TrackRepository
 import com.practicum.playlistmaker.extensions.configureToolbar
 import com.practicum.playlistmaker.extensions.hideKeyboard
 
@@ -19,6 +20,8 @@ class SearchActivity : AppCompatActivity() {
 
         configureToolbar()
         configureUI()
+
+        configureData()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -56,6 +59,10 @@ class SearchActivity : AppCompatActivity() {
         } else {
             View.VISIBLE
         }
+    }
+
+    private fun configureData() {
+        val list = TrackRepository.getTrackList(resources)
     }
 
     companion object {
