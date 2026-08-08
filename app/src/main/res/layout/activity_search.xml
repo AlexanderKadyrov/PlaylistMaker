@@ -48,11 +48,11 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@color/backgroundSearch"
-                            android:tint="@color/textSearch"
                             android:src="@drawable/ic_search_glass"
                             android:paddingStart="12dp"
                             android:paddingEnd="10dp"
-                            android:visibility="visible" />
+                            android:visibility="visible"
+                            app:tint="@color/textSearch" />
                         <EditText
                             android:id="@+id/searchEditText"
                             android:layout_width="0dp"
@@ -74,11 +74,11 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@color/backgroundSearch"
-                            android:tint="@color/textSearch"
                             android:src="@drawable/ic_search_clear"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            app:tint="@color/textSearch" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -86,6 +86,7 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

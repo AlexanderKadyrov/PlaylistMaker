@@ -12,4 +12,6 @@
     <color name="lightGray">#FFE6E8EB</color>
     <color name="backgroundSearch">@color/lightGray</color>
     <color name="textSearch">@color/textGray</color>
+    <color name="textBlackWhite">#FF000000</color>
+    <color name="textGrayWhite">@color/textGray</color>
 </resources>

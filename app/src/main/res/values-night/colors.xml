@@ -4,4 +4,6 @@
     <color name="iconTint">@color/white</color>
     <color name="backgroundSearch">@color/white</color>
     <color name="textSearch">@color/black</color>
+    <color name="textBlackWhite">@color/white</color>
+    <color name="textGrayWhite">@color/white</color>
 </resources>
