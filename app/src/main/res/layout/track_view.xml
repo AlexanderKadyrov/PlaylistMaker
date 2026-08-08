@@ -31,7 +31,7 @@
                 android:layout_marginTop="14dp"
                 android:layout_gravity="top"
                 android:fontFamily="@font/ys_display_regular"
-                android:textColor="@color/textBlackWhite"
+                android:textColor="@color/blackWhite"
                 android:textSize="16sp"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -43,7 +43,7 @@
                 android:layout_marginBottom="14dp"
                 android:layout_gravity="bottom"
                 android:fontFamily="@font/ys_display_regular"
-                android:textColor="@color/textGrayWhite"
+                android:textColor="@color/grayWhite"
                 android:textSize="11sp"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -57,5 +57,5 @@
         android:layout_marginEnd="12dp"
         android:src="@drawable/ic_arrow_right_gray"
         android:layout_gravity="end"
-        app:tint="@color/iconTint" />
+        app:tint="@color/grayWhite" />
 </LinearLayout>
