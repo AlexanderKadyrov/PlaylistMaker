@@ -4,7 +4,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Retrofit
 import retrofit2.Response
 
-class HTTPClient(
+class HTTPClient<S>(
+    private val serviceClass: Class<S>,
     private val baseUrl: String
 ) {
     private val retrofit = Retrofit.Builder()
@@ -12,13 +13,13 @@ class HTTPClient(
         .baseUrl(baseUrl)
         .build()
 
-    fun <T>create(service: Class<T>): T {
-        return retrofit.create(service)
+    private val service: S by lazy {
+        retrofit.create(serviceClass)
     }
 
-    suspend fun <T>fetch(callback: suspend () -> Response<T>): HTTPClientResult<T> {
+    suspend fun <R>fetch(callback: suspend (S) -> Response<R>): HTTPClientResult<R> {
         return try {
-            val response = callback()
+            val response = callback(service)
             val body = response.body()
             if (response.isSuccessful) {
                 HTTPClientResult.Success(body)
@@ -29,4 +30,8 @@ class HTTPClient(
             HTTPClientResult.Error(code = -1, message = e.message ?: "HTTPClient throw exception")
         }
     }
+}
+
+inline fun <reified S>HTTPClient(baseUrl: String): HTTPClient<S> {
+    return HTTPClient(S::class.java, baseUrl)
 }
