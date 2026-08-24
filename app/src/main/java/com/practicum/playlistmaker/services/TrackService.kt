@@ -2,8 +2,8 @@ package com.practicum.playlistmaker.services
 
 import com.practicum.playlistmaker.models.TrackResponse
 
-import retrofit2.Response
+import retrofit2.Call
 
 interface TrackService {
-    fun fetchTrackList(): Response<TrackResponse>
+    fun fetchTrackList(): Call<TrackResponse>
 }
