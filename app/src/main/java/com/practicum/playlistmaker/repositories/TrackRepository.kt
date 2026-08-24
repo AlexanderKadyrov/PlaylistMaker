@@ -9,7 +9,7 @@ class TrackRepository {
 
     private val client = HTTPClient<TrackService>("https://itunes.apple.com/")
 
-    fun fetchTrackList(completion: (HTTPClientResult<TrackResponse>) -> Unit) {
-        client.fetch({ it.fetchTrackList() }, completion)
+    fun fetchTrackList(text: String, completion: (HTTPClientResult<TrackResponse>) -> Unit) {
+        client.fetch({ it.fetchTrackList(text) }, completion)
     }
 }
