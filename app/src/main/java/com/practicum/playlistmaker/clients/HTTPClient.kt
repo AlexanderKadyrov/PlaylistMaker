@@ -26,7 +26,7 @@ class HTTPClient(
                 HTTPClientResult.Error(code = response.code(), message = response.message())
             }
         } catch (e: Exception) {
-            HTTPClientResult.Error(code = -1, message = e.message ?: "")
+            HTTPClientResult.Error(code = -1, message = e.message ?: "HTTPClient throw exception")
         }
     }
 }
