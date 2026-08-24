@@ -1,8 +1,10 @@
 package com.practicum.playlistmaker.clients
 
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.Retrofit
+import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.Call
 
 class HTTPClient<S>(
     private val serviceClass: Class<S>,
@@ -17,18 +19,24 @@ class HTTPClient<S>(
         retrofit.create(serviceClass)
     }
 
-    suspend fun <R>fetch(callback: suspend (S) -> Response<R>): HTTPClientResult<R> {
-        return try {
-            val response = callback(service)
-            val body = response.body()
-            if (response.isSuccessful) {
-                HTTPClientResult.Success(body)
-            } else {
-                HTTPClientResult.Error(code = response.code(), message = response.message())
+    fun <R>fetch(
+        serviceCallback: (S) -> Call<R>,
+        completionCallback: (HTTPClientResult<R>) -> Unit
+    ) {
+        val call = serviceCallback(service)
+        call.enqueue(object : Callback<R> {
+            override fun onResponse(call: Call<R>, response: Response<R>) {
+                val body = response.body()
+                if (response.isSuccessful) {
+                    completionCallback(HTTPClientResult.Success(body))
+                } else {
+                    completionCallback(HTTPClientResult.Error(response.code(), response.message()))
+                }
             }
-        } catch (e: Exception) {
-            HTTPClientResult.Error(code = -1, message = e.message ?: "HTTPClient throw exception")
-        }
+            override fun onFailure(call: Call<R>, t: Throwable) {
+                completionCallback(HTTPClientResult.Error(code = -1, message = t.message ?: "HTTPClient throw exception"))
+            }
+        })
     }
 }
 
