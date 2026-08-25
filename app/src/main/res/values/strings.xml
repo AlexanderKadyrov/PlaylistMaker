@@ -16,4 +16,5 @@
     <string name="search_input_hint">Поиск</string>
     <string name="track_list_empty">Ничего не нашлось</string>
     <string name="track_list_error">Проблемы со связью\n\nЗагрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="refresh">Обновить</string>
 </resources>

@@ -13,4 +13,5 @@
     <color name="textSearch">@color/textGray</color>
     <color name="blackWhite">#FF000000</color>
     <color name="grayWhite">@color/textGray</color>
+    <color name="whiteBlack">@color/white</color>
 </resources>

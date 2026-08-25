@@ -5,4 +5,5 @@
     <color name="textSearch">@color/black</color>
     <color name="blackWhite">@color/white</color>
     <color name="grayWhite">@color/white</color>
+    <color name="whiteBlack">@color/black</color>
 </resources>
