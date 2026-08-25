@@ -3,4 +3,5 @@
     <dimen name="title_main_text_size">22sp</dimen>
     <dimen name="title_settings_text_size">16sp</dimen>
     <dimen name="title_settings_height">61dp</dimen>
+    <dimen name="ic_track_list_size">120dp</dimen>
 </resources>
