@@ -23,16 +23,21 @@ class TrackAdapter(): RecyclerView.Adapter<TrackViewHolder>() {
         when (state) {
             TrackAdapterState.SUCCESS -> {
                 holder.bind(state.trackList[position])
-            } else -> {}
+            }
+            else -> {}
         }
     }
 
     override fun getItemCount(): Int {
-        when (state) {
+        return when (state) {
             TrackAdapterState.SUCCESS -> {
-                return state.trackList.size
-            } else -> {
-                return 1
+                state.trackList.size
+            }
+            TrackAdapterState.BLANK -> {
+                0
+            }
+            else -> {
+                1
             }
         }
     }
