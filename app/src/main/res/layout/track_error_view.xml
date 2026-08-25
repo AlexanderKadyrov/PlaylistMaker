@@ -14,7 +14,7 @@
         android:layout_width="@dimen/ic_track_list_size"
         android:layout_height="@dimen/ic_track_list_size"
         android:foregroundGravity="center"
-        app:srcCompat="@drawable/ic_track_empty" />
+        app:srcCompat="@drawable/ic_track_error" />
 
     <TextView
         android:id="@+id/trackNameTextView"
@@ -25,6 +25,6 @@
         android:textColor="@color/blackWhite"
         android:textSize="19sp"
         android:textAlignment="center"
-        android:text="@string/track_list_empty" />
+        android:text="@string/track_list_error" />
 
 </LinearLayout>
