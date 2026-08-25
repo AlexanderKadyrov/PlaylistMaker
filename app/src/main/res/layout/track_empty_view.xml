@@ -12,7 +12,7 @@
         android:layout_height="@dimen/ic_track_list_size"
         android:layout_marginTop="102dp"
         android:foregroundGravity="center"
-        app:srcCompat="@drawable/ic_track_list_empty" />
+        app:srcCompat="@drawable/ic_track_empty" />
 
     <TextView
         android:id="@+id/trackNameTextView"

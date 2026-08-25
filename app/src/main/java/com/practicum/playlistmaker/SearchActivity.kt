@@ -94,7 +94,7 @@ class SearchActivity : AppCompatActivity() {
                         trackAdapter.set(state)
                     } else {
                         val state = TrackAdapterState.SUCCESS
-                        state.trackList = trackList
+                        state.set(trackList)
                         trackAdapter.set(state)
                     }
                 }
