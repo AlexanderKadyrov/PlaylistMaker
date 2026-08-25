@@ -20,7 +20,9 @@ import android.os.Bundle
 class SearchActivity : AppCompatActivity() {
 
     private val trackRepository = TrackRepository()
-    private val trackAdapter = TrackAdapter()
+    private val trackAdapter = TrackAdapter {
+        fetchTrackList()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,9 +55,9 @@ class SearchActivity : AppCompatActivity() {
                 trackAdapter.set(TrackAdapterState.BLANK)
             }
         }
-        searchEditText.setOnEditorActionListener { textView, actionId, _ ->
+        searchEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                fetchTrackList(textView.text.toString())
+                fetchTrackList()
             }
             false
         }
@@ -84,7 +86,8 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-    private fun fetchTrackList(text: String) {
+    private fun fetchTrackList() {
+        val text = searchEditText().text.toString()
         trackRepository.fetchTrackList(text) { response ->
             when (response) {
                 is HTTPClientResult.Success -> {

@@ -14,7 +14,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.View
 
-class TrackAdapter(): RecyclerView.Adapter<TrackViewHolder>() {
+class TrackAdapter(
+    val refreshCallback: () -> Unit
+): RecyclerView.Adapter<TrackViewHolder>() {
 
     private var state: TrackAdapterState = TrackAdapterState.BLANK
 
@@ -30,7 +32,7 @@ class TrackAdapter(): RecyclerView.Adapter<TrackViewHolder>() {
             }
             TrackAdapterItemViewType.ERROR.value -> {
                 val itemView = itemView(R.layout.track_error_view, parent)
-                TrackErrorViewHolder(itemView)
+                TrackErrorViewHolder(itemView, refreshCallback)
             }
             else -> {
                 val itemView = itemView(R.layout.track_item_view, parent)
