@@ -1,6 +1,7 @@
 package com.practicum.playlistmaker.adapters
 
 import com.practicum.playlistmaker.views.TrackEmptyViewHolder
+import com.practicum.playlistmaker.views.TrackErrorViewHolder
 import com.practicum.playlistmaker.views.TrackItemViewHolder
 import com.practicum.playlistmaker.views.TrackViewHolder
 import com.practicum.playlistmaker.R
@@ -26,6 +27,10 @@ class TrackAdapter(): RecyclerView.Adapter<TrackViewHolder>() {
             TrackAdapterItemViewType.EMPTY.value -> {
                 val itemView = itemView(R.layout.track_empty_view, parent)
                 TrackEmptyViewHolder(itemView)
+            }
+            TrackAdapterItemViewType.ERROR.value -> {
+                val itemView = itemView(R.layout.track_error_view, parent)
+                TrackErrorViewHolder(itemView)
             }
             else -> {
                 val itemView = itemView(R.layout.track_item_view, parent)
