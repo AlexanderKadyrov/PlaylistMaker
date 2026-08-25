@@ -30,6 +30,6 @@
         android:id="@+id/refreshButton"
         android:text="@string/refresh"
         android:layout_marginTop="24dp"
-        style="@style/AppButtonStyle" />
+        style="@style/DefaultButtonStyle" />
 
 </LinearLayout>
