@@ -8,11 +8,11 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.Switch
 
-import com.practicum.playlistmaker.extensions.isSystemInDarkTheme
-import com.practicum.playlistmaker.extensions.setDefaultNightMode
 import com.practicum.playlistmaker.extensions.intentActionSendTo
 import com.practicum.playlistmaker.extensions.intentActionSend
 import com.practicum.playlistmaker.extensions.intentActionView
+
+import com.practicum.playlistmaker.repositories.ThemeRepository
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -29,9 +29,9 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun setOnClickDarkTheme() {
         val settingsSwitch = findViewById<Switch>(R.id.settings_switch)
-        settingsSwitch.isChecked = isSystemInDarkTheme()
+        settingsSwitch.isChecked = ThemeRepository.isDarkTheme()
         settingsSwitch.setOnCheckedChangeListener { _, isChecked ->
-            setDefaultNightMode(isChecked)
+            ThemeRepository.switchTheme(isChecked)
         }
     }
 

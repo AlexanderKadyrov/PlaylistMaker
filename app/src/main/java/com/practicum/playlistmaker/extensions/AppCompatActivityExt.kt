@@ -16,16 +16,6 @@ fun AppCompatActivity.configureToolbar() {
     }
 }
 
-fun AppCompatActivity.isSystemInDarkTheme(): Boolean {
-    val currentMode = AppCompatDelegate.getDefaultNightMode()
-    return currentMode == AppCompatDelegate.MODE_NIGHT_YES
-}
-
-fun AppCompatActivity.setDefaultNightMode(isChecked: Boolean) {
-    val mode = if (isChecked) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
-    AppCompatDelegate.setDefaultNightMode(mode)
-}
-
 fun AppCompatActivity.intentActionSend(text: String): Intent {
     val intent = Intent(Intent.ACTION_SEND)
     intent.putExtra(Intent.EXTRA_TEXT, text)
