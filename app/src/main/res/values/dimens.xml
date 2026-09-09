@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="default_button_text_size">14sp</dimen>
     <dimen name="title_main_text_size">22sp</dimen>
     <dimen name="title_settings_text_size">16sp</dimen>
     <dimen name="title_settings_height">61dp</dimen>
+    <dimen name="track_placeholder_icon_size">120dp</dimen>
+    <dimen name="track_placeholder_default_margin">24dp</dimen>
 </resources>
