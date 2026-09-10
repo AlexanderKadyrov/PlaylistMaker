@@ -44,6 +44,13 @@ object TrackRepository {
         return Gson().fromJson(json, type) ?: arrayListOf()
     }
 
+    fun clearStoredTrackList() {
+        sharedPreferences
+            .edit {
+                clear()
+            }
+    }
+
     fun store(track: Track) {
         val trackList = fetchStoredTrackList()
         trackList.removeAll { it.trackId == track.trackId }
