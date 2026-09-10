@@ -11,11 +11,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.view.View
 
-class TrackItemViewHolder(itemView: View): TrackViewHolder(itemView) {
+class TrackItemViewHolder(
+    itemView: View,
+    private val onItemClick: () -> Unit
+): TrackViewHolder(itemView) {
 
     private val trackNameTextView: TextView = itemView.findViewById(R.id.trackNameTextView)
     private val trackArtistNameAndTimeTextView: TextView = itemView.findViewById(R.id.trackArtistNameAndTimeTextView)
     private val trackImageView: ImageView = itemView.findViewById(R.id.trackImageView)
+
+    init {
+        val trackItemView: TextView = itemView.findViewById(R.id.trackItemView)
+        trackItemView.setOnClickListener {
+            onItemClick()
+        }
+    }
 
     override fun bind(model: Track?) {
         model?.let { model ->
