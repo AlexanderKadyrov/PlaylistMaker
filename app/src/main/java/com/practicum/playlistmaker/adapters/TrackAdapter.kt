@@ -1,7 +1,5 @@
 package com.practicum.playlistmaker.adapters
 
-import com.practicum.playlistmaker.views.TrackEmptyViewHolder
-import com.practicum.playlistmaker.views.TrackErrorViewHolder
 import com.practicum.playlistmaker.views.TrackItemViewHolder
 import com.practicum.playlistmaker.views.TrackViewHolder
 import com.practicum.playlistmaker.models.Track
@@ -9,63 +7,34 @@ import com.practicum.playlistmaker.R
 
 import androidx.recyclerview.widget.RecyclerView
 
-import androidx.annotation.LayoutRes
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.View
 
 class TrackAdapter(
-    private val onItemClick: (Track) -> Unit,
-    private val refreshCallback: () -> Unit
+    private val onItemClick: (Track) -> Unit
 ): RecyclerView.Adapter<TrackViewHolder>() {
 
-    private var state: TrackAdapterState = TrackAdapterState.BLANK
-
-    override fun getItemViewType(position: Int): Int {
-        return state.getItemViewType().value
-    }
+    private var trackList: ArrayList<Track> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
-        return when (viewType) {
-            TrackAdapterItemViewType.EMPTY.value -> {
-                val itemView = itemView(R.layout.track_empty_view, parent)
-                TrackEmptyViewHolder(itemView)
-            }
-            TrackAdapterItemViewType.ERROR.value -> {
-                val itemView = itemView(R.layout.track_error_view, parent)
-                TrackErrorViewHolder(itemView, refreshCallback)
-            }
-            else -> {
-                val itemView = itemView(R.layout.track_item_view, parent)
-                TrackItemViewHolder(itemView) { position ->
-                    state.getTrack(position)?.let { track ->
-                        onItemClick(track)
-                    }
-                }
-            }
+        val itemView = LayoutInflater
+            .from(parent.context)
+            .inflate(R.layout.track_item_view, parent, false)
+        return TrackItemViewHolder(itemView) { position ->
+            onItemClick(trackList[position])
         }
     }
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
-        holder.bind(state.getTrack(position))
+        holder.bind(trackList[position])
     }
 
     override fun getItemCount(): Int {
-        return state.getTrackListSize()
+        return trackList.size
     }
 
-    fun set(state: TrackAdapterState) {
-        this.state = state
+    fun set(trackList: ArrayList<Track>) {
+        this.trackList = trackList
         notifyDataSetChanged()
-    }
-
-    private fun itemView(
-        @LayoutRes resource: Int,
-        parent: ViewGroup
-    ): View {
-        return LayoutInflater
-            .from(parent.context)
-            .inflate(resource, parent, false)
     }
 }
