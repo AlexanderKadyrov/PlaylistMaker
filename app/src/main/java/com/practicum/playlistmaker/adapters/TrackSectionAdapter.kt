@@ -28,7 +28,7 @@ class TrackSectionAdapter(
             }
             ViewState.FOOTER -> {
                 val itemView = itemView(R.layout.track_footer_view, parent)
-                TrackFooterViewHolder(itemView)
+                TrackFooterViewHolder(itemView, onClick)
             }
         }
     }
