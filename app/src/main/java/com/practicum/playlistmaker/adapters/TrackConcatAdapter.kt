@@ -9,17 +9,18 @@ class TrackConcatAdapter(
     private val baseConcatAdapter = BaseConcatAdapter()
 
     fun showStoredTrackList(trackList: ArrayList<Track>) {
-        showTrackList(trackList)
+        baseConcatAdapter.clear()
+        baseConcatAdapter.add(
+            TrackSectionAdapter(
+                viewState = TrackSectionAdapter.ViewState.HEADER
+            )
+        )
+        baseConcatAdapter.add(trackAdapter(trackList))
     }
 
     fun showTrackList(trackList: ArrayList<Track>) {
-        val trackAdapter = TrackAdapter(
-            onItemClick = { track ->
-                onItemClick(track)
-            })
-        trackAdapter.set(trackList)
         baseConcatAdapter.clear()
-        baseConcatAdapter.add(trackAdapter)
+        baseConcatAdapter.add(trackAdapter(trackList))
     }
 
     fun showTrackListErrorPlaceholder(onRefreshClick: () -> Unit) {
@@ -47,5 +48,16 @@ class TrackConcatAdapter(
 
     fun clear() {
         baseConcatAdapter.clear()
+    }
+
+    private fun trackAdapter(
+        trackList: ArrayList<Track>
+    ): TrackAdapter {
+        val trackAdapter = TrackAdapter(
+            onItemClick = { track ->
+                onItemClick(track)
+            })
+        trackAdapter.set(trackList)
+        return trackAdapter
     }
 }
