@@ -4,6 +4,7 @@ import com.practicum.playlistmaker.views.TrackEmptyViewHolder
 import com.practicum.playlistmaker.views.TrackErrorViewHolder
 import com.practicum.playlistmaker.views.TrackItemViewHolder
 import com.practicum.playlistmaker.views.TrackViewHolder
+import com.practicum.playlistmaker.models.Track
 import com.practicum.playlistmaker.R
 
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +16,8 @@ import android.view.ViewGroup
 import android.view.View
 
 class TrackAdapter(
-    val refreshCallback: () -> Unit
+    private val onItemClick: (Track) -> Unit,
+    private val refreshCallback: () -> Unit
 ): RecyclerView.Adapter<TrackViewHolder>() {
 
     private var state: TrackAdapterState = TrackAdapterState.BLANK
@@ -36,7 +38,11 @@ class TrackAdapter(
             }
             else -> {
                 val itemView = itemView(R.layout.track_item_view, parent)
-                TrackItemViewHolder(itemView)
+                TrackItemViewHolder(itemView) { position ->
+                    state.getTrack(position)?.let { track ->
+                        onItemClick(track)
+                    }
+                }
             }
         }
     }
