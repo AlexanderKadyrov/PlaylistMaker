@@ -14,7 +14,7 @@ import android.view.View
 
 class TrackPlaceholderAdapter(
     private val viewState: ViewState,
-    private val onRefreshClick: () -> Unit
+    private val onRefreshClick: (() -> Unit)? = null
 ): RecyclerView.Adapter<TrackViewHolder>() {
 
     enum class ViewState {
