@@ -19,7 +19,6 @@ import android.os.Bundle
 
 class SearchActivity : AppCompatActivity() {
 
-    private val trackRepository = TrackRepository()
     private val trackAdapter = TrackAdapter {
         fetchTrackList()
     }
@@ -88,7 +87,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun fetchTrackList() {
         val text = searchEditText().text.toString()
-        trackRepository.fetchTrackList(text) { response ->
+        TrackRepository.fetchTrackList(text) { response ->
             when (response) {
                 is HTTPClientResult.Success -> {
                     val trackList = response.data?.results ?: arrayListOf()
