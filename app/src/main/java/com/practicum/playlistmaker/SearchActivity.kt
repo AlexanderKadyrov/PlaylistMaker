@@ -49,6 +49,11 @@ class SearchActivity : AppCompatActivity() {
     private fun configureUI() {
         val clearImageView = findViewById<ImageView>(R.id.clearImageView)
         val searchEditText = searchEditText()
+        searchEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus && searchEditText.text.isEmpty()) {
+                showStoredTracks()
+            }
+        }
         searchEditText.doOnTextChanged { charSequence, _, _, _ ->
             val text = charSequence.toString()
             val visibility = visibility(text)
@@ -109,6 +114,13 @@ class SearchActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun showStoredTracks() {
+        val trackList = TrackRepository.fetchStoredTrackList()
+        val state = TrackAdapterState.SUCCESS
+        state.set(trackList)
+        trackAdapter.set(state)
     }
 
     companion object {
