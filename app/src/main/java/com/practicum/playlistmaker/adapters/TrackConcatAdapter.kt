@@ -9,7 +9,11 @@ class TrackConcatAdapter(
 ) {
     private val baseConcatAdapter = BaseConcatAdapter()
 
-    fun show(trackList: ArrayList<Track>) {
+    fun showStoredTrackList(trackList: ArrayList<Track>) {
+        showTrackList(trackList)
+    }
+
+    fun showTrackList(trackList: ArrayList<Track>) {
         val trackAdapter = TrackAdapter(
             onItemClick = { track ->
                 onItemClick(track)
