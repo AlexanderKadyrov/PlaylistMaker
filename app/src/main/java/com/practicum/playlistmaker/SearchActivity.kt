@@ -21,7 +21,7 @@ class SearchActivity : AppCompatActivity() {
 
     private val trackAdapter = TrackAdapter(
         onItemClick = { track ->
-
+            TrackRepository.store(track)
         }, refreshCallback = {
             fetchTrackList()
         })
