@@ -17,24 +17,22 @@ open class BaseConcatAdapter {
     }
 
     fun addSection(adapter: RecyclerView.Adapter<*>) {
-        if (!activeAdapters.contains(adapter)) {
-            activeAdapters.add(adapter)
+        if (!concatAdapter.adapters.contains(adapter)) {
             concatAdapter.addAdapter(adapter)
         }
     }
 
     fun removeSection(adapter: RecyclerView.Adapter<*>) {
-        if (activeAdapters.contains(adapter)) {
-            activeAdapters.remove(adapter)
+        concatAdapter.removeAdapter(adapter)
+    }
+
+    fun clearAll() {
+        concatAdapter.adapters.forEach { adapter ->
             concatAdapter.removeAdapter(adapter)
         }
     }
 
-    fun clearAll() {
-        val adapters = ArrayList(activeAdapters)
-        adapters.forEach {
-            concatAdapter.removeAdapter(it)
-        }
-        activeAdapters.clear()
+    fun connect(recyclerView: RecyclerView) {
+        recyclerView.adapter = concatAdapter
     }
 }
