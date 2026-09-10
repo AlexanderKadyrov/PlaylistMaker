@@ -7,13 +7,13 @@ import android.view.View
 
 class TrackErrorViewHolder(
     itemView: View,
-    private val refreshCallback: () -> Unit
+    private val onRefreshClick: () -> Unit
 ): TrackViewHolder(itemView) {
 
     init {
         val refreshButton: TextView = itemView.findViewById(R.id.refreshButton)
         refreshButton.setOnClickListener {
-            refreshCallback()
+            onRefreshClick()
         }
     }
 }
