@@ -8,7 +8,10 @@ class TrackConcatAdapter(
 ) {
     private val baseConcatAdapter = BaseConcatAdapter()
 
-    fun showStoredTrackList(trackList: ArrayList<Track>) {
+    fun showStoredTrackList(
+        trackList: ArrayList<Track>,
+        onClearHistoryClick: () -> Unit
+    ) {
         baseConcatAdapter.clear()
         baseConcatAdapter.add(
             TrackSectionAdapter(
@@ -16,6 +19,15 @@ class TrackConcatAdapter(
             )
         )
         baseConcatAdapter.add(trackAdapter(trackList))
+        baseConcatAdapter.add(
+            TrackSectionAdapter(
+                viewState = TrackSectionAdapter.ViewState.FOOTER,
+                onClick = {
+                    baseConcatAdapter.clear()
+                    onClearHistoryClick()
+                }
+            )
+        )
     }
 
     fun showTrackList(trackList: ArrayList<Track>) {
