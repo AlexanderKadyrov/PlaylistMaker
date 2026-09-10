@@ -19,9 +19,12 @@ import android.os.Bundle
 
 class SearchActivity : AppCompatActivity() {
 
-    private val trackAdapter = TrackAdapter {
-        fetchTrackList()
-    }
+    private val trackAdapter = TrackAdapter(
+        onItemClick = { track ->
+
+        }, refreshCallback = {
+            fetchTrackList()
+        })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
