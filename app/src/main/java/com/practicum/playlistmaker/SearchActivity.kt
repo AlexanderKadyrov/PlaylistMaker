@@ -114,7 +114,12 @@ class SearchActivity : AppCompatActivity() {
 
     private fun showStoredTracks() {
         val trackList = TrackRepository.fetchStoredTrackList()
-        trackConcatAdapter.showStoredTrackList(trackList)
+        trackConcatAdapter.showStoredTrackList(
+            trackList = trackList,
+            onClearHistoryClick = {
+                TrackRepository.clearStoredTrackList()
+            }
+        )
     }
 
     companion object {
