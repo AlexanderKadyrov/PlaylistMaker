@@ -37,8 +37,11 @@ object TrackRepository {
 
     fun fetchStoredTrackList(): ArrayList<Track> {
         val json = sharedPreferences.getString(SHARED_PREFERENCES_TRACK_KEY, null)
+        if (json.isNullOrEmpty()) {
+            return arrayListOf()
+        }
         val type = object : TypeToken<ArrayList<Track>>() {}.type
-        return Gson().fromJson(json, type)
+        return Gson().fromJson(json, type) ?: arrayListOf()
     }
 
     fun store(track: Track) {
