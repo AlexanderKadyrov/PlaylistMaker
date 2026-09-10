@@ -3,7 +3,7 @@ package com.practicum.playlistmaker.adapters
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-open class BaseConcatAdapter {
+class BaseConcatAdapter {
 
     private val concatAdapter = ConcatAdapter(
         ConcatAdapter.Config.Builder().setIsolateViewTypes(true).build()
@@ -11,22 +11,13 @@ open class BaseConcatAdapter {
 
     private val activeAdapters = mutableListOf<RecyclerView.Adapter<*>>()
 
-    fun setSections(newAdapters: List<RecyclerView.Adapter<*>>) {
-        clearAll()
-        newAdapters.forEach { addSection(it) }
-    }
-
-    fun addSection(adapter: RecyclerView.Adapter<*>) {
+    fun add(adapter: RecyclerView.Adapter<*>) {
         if (!concatAdapter.adapters.contains(adapter)) {
             concatAdapter.addAdapter(adapter)
         }
     }
 
-    fun removeSection(adapter: RecyclerView.Adapter<*>) {
-        concatAdapter.removeAdapter(adapter)
-    }
-
-    fun clearAll() {
+    fun clear() {
         concatAdapter.adapters.forEach { adapter ->
             concatAdapter.removeAdapter(adapter)
         }
