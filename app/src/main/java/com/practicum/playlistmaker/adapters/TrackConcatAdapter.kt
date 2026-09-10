@@ -12,6 +12,9 @@ class TrackConcatAdapter(
         trackList: ArrayList<Track>,
         onClearHistoryClick: () -> Unit
     ) {
+        if (trackList.isEmpty()) {
+            return
+        }
         baseConcatAdapter.clear()
         baseConcatAdapter.add(
             TrackSectionAdapter(
