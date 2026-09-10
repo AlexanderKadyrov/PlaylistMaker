@@ -1,11 +1,10 @@
 package com.practicum.playlistmaker
 
 import com.practicum.playlistmaker.repositories.TrackRepository
+import com.practicum.playlistmaker.adapters.TrackConcatAdapter
 import com.practicum.playlistmaker.extensions.configureToolbar
-import com.practicum.playlistmaker.adapters.TrackAdapterState
 import com.practicum.playlistmaker.clients.HTTPClientResult
 import com.practicum.playlistmaker.extensions.hideKeyboard
-import com.practicum.playlistmaker.adapters.TrackAdapter
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.app.AppCompatActivity
@@ -19,12 +18,14 @@ import android.os.Bundle
 
 class SearchActivity : AppCompatActivity() {
 
-    private val trackAdapter = TrackAdapter(
+    private val trackConcatAdapter = TrackConcatAdapter(
         onItemClick = { track ->
             TrackRepository.store(track)
-        }, refreshCallback = {
-            fetchTrackList()
-        })
+        },
+        onRefreshClick = {
+
+        }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +60,7 @@ class SearchActivity : AppCompatActivity() {
             val visibility = visibility(text)
             clearImageView.visibility = visibility
             if (visibility == View.GONE) {
-                trackAdapter.set(TrackAdapterState.BLANK)
+                trackConcatAdapter.clear()
             }
         }
         searchEditText.setOnEditorActionListener { _, actionId, _ ->
@@ -69,7 +70,7 @@ class SearchActivity : AppCompatActivity() {
             false
         }
         clearImageView.setOnClickListener {
-            trackAdapter.set(TrackAdapterState.BLANK)
+            trackConcatAdapter.clear()
             searchEditText.text.clear()
             searchEditText.hideKeyboard()
         }
@@ -78,7 +79,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun configureRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.adapter = trackAdapter
+        trackConcatAdapter.connect(recyclerView)
     }
 
     private fun searchEditText(): EditText {
@@ -100,17 +101,15 @@ class SearchActivity : AppCompatActivity() {
                 is HTTPClientResult.Success -> {
                     val trackList = response.data?.results ?: arrayListOf()
                     if (trackList.isEmpty()) {
-                        val state = TrackAdapterState.EMPTY
-                        trackAdapter.set(state)
+                        //val state = TrackAdapterState.EMPTY
+                        //trackAdapter.set(state)
                     } else {
-                        val state = TrackAdapterState.SUCCESS
-                        state.set(trackList)
-                        trackAdapter.set(state)
+                        trackConcatAdapter.showTrackList(trackList)
                     }
                 }
                 is HTTPClientResult.Error -> {
-                    val state = TrackAdapterState.ERROR
-                    trackAdapter.set(state)
+                    //val state = TrackAdapterState.ERROR
+                    //trackAdapter.set(state)
                 }
             }
         }
@@ -118,9 +117,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun showStoredTracks() {
         val trackList = TrackRepository.fetchStoredTrackList()
-        val state = TrackAdapterState.SUCCESS
-        state.set(trackList)
-        trackAdapter.set(state)
+        trackConcatAdapter.showStoredTrackList(trackList)
     }
 
     companion object {
