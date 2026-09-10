@@ -21,9 +21,6 @@ class SearchActivity : AppCompatActivity() {
     private val trackConcatAdapter = TrackConcatAdapter(
         onItemClick = { track ->
             TrackRepository.store(track)
-        },
-        onRefreshClick = {
-
         }
     )
 
@@ -101,15 +98,15 @@ class SearchActivity : AppCompatActivity() {
                 is HTTPClientResult.Success -> {
                     val trackList = response.data?.results ?: arrayListOf()
                     if (trackList.isEmpty()) {
-                        //val state = TrackAdapterState.EMPTY
-                        //trackAdapter.set(state)
+                        trackConcatAdapter.showTrackListEmptyPlaceholder()
                     } else {
                         trackConcatAdapter.showTrackList(trackList)
                     }
                 }
                 is HTTPClientResult.Error -> {
-                    //val state = TrackAdapterState.ERROR
-                    //trackAdapter.set(state)
+                    trackConcatAdapter.showTrackListErrorPlaceholder {
+                        fetchTrackList()
+                    }
                 }
             }
         }
