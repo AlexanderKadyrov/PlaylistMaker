@@ -5,7 +5,7 @@ import com.practicum.playlistmaker.services.TrackService
 import com.practicum.playlistmaker.models.TrackResponse
 import com.practicum.playlistmaker.clients.HTTPClient
 
-class TrackRepository {
+object TrackRepository {
 
     private val client = HTTPClient<TrackService>("https://itunes.apple.com/")
 
