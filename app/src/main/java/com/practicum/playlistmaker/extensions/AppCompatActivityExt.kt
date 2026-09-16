@@ -16,6 +16,11 @@ fun AppCompatActivity.configureToolbar() {
     }
 }
 
+inline fun <reified T: Any>AppCompatActivity.startActivity() {
+    val intent = Intent(this, T::class.java)
+    startActivity(intent)
+}
+
 fun AppCompatActivity.intentActionSend(text: String): Intent {
     val intent = Intent(Intent.ACTION_SEND)
     intent.putExtra(Intent.EXTRA_TEXT, text)
