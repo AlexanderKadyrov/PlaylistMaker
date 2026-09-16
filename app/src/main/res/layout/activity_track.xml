@@ -103,21 +103,21 @@
                 app:layout_constraintStart_toStartOf="@id/leadingAnchor"
                 app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
                 app:layout_constraintTop_toBottomOf="@id/trackArtistNameTextView">
-                <View
+                <Button
                     android:id="@+id/playlistButton"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentStart="true"
                     android:background="#ff88ff" />
-                <View
+                <Button
                     android:id="@+id/playPauseButton"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:background="#ff88ff" />
-                <View
+                <Button
                     android:id="@+id/favoriteButton"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
@@ -154,7 +154,7 @@
                 android:layout_width="0dp"
                 android:layout_height="32dp"
                 android:fontFamily="@font/ys_display_regular"
-                android:textColor="@color/grayWhite"
+                android:textColor="@color/textGray"
                 android:gravity="start|center_vertical"
                 android:textSize="13sp"
                 android:maxLines="1"
@@ -167,7 +167,7 @@
                 android:layout_width="0dp"
                 android:layout_height="32dp"
                 android:fontFamily="@font/ys_display_regular"
-                android:textColor="@color/grayWhite"
+                android:textColor="@color/textGray"
                 android:gravity="start|center_vertical"
                 android:textSize="13sp"
                 android:maxLines="1"
@@ -180,7 +180,7 @@
                 android:layout_width="0dp"
                 android:layout_height="32dp"
                 android:fontFamily="@font/ys_display_regular"
-                android:textColor="@color/grayWhite"
+                android:textColor="@color/textGray"
                 android:gravity="start|center_vertical"
                 android:textSize="13sp"
                 android:maxLines="1"
@@ -193,7 +193,7 @@
                 android:layout_width="0dp"
                 android:layout_height="32dp"
                 android:fontFamily="@font/ys_display_regular"
-                android:textColor="@color/grayWhite"
+                android:textColor="@color/textGray"
                 android:gravity="start|center_vertical"
                 android:textSize="13sp"
                 android:maxLines="1"
@@ -206,7 +206,7 @@
                 android:layout_width="0dp"
                 android:layout_height="32dp"
                 android:fontFamily="@font/ys_display_regular"
-                android:textColor="@color/grayWhite"
+                android:textColor="@color/textGray"
                 android:gravity="start|center_vertical"
                 android:textSize="13sp"
                 android:maxLines="1"
