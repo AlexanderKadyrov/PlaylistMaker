@@ -143,6 +143,69 @@
         tools:text="trackDurationNameTextView" />
 
     <TextView
+        android:id="@+id/trackAlbumNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ys_display_regular"
+        android:textColor="@color/grayWhite"
+        android:gravity="start"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="@id/leadingAnchor"
+        app:layout_constraintTop_toBottomOf="@id/trackDurationNameTextView"
+        tools:text="trackAlbumNameTextView" />
+
+    <TextView
+        android:id="@+id/trackYearNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ys_display_regular"
+        android:textColor="@color/grayWhite"
+        android:gravity="start"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="@id/leadingAnchor"
+        app:layout_constraintTop_toBottomOf="@id/trackAlbumNameTextView"
+        tools:text="trackYearNameTextView" />
+
+    <TextView
+        android:id="@+id/trackGenreNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ys_display_regular"
+        android:textColor="@color/grayWhite"
+        android:gravity="start"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="@id/leadingAnchor"
+        app:layout_constraintTop_toBottomOf="@id/trackYearNameTextView"
+        tools:text="trackGenreNameTextView" />
+
+    <TextView
+        android:id="@+id/trackCountryNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ys_display_regular"
+        android:textColor="@color/grayWhite"
+        android:gravity="start"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="@id/leadingAnchor"
+        app:layout_constraintTop_toBottomOf="@id/trackGenreNameTextView"
+        tools:text="trackCountryNameTextView" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/namedTextViewBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="trackDurationNameTextView,trackAlbumNameTextView,trackYearNameTextView,trackGenreNameTextView,trackCountryNameTextView"
+        app:barrierDirection="end" />
+
+    <TextView
         android:id="@+id/trackDurationValueTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -158,20 +221,6 @@
         tools:text="trackDurationValueTextView" />
 
     <TextView
-        android:id="@+id/trackAlbumNameTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/ys_display_regular"
-        android:textColor="@color/grayWhite"
-        android:gravity="start"
-        android:textSize="13sp"
-        android:maxLines="1"
-        android:layout_marginTop="9dp"
-        app:layout_constraintStart_toStartOf="@id/leadingAnchor"
-        app:layout_constraintTop_toBottomOf="@id/trackDurationNameTextView"
-        tools:text="trackAlbumNameTextView" />
-
-    <TextView
         android:id="@+id/trackAlbumValueTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -185,20 +234,6 @@
         app:layout_constraintTop_toBottomOf="@id/trackDurationValueTextView"
         app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
         tools:text="trackAlbumValueTextView" />
-
-    <TextView
-        android:id="@+id/trackYearNameTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/ys_display_regular"
-        android:textColor="@color/grayWhite"
-        android:gravity="start"
-        android:textSize="13sp"
-        android:maxLines="1"
-        android:layout_marginTop="9dp"
-        app:layout_constraintStart_toStartOf="@id/leadingAnchor"
-        app:layout_constraintTop_toBottomOf="@id/trackAlbumNameTextView"
-        tools:text="trackYearNameTextView" />
 
     <TextView
         android:id="@+id/trackYearValueTextView"
