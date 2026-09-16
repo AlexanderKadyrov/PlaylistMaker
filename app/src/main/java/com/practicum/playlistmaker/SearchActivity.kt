@@ -3,6 +3,7 @@ package com.practicum.playlistmaker
 import com.practicum.playlistmaker.repositories.TrackRepository
 import com.practicum.playlistmaker.adapters.TrackConcatAdapter
 import com.practicum.playlistmaker.extensions.configureToolbar
+import com.practicum.playlistmaker.extensions.startActivity
 import com.practicum.playlistmaker.clients.HTTPClientResult
 import com.practicum.playlistmaker.extensions.hideKeyboard
 
@@ -21,6 +22,7 @@ class SearchActivity : AppCompatActivity() {
     private val trackConcatAdapter = TrackConcatAdapter(
         onItemClick = { track ->
             TrackRepository.store(track)
+            startActivity<TrackActivity>()
         }
     )
 
