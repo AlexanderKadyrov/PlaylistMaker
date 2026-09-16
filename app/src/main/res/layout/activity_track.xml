@@ -199,7 +199,7 @@
         tools:text="trackCountryNameTextView" />
 
     <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/namedTextViewBarrier"
+        android:id="@+id/trackSpecificationsNameBarrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="trackDurationNameTextView,trackAlbumNameTextView,trackYearNameTextView,trackGenreNameTextView,trackCountryNameTextView"
@@ -215,7 +215,7 @@
         android:textSize="13sp"
         android:maxLines="1"
         android:layout_marginTop="9dp"
-        app:layout_constraintStart_toEndOf="@id/trackDurationNameTextView"
+        app:layout_constraintStart_toEndOf="@id/trackSpecificationsNameBarrier"
         app:layout_constraintTop_toBottomOf="@id/trackTimeValueTextViewBarrier"
         app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
         tools:text="trackDurationValueTextView" />
@@ -230,7 +230,7 @@
         android:textSize="13sp"
         android:maxLines="1"
         android:layout_marginTop="9dp"
-        app:layout_constraintStart_toEndOf="@id/trackDurationNameTextView"
+        app:layout_constraintStart_toEndOf="@id/trackSpecificationsNameBarrier"
         app:layout_constraintTop_toBottomOf="@id/trackDurationValueTextView"
         app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
         tools:text="trackAlbumValueTextView" />
@@ -245,9 +245,39 @@
         android:textSize="13sp"
         android:maxLines="1"
         android:layout_marginTop="9dp"
-        app:layout_constraintStart_toEndOf="@id/trackDurationNameTextView"
+        app:layout_constraintStart_toEndOf="@id/trackSpecificationsNameBarrier"
         app:layout_constraintTop_toBottomOf="@id/trackAlbumValueTextView"
         app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
         tools:text="trackYearValueTextView" />
+
+    <TextView
+        android:id="@+id/trackGenreValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ys_display_regular"
+        android:textColor="@color/blackWhite"
+        android:gravity="end"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toEndOf="@id/trackSpecificationsNameBarrier"
+        app:layout_constraintTop_toBottomOf="@id/trackYearValueTextView"
+        app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
+        tools:text="trackGenreValueTextView" />
+
+    <TextView
+        android:id="@+id/trackCountryValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ys_display_regular"
+        android:textColor="@color/blackWhite"
+        android:gravity="end"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toEndOf="@id/trackSpecificationsNameBarrier"
+        app:layout_constraintTop_toBottomOf="@id/trackGenreValueTextView"
+        app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
+        tools:text="trackCountryValueTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
