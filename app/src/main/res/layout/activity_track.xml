@@ -186,4 +186,33 @@
         app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
         tools:text="trackAlbumValueTextView" />
 
+    <TextView
+        android:id="@+id/trackYearNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ys_display_regular"
+        android:textColor="@color/grayWhite"
+        android:gravity="start"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="@id/leadingAnchor"
+        app:layout_constraintTop_toBottomOf="@id/trackAlbumNameTextView"
+        tools:text="trackYearNameTextView" />
+
+    <TextView
+        android:id="@+id/trackYearValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ys_display_regular"
+        android:textColor="@color/blackWhite"
+        android:gravity="end"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toEndOf="@id/trackDurationNameTextView"
+        app:layout_constraintTop_toBottomOf="@id/trackAlbumValueTextView"
+        app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
+        tools:text="trackYearValueTextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
