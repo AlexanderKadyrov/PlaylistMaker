@@ -212,6 +212,7 @@
         app:layout_constraintStart_toEndOf="@id/trackSpecificationsNameBarrier"
         app:layout_constraintTop_toBottomOf="@id/trackTimeValueTextViewBarrier"
         app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
+        app:layout_constraintBaseline_toBaselineOf="@id/trackDurationNameTextView"
         tools:text="trackDurationValueTextView" />
 
     <TextView
@@ -226,6 +227,7 @@
         app:layout_constraintStart_toEndOf="@id/trackSpecificationsNameBarrier"
         app:layout_constraintTop_toBottomOf="@id/trackDurationValueTextView"
         app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
+        app:layout_constraintBaseline_toBaselineOf="@id/trackAlbumNameTextView"
         tools:text="trackAlbumValueTextView" />
 
     <TextView
@@ -240,6 +242,7 @@
         app:layout_constraintStart_toEndOf="@id/trackSpecificationsNameBarrier"
         app:layout_constraintTop_toBottomOf="@id/trackAlbumValueTextView"
         app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
+        app:layout_constraintBaseline_toBaselineOf="@id/trackYearNameTextView"
         tools:text="trackYearValueTextView" />
 
     <TextView
@@ -254,6 +257,7 @@
         app:layout_constraintStart_toEndOf="@id/trackSpecificationsNameBarrier"
         app:layout_constraintTop_toBottomOf="@id/trackYearValueTextView"
         app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
+        app:layout_constraintBaseline_toBaselineOf="@id/trackGenreNameTextView"
         tools:text="trackGenreValueTextView" />
 
     <TextView
@@ -268,6 +272,7 @@
         app:layout_constraintStart_toEndOf="@id/trackSpecificationsNameBarrier"
         app:layout_constraintTop_toBottomOf="@id/trackGenreValueTextView"
         app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
+        app:layout_constraintBaseline_toBaselineOf="@id/trackCountryNameTextView"
         tools:text="trackCountryValueTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
