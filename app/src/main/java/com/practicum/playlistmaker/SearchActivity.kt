@@ -1,11 +1,10 @@
 package com.practicum.playlistmaker
 
 import com.practicum.playlistmaker.repositories.TrackRepository
+import com.practicum.playlistmaker.adapters.TrackConcatAdapter
 import com.practicum.playlistmaker.extensions.configureToolbar
-import com.practicum.playlistmaker.adapters.TrackAdapterState
 import com.practicum.playlistmaker.clients.HTTPClientResult
 import com.practicum.playlistmaker.extensions.hideKeyboard
-import com.practicum.playlistmaker.adapters.TrackAdapter
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.app.AppCompatActivity
@@ -19,10 +18,11 @@ import android.os.Bundle
 
 class SearchActivity : AppCompatActivity() {
 
-    private val trackRepository = TrackRepository()
-    private val trackAdapter = TrackAdapter {
-        fetchTrackList()
-    }
+    private val trackConcatAdapter = TrackConcatAdapter(
+        onItemClick = { track ->
+            TrackRepository.store(track)
+        }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +47,17 @@ class SearchActivity : AppCompatActivity() {
     private fun configureUI() {
         val clearImageView = findViewById<ImageView>(R.id.clearImageView)
         val searchEditText = searchEditText()
+        searchEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus && searchEditText.text.isEmpty()) {
+                showStoredTracks()
+            }
+        }
         searchEditText.doOnTextChanged { charSequence, _, _, _ ->
             val text = charSequence.toString()
             val visibility = visibility(text)
             clearImageView.visibility = visibility
             if (visibility == View.GONE) {
-                trackAdapter.set(TrackAdapterState.BLANK)
+                trackConcatAdapter.clear()
             }
         }
         searchEditText.setOnEditorActionListener { _, actionId, _ ->
@@ -62,7 +67,7 @@ class SearchActivity : AppCompatActivity() {
             false
         }
         clearImageView.setOnClickListener {
-            trackAdapter.set(TrackAdapterState.BLANK)
+            trackConcatAdapter.clear()
             searchEditText.text.clear()
             searchEditText.hideKeyboard()
         }
@@ -71,7 +76,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun configureRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.adapter = trackAdapter
+        trackConcatAdapter.connect(recyclerView)
     }
 
     private fun searchEditText(): EditText {
@@ -88,25 +93,33 @@ class SearchActivity : AppCompatActivity() {
 
     private fun fetchTrackList() {
         val text = searchEditText().text.toString()
-        trackRepository.fetchTrackList(text) { response ->
+        TrackRepository.fetchTrackList(text) { response ->
             when (response) {
                 is HTTPClientResult.Success -> {
                     val trackList = response.data?.results ?: arrayListOf()
                     if (trackList.isEmpty()) {
-                        val state = TrackAdapterState.EMPTY
-                        trackAdapter.set(state)
+                        trackConcatAdapter.showTrackListEmptyPlaceholder()
                     } else {
-                        val state = TrackAdapterState.SUCCESS
-                        state.set(trackList)
-                        trackAdapter.set(state)
+                        trackConcatAdapter.showTrackList(trackList)
                     }
                 }
                 is HTTPClientResult.Error -> {
-                    val state = TrackAdapterState.ERROR
-                    trackAdapter.set(state)
+                    trackConcatAdapter.showTrackListErrorPlaceholder {
+                        fetchTrackList()
+                    }
                 }
             }
         }
+    }
+
+    private fun showStoredTracks() {
+        val trackList = TrackRepository.fetchStoredTrackList()
+        trackConcatAdapter.showStoredTrackList(
+            trackList = trackList,
+            onClearHistoryClick = {
+                TrackRepository.clearStoredTrackList()
+            }
+        )
     }
 
     companion object {

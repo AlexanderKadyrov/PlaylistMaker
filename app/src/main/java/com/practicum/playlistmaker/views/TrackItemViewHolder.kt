@@ -7,15 +7,31 @@ import com.practicum.playlistmaker.models.Track
 import com.practicum.playlistmaker.R
 
 import android.annotation.SuppressLint
+import android.widget.LinearLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.view.View
 
-class TrackItemViewHolder(itemView: View): TrackViewHolder(itemView) {
+import androidx.recyclerview.widget.RecyclerView
 
+class TrackItemViewHolder(
+    itemView: View,
+    private val onItemClick: (position: Int) -> Unit
+): TrackViewHolder(itemView) {
+
+    private val trackItemView: LinearLayout = itemView.findViewById(R.id.trackItemView)
     private val trackNameTextView: TextView = itemView.findViewById(R.id.trackNameTextView)
     private val trackArtistNameAndTimeTextView: TextView = itemView.findViewById(R.id.trackArtistNameAndTimeTextView)
     private val trackImageView: ImageView = itemView.findViewById(R.id.trackImageView)
+
+    init {
+        trackItemView.setOnClickListener {
+            val position = bindingAdapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                onItemClick(position)
+            }
+        }
+    }
 
     override fun bind(model: Track?) {
         model?.let { model ->
