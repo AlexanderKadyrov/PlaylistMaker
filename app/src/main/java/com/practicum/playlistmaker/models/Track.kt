@@ -1,7 +1,6 @@
 package com.practicum.playlistmaker.models
 
-import com.practicum.playlistmaker.helpers.codable.Decodable
-import com.practicum.playlistmaker.helpers.codable.Encodable
+import com.practicum.playlistmaker.helpers.codable.Codable
 
 import android.icu.text.SimpleDateFormat
 
@@ -13,8 +12,8 @@ data class Track(
     val artistName: String,
     val trackTimeMillis: Int,
     val artworkUrl100: String
-): Decodable, Encodable {
-    
+): Codable {
+
     fun convertTrackTimeString(): String {
         return SimpleDateFormat("mm:ss", Locale.getDefault()).format(trackTimeMillis)
     }
