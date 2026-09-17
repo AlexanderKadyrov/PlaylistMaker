@@ -1,6 +1,11 @@
 package com.practicum.playlistmaker
 
 import com.practicum.playlistmaker.extensions.configureToolbar
+import com.practicum.playlistmaker.extensions.getModel
+import com.practicum.playlistmaker.models.Track
+
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.Glide
 
 import androidx.appcompat.app.AppCompatActivity
 
@@ -11,22 +16,39 @@ import android.os.Bundle
 
 class TrackActivity : AppCompatActivity() {
 
-    private val trackCoverImageView = findViewById<ImageView>(R.id.trackCoverImageView)
-    private val trackNameTextView = findViewById<TextView>(R.id.trackNameTextView)
-    private val trackArtistNameTextView = findViewById<TextView>(R.id.trackArtistNameTextView)
-    private val playlistButton = findViewById<Button>(R.id.playlistButton)
-    private val playPauseButton = findViewById<Button>(R.id.playPauseButton)
-    private val favoriteButton = findViewById<Button>(R.id.favoriteButton)
-    private val trackTimeValueTextView = findViewById<TextView>(R.id.trackTimeValueTextView)
-    private val trackDurationValueTextView = findViewById<TextView>(R.id.trackDurationValueTextView)
-    private val trackAlbumValueTextView = findViewById<TextView>(R.id.trackAlbumValueTextView)
-    private val trackYearValueTextView = findViewById<TextView>(R.id.trackYearValueTextView)
-    private val trackGenreValueTextView = findViewById<TextView>(R.id.trackGenreValueTextView)
-    private val trackCountryValueTextView = findViewById<TextView>(R.id.trackCountryValueTextView)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_track)
         configureToolbar()
+        configureUI()
+    }
+
+    private fun configureUI() {
+        val intentExtra = intent.getModel()
+        val track = intentExtra?.getModel<Track>(Track.TRACK_INTENT_EXTRA)
+        track?.let { model ->
+            fill(model)
+        }
+    }
+
+    private fun fill(model: Track) {
+        val trackCoverImageView = findViewById<ImageView>(R.id.trackCoverImageView)
+        val trackNameTextView = findViewById<TextView>(R.id.trackNameTextView)
+        val trackArtistNameTextView = findViewById<TextView>(R.id.trackArtistNameTextView)
+        val playlistButton = findViewById<Button>(R.id.playlistButton)
+        val playPauseButton = findViewById<Button>(R.id.playPauseButton)
+        val favoriteButton = findViewById<Button>(R.id.favoriteButton)
+        val trackTimeValueTextView = findViewById<TextView>(R.id.trackTimeValueTextView)
+        val trackDurationValueTextView = findViewById<TextView>(R.id.trackDurationValueTextView)
+        val trackAlbumValueTextView = findViewById<TextView>(R.id.trackAlbumValueTextView)
+        val trackYearValueTextView = findViewById<TextView>(R.id.trackYearValueTextView)
+        val trackGenreValueTextView = findViewById<TextView>(R.id.trackGenreValueTextView)
+        val trackCountryValueTextView = findViewById<TextView>(R.id.trackCountryValueTextView)
+
+        Glide.with(this)
+            .load(model.artworkUrl100)
+            .placeholder(R.drawable.ic_track_placeholder)
+            .transform(RoundedCorners(10))
+            .into(trackCoverImageView)
     }
 }
