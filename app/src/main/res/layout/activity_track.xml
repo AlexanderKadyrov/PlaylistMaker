@@ -157,6 +157,7 @@
                 android:gravity="start|center_vertical"
                 android:textSize="13sp"
                 android:maxLines="1"
+                android:text="@string/track_duration_name_text_view"
                 app:layout_constraintStart_toStartOf="@id/leadingAnchor"
                 app:layout_constraintTop_toBottomOf="@id/trackTimeValueTextViewBarrier"
                 tools:text="trackDurationNameTextView" />
@@ -170,6 +171,7 @@
                 android:gravity="start|center_vertical"
                 android:textSize="13sp"
                 android:maxLines="1"
+                android:text="@string/track_album_name_text_view"
                 app:layout_constraintStart_toStartOf="@id/leadingAnchor"
                 app:layout_constraintTop_toBottomOf="@id/trackDurationNameTextView"
                 tools:text="trackAlbumNameTextView" />
@@ -183,6 +185,7 @@
                 android:gravity="start|center_vertical"
                 android:textSize="13sp"
                 android:maxLines="1"
+                android:text="@string/track_year_name_text_view"
                 app:layout_constraintStart_toStartOf="@id/leadingAnchor"
                 app:layout_constraintTop_toBottomOf="@id/trackAlbumNameTextView"
                 tools:text="trackYearNameTextView" />
@@ -196,6 +199,7 @@
                 android:gravity="start|center_vertical"
                 android:textSize="13sp"
                 android:maxLines="1"
+                android:text="@string/track_genre_name_text_view"
                 app:layout_constraintStart_toStartOf="@id/leadingAnchor"
                 app:layout_constraintTop_toBottomOf="@id/trackYearNameTextView"
                 tools:text="trackGenreNameTextView" />
@@ -209,6 +213,7 @@
                 android:gravity="start|center_vertical"
                 android:textSize="13sp"
                 android:maxLines="1"
+                android:text="@string/track_country_name_text_view"
                 app:layout_constraintStart_toStartOf="@id/leadingAnchor"
                 app:layout_constraintTop_toBottomOf="@id/trackGenreNameTextView"
                 tools:text="trackCountryNameTextView" />
