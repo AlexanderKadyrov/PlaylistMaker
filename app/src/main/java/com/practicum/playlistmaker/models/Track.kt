@@ -14,7 +14,12 @@ data class Track(
     val trackTimeMillis: Int,
     val artworkUrl100: String
 ): Decodable, Encodable {
+    
     fun convertTrackTimeString(): String {
         return SimpleDateFormat("mm:ss", Locale.getDefault()).format(trackTimeMillis)
+    }
+
+    companion object {
+        const val TRACK_INTENT_EXTRA = "TRACK_INTENT_EXTRA"
     }
 }
