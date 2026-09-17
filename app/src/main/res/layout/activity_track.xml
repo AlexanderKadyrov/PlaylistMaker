@@ -59,7 +59,6 @@
                 android:id="@+id/trackCoverImageView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/cover"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintStart_toStartOf="@id/leadingAnchor"
                 app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
