@@ -1,22 +1,27 @@
 package com.practicum.playlistmaker.models
 
+import com.practicum.playlistmaker.helpers.codable.JSONDecoder
+import com.practicum.playlistmaker.helpers.codable.JSONEncoder
 import com.practicum.playlistmaker.helpers.codable.Codable
 
-import androidx.collection.ArrayMap
-
 data class IntentExtra(
-    private val items: ArrayMap<String, Codable> = ArrayMap<String, Codable>()
+    private val items: HashMap<String, String> = hashMapOf()
 ): Codable {
 
     fun <T: Codable> putModel(key: String, model: T) {
-        items[key] = model
+        val json = JSONEncoder.encode(model)
+        items[key] = json
     }
 
-    inline fun <reified T: Codable> getModel(key: String): T {
-        return getModelList()[key] as T
+    inline fun <reified T: Codable> getModel(key: String): T? {
+        (getModelList()[key])?.let { json ->
+            val model = JSONDecoder.decode<T>(json)
+            return model
+        }
+        return null
     }
 
-    fun getModelList(): ArrayMap<String, Codable> {
+    fun getModelList(): HashMap<String, String> {
         return items
     }
 }
