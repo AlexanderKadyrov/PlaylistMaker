@@ -58,7 +58,7 @@ class TrackActivity : AppCompatActivity() {
         trackCountryValueTextView.text = model.country
 
         Glide.with(this)
-            .load(model.artworkUrl100)
+            .load(model.artworkUrl())
             .placeholder(R.drawable.ic_track_placeholder)
             .transform(RoundedCorners(10))
             .into(trackCoverImageView)
