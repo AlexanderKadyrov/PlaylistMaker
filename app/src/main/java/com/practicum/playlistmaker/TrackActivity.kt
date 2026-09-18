@@ -38,16 +38,20 @@ class TrackActivity : AppCompatActivity() {
         val trackCoverImageView = findViewById<ImageView>(R.id.trackCoverImageView)
         val trackNameTextView = findViewById<TextView>(R.id.trackNameTextView)
         val trackArtistNameTextView = findViewById<TextView>(R.id.trackArtistNameTextView)
+
         val playlistButton = findViewById<Button>(R.id.playlistButton)
         val playPauseButton = findViewById<Button>(R.id.playPauseButton)
         val favoriteButton = findViewById<Button>(R.id.favoriteButton)
+
         val trackTimeValueTextView = findViewById<TextView>(R.id.trackTimeValueTextView)
         val trackDurationValueTextView = findViewById<TextView>(R.id.trackDurationValueTextView)
 
-        val trackAlbumNameTextView = findViewById<TextView>(R.id.trackAlbumNameTextView)
         val trackAlbumValueTextView = findViewById<TextView>(R.id.trackAlbumValueTextView)
+        val trackAlbumNameTextView = findViewById<TextView>(R.id.trackAlbumNameTextView)
 
         val trackYearValueTextView = findViewById<TextView>(R.id.trackYearValueTextView)
+        val trackYearNameTextView = findViewById<TextView>(R.id.trackYearNameTextView)
+
         val trackGenreValueTextView = findViewById<TextView>(R.id.trackGenreValueTextView)
         val trackCountryValueTextView = findViewById<TextView>(R.id.trackCountryValueTextView)
 
@@ -64,7 +68,13 @@ class TrackActivity : AppCompatActivity() {
             trackAlbumNameTextView.visibility = View.GONE
         }
 
-        trackYearValueTextView.text = model.convertTrackYearString()
+        val trackYear = model.convertTrackYear() ?: ""
+        trackYearValueTextView.text = trackYear
+        if (trackYear.isEmpty()) {
+            trackYearValueTextView.visibility = View.GONE
+            trackYearNameTextView.visibility = View.GONE
+        }
+
         trackGenreValueTextView.text = model.primaryGenreName
         trackCountryValueTextView.text = model.country
 
