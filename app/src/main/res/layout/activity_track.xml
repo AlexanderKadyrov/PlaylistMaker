@@ -123,7 +123,8 @@
                     android:layout_height="51dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:background="#ff88ff" />
+                    android:background="@drawable/ic_track_add_favorite_off"
+                    app:backgroundTint="@null" />
             </RelativeLayout>
 
             <TextView
