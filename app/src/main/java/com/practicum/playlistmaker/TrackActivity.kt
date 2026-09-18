@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 
 import androidx.appcompat.app.AppCompatActivity
 
+import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Button
@@ -31,6 +32,7 @@ class TrackActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun fill(model: Track) {
         val trackCoverImageView = findViewById<ImageView>(R.id.trackCoverImageView)
         val trackNameTextView = findViewById<TextView>(R.id.trackNameTextView)
@@ -44,6 +46,16 @@ class TrackActivity : AppCompatActivity() {
         val trackYearValueTextView = findViewById<TextView>(R.id.trackYearValueTextView)
         val trackGenreValueTextView = findViewById<TextView>(R.id.trackGenreValueTextView)
         val trackCountryValueTextView = findViewById<TextView>(R.id.trackCountryValueTextView)
+
+        trackNameTextView.text = model.trackName
+        trackArtistNameTextView.text = model.artistName
+
+        trackTimeValueTextView.text = "0:30"
+        trackDurationValueTextView.text = model.convertTrackTimeString()
+        trackAlbumValueTextView.text = model.collectionName
+        trackYearValueTextView.text = model.convertTrackYearString()
+        trackGenreValueTextView.text = model.primaryGenreName
+        trackCountryValueTextView.text = model.country
 
         Glide.with(this)
             .load(model.artworkUrl100)
