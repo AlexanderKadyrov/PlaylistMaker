@@ -68,7 +68,7 @@ class TrackActivity : AppCompatActivity() {
             trackAlbumNameTextView.visibility = View.GONE
         }
 
-        val trackYear = model.convertTrackYear() ?: ""
+        val trackYear = model.convertTrackYearString() ?: ""
         trackYearValueTextView.text = trackYear
         if (trackYear.isEmpty()) {
             trackYearValueTextView.visibility = View.GONE
