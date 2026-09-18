@@ -13,20 +13,23 @@ data class Track(
     val trackTimeMillis: Int,
     val artworkUrl100: String,
     val primaryGenreName: String,
-    val collectionName: String,
     val country: String,
-    val releaseDate: String
+    val collectionName: String?,
+    val releaseDate: String?
 ): Codable {
 
     fun convertTrackTimeString(): String {
         return SimpleDateFormat("mm:ss", Locale.getDefault()).format(trackTimeMillis)
     }
 
-    fun convertTrackYearString(): String {
-        val dateFormatInput = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-        val dateFormatOutput = SimpleDateFormat("yyyy", Locale.getDefault())
-        val date = dateFormatInput.parse(releaseDate)
-        return dateFormatOutput.format(date)
+    fun convertTrackYear(): String? {
+        releaseDate?.let { value ->
+            val dateFormatInput = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+            val dateFormatOutput = SimpleDateFormat("yyyy", Locale.getDefault())
+            val date = dateFormatInput.parse(value)
+            return dateFormatOutput.format(date)
+        }
+        return null
     }
 
     fun artworkUrl(): String {
