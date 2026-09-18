@@ -18,11 +18,11 @@ data class Track(
     val releaseDate: String?
 ): Codable {
 
-    fun convertTrackTime(): String {
+    fun convertTrackTimeString(): String {
         return SimpleDateFormat("mm:ss", Locale.getDefault()).format(trackTimeMillis)
     }
 
-    fun convertTrackYear(): String? {
+    fun convertTrackYearString(): String? {
         releaseDate?.let { value ->
             val dateFormatInput = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
             val dateFormatOutput = SimpleDateFormat("yyyy", Locale.getDefault())
