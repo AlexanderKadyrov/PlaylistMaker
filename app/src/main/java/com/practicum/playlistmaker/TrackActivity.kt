@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Button
 import android.os.Bundle
+import android.view.View
 
 class TrackActivity : AppCompatActivity() {
 
@@ -42,7 +43,10 @@ class TrackActivity : AppCompatActivity() {
         val favoriteButton = findViewById<Button>(R.id.favoriteButton)
         val trackTimeValueTextView = findViewById<TextView>(R.id.trackTimeValueTextView)
         val trackDurationValueTextView = findViewById<TextView>(R.id.trackDurationValueTextView)
+
+        val trackAlbumNameTextView = findViewById<TextView>(R.id.trackAlbumNameTextView)
         val trackAlbumValueTextView = findViewById<TextView>(R.id.trackAlbumValueTextView)
+
         val trackYearValueTextView = findViewById<TextView>(R.id.trackYearValueTextView)
         val trackGenreValueTextView = findViewById<TextView>(R.id.trackGenreValueTextView)
         val trackCountryValueTextView = findViewById<TextView>(R.id.trackCountryValueTextView)
@@ -52,7 +56,14 @@ class TrackActivity : AppCompatActivity() {
 
         trackTimeValueTextView.text = "0:30"
         trackDurationValueTextView.text = model.convertTrackTimeString()
-        trackAlbumValueTextView.text = model.collectionName
+
+        val collectionName = model.collectionName ?: ""
+        trackAlbumValueTextView.text = collectionName
+        if (collectionName.isEmpty()) {
+            trackAlbumValueTextView.visibility = View.GONE
+            trackAlbumNameTextView.visibility = View.GONE
+        }
+
         trackYearValueTextView.text = model.convertTrackYearString()
         trackGenreValueTextView.text = model.primaryGenreName
         trackCountryValueTextView.text = model.country
