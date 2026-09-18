@@ -130,7 +130,7 @@
                     android:layout_height="51dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:background="@drawable/ic_track_add_favorite_off"
+                    android:background="@drawable/track_add_favorite_selector"
                     android:textOff=""
                     android:textOn=""
                     android:text=""
