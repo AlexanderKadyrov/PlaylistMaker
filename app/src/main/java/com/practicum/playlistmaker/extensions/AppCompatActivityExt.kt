@@ -1,10 +1,11 @@
 package com.practicum.playlistmaker.extensions
 
-import com.google.android.material.appbar.MaterialToolbar
+import com.practicum.playlistmaker.models.IntentExtra
 import com.practicum.playlistmaker.R
 
+import com.google.android.material.appbar.MaterialToolbar
+
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 
 import android.content.Intent
 import android.net.Uri
@@ -14,6 +15,15 @@ fun AppCompatActivity.configureToolbar() {
     toolbar.setOnClickListener {
         onBackPressedDispatcher.onBackPressed()
     }
+}
+
+inline fun <reified T: Any>AppCompatActivity.startActivity(noinline putExtraCallback: (() -> IntentExtra)? = null) {
+    val intent = Intent(this, T::class.java)
+    putExtraCallback?.let { callback ->
+        val model = callback()
+        intent.putModel(model)
+    }
+    startActivity(intent)
 }
 
 fun AppCompatActivity.intentActionSend(text: String): Intent {
