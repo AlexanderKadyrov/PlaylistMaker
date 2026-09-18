@@ -108,7 +108,8 @@
                     android:layout_height="51dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentStart="true"
-                    android:background="#ff88ff" />
+                    android:background="@drawable/ic_add_playlist"
+                    app:backgroundTint="@null" />
                 <Button
                     android:id="@+id/playPauseButton"
                     android:layout_width="100dp"
