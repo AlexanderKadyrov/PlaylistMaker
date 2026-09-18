@@ -11,11 +11,22 @@ data class Track(
     val trackName: String,
     val artistName: String,
     val trackTimeMillis: Int,
-    val artworkUrl100: String
+    val artworkUrl100: String,
+    val primaryGenreName: String,
+    val collectionName: String,
+    val country: String,
+    val releaseDate: String
 ): Codable {
 
     fun convertTrackTimeString(): String {
         return SimpleDateFormat("mm:ss", Locale.getDefault()).format(trackTimeMillis)
+    }
+
+    fun convertTrackYearString(): String {
+        val dateFormatInput = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        val dateFormatOutput = SimpleDateFormat("yyyy", Locale.getDefault())
+        val date = dateFormatInput.parse(releaseDate)
+        return dateFormatOutput.format(date)
     }
 
     companion object {
