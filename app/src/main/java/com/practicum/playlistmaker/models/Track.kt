@@ -29,6 +29,10 @@ data class Track(
         return dateFormatOutput.format(date)
     }
 
+    fun artworkUrl(): String {
+        return artworkUrl100.replace("100x100bb.jpg", "512x512bb.jpg")
+    }
+
     companion object {
         const val TRACK_INTENT_EXTRA = "TRACK_INTENT_EXTRA"
     }
