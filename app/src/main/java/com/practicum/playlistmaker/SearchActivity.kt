@@ -13,13 +13,19 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 
-import android.view.inputmethod.EditorInfo
+import android.widget.ProgressBar
 import android.widget.ImageView
 import android.widget.EditText
 import android.view.View
+
+import android.os.Handler
+import android.os.Looper
 import android.os.Bundle
 
 class SearchActivity : AppCompatActivity() {
+
+    private val searchRunnable = Runnable { fetchTrackList() }
+    private val handler = Handler(Looper.getMainLooper())
 
     private val trackConcatAdapter = TrackConcatAdapter(
         onItemClick = { track ->
@@ -61,13 +67,9 @@ class SearchActivity : AppCompatActivity() {
             clearImageView.visibility = visibility
             if (visibility == View.GONE) {
                 trackConcatAdapter.clear()
+            } else {
+                fetchDebounceTrackList()
             }
-        }
-        searchEditText.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                fetchTrackList()
-            }
-            false
         }
         clearImageView.setOnClickListener {
             trackConcatAdapter.clear()
@@ -94,7 +96,17 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
+    private fun fetchDebounceTrackList() {
+        handler.removeCallbacks(searchRunnable)
+        handler.postDelayed(searchRunnable, SEARCH_DEBOUNCE_DELAY)
+    }
+
     private fun fetchTrackList() {
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        recyclerView.visibility = View.GONE
+        progressBar.visibility = View.VISIBLE
+
         val text = searchEditText().text.toString()
         TrackRepository.fetchTrackList(text) { response ->
             when (response) {
@@ -112,6 +124,9 @@ class SearchActivity : AppCompatActivity() {
                     }
                 }
             }
+
+            recyclerView.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
         }
     }
 
@@ -136,5 +151,6 @@ class SearchActivity : AppCompatActivity() {
 
     companion object {
         const val SEARCH_INSTANCE_STATE_KEY = "SEARCH_INSTANCE_STATE_KEY"
+        private const val SEARCH_DEBOUNCE_DELAY = 1000L
     }
 }
