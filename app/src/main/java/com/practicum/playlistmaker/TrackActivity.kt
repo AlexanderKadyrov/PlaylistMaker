@@ -25,19 +25,24 @@ class TrackActivity : AppCompatActivity() {
     private var player = MusicPlayer { state ->
         when (state) {
             MusicPlayer.State.PREPARED -> {
-                playPauseButton.isEnabled = true
+                setPlaybackEnabled()
             }
             MusicPlayer.State.PLAYING -> {
                 setIsPlaying(true)
             }
-            MusicPlayer.State.PAUSED, MusicPlayer.State.END -> {
+            MusicPlayer.State.PAUSED -> {
                 setIsPlaying(false)
+            }
+            MusicPlayer.State.END -> {
+                setIsPlaying(false)
+                setTrackTime(getString(R.string.track_time_zero))
             }
             else -> {}
         }
     }
 
     @SuppressLint("StaticFieldLeak")
+    private lateinit var trackTimeValueTextView: TextView
     private lateinit var playlistButton: ToggleButton
     private lateinit var favoriteButton: ToggleButton
     private lateinit var playPauseButton: ToggleButton
@@ -71,7 +76,7 @@ class TrackActivity : AppCompatActivity() {
             player.playbackControl()
         }
 
-        val trackTimeValueTextView = findViewById<TextView>(R.id.trackTimeValueTextView)
+        trackTimeValueTextView = findViewById<TextView>(R.id.trackTimeValueTextView)
         val trackDurationValueTextView = findViewById<TextView>(R.id.trackDurationValueTextView)
 
         val trackAlbumValueTextView = findViewById<TextView>(R.id.trackAlbumValueTextView)
@@ -86,7 +91,6 @@ class TrackActivity : AppCompatActivity() {
         trackNameTextView.text = model.trackName
         trackArtistNameTextView.text = model.artistName
 
-        trackTimeValueTextView.text = "0:30"
         trackDurationValueTextView.text = model.convertTrackTimeString()
 
         val collectionName = model.collectionName ?: ""
@@ -113,7 +117,15 @@ class TrackActivity : AppCompatActivity() {
             .into(trackCoverImageView)
     }
 
+    private fun setPlaybackEnabled() {
+        playPauseButton.isEnabled = true
+    }
+
     private fun setIsPlaying(value: Boolean) {
         playPauseButton.isChecked = value
+    }
+
+    private fun setTrackTime(value: String) {
+        trackTimeValueTextView.text = value
     }
 }
