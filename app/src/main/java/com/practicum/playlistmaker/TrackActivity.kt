@@ -2,6 +2,7 @@ package com.practicum.playlistmaker
 
 import com.practicum.playlistmaker.extensions.configureToolbar
 import com.practicum.playlistmaker.extensions.getModel
+import com.practicum.playlistmaker.core.MusicPlayer
 import com.practicum.playlistmaker.models.Track
 
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -10,13 +11,36 @@ import com.bumptech.glide.Glide
 import androidx.appcompat.app.AppCompatActivity
 
 import android.annotation.SuppressLint
+
+import android.widget.ToggleButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Button
-import android.os.Bundle
+
 import android.view.View
 
+import android.os.Bundle
+
 class TrackActivity : AppCompatActivity() {
+
+    private var player = MusicPlayer { state ->
+        when (state) {
+            MusicPlayer.State.PREPARED -> {
+                playPauseButton.isEnabled = true
+            }
+            MusicPlayer.State.PLAYING -> {
+                setIsPlaying(true)
+            }
+            MusicPlayer.State.PAUSED, MusicPlayer.State.END -> {
+                setIsPlaying(false)
+            }
+            else -> {}
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private lateinit var playlistButton: ToggleButton
+    private lateinit var favoriteButton: ToggleButton
+    private lateinit var playPauseButton: ToggleButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +53,7 @@ class TrackActivity : AppCompatActivity() {
         val intentExtra = intent.getModel()
         val track = intentExtra?.getModel<Track>(Track.TRACK_INTENT_EXTRA)
         track?.let { model ->
+            player.prepare(model.previewUrl)
             fill(model)
         }
     }
@@ -39,9 +64,12 @@ class TrackActivity : AppCompatActivity() {
         val trackNameTextView = findViewById<TextView>(R.id.trackNameTextView)
         val trackArtistNameTextView = findViewById<TextView>(R.id.trackArtistNameTextView)
 
-        val playlistButton = findViewById<Button>(R.id.playlistButton)
-        val playPauseButton = findViewById<Button>(R.id.playPauseButton)
-        val favoriteButton = findViewById<Button>(R.id.favoriteButton)
+        playlistButton = findViewById<ToggleButton>(R.id.playlistButton)
+        favoriteButton = findViewById<ToggleButton>(R.id.favoriteButton)
+        playPauseButton = findViewById<ToggleButton>(R.id.playPauseButton)
+        playPauseButton.setOnClickListener {
+            player.playbackControl()
+        }
 
         val trackTimeValueTextView = findViewById<TextView>(R.id.trackTimeValueTextView)
         val trackDurationValueTextView = findViewById<TextView>(R.id.trackDurationValueTextView)
@@ -83,5 +111,9 @@ class TrackActivity : AppCompatActivity() {
             .placeholder(R.drawable.ic_track_placeholder)
             .transform(RoundedCorners(10))
             .into(trackCoverImageView)
+    }
+
+    private fun setIsPlaying(value: Boolean) {
+        playPauseButton.isChecked = value
     }
 }
