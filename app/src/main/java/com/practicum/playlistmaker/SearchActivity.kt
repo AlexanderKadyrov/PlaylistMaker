@@ -3,8 +3,11 @@ package com.practicum.playlistmaker
 import com.practicum.playlistmaker.repositories.TrackRepository
 import com.practicum.playlistmaker.adapters.TrackConcatAdapter
 import com.practicum.playlistmaker.extensions.configureToolbar
-import com.practicum.playlistmaker.clients.HTTPClientResult
+import com.practicum.playlistmaker.extensions.startActivity
 import com.practicum.playlistmaker.extensions.hideKeyboard
+import com.practicum.playlistmaker.clients.HTTPClientResult
+import com.practicum.playlistmaker.models.IntentExtra
+import com.practicum.playlistmaker.models.Track
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +23,7 @@ class SearchActivity : AppCompatActivity() {
 
     private val trackConcatAdapter = TrackConcatAdapter(
         onItemClick = { track ->
-            TrackRepository.store(track)
+            startTrackActivity(track)
         }
     )
 
@@ -120,6 +123,15 @@ class SearchActivity : AppCompatActivity() {
                 TrackRepository.clearStoredTrackList()
             }
         )
+    }
+
+    private fun startTrackActivity(track: Track) {
+        TrackRepository.store(track)
+        startActivity<TrackActivity> {
+            val intentExtra = IntentExtra()
+            intentExtra.putModel(Track.TRACK_INTENT_EXTRA, track)
+            return@startActivity intentExtra
+        }
     }
 
     companion object {
