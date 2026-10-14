@@ -148,6 +148,7 @@
                 android:textSize="14sp"
                 android:maxLines="1"
                 android:layout_marginTop="4dp"
+                android:text="@string/track_time_zero"
                 app:layout_constraintStart_toStartOf="@id/leadingAnchor"
                 app:layout_constraintEnd_toEndOf="@id/trailingAnchor"
                 app:layout_constraintTop_toBottomOf="@id/mediaButtonContainer"
