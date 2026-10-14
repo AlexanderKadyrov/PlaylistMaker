@@ -120,6 +120,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/track_play_pause_selector"
+                    android:enabled="false"
                     android:textOff=""
                     android:textOn=""
                     android:text=""
