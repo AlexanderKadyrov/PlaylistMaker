@@ -41,6 +41,15 @@ class MusicPlayer(
         }
     }
 
+    fun onPause() {
+        pause()
+    }
+
+    fun onDestroy() {
+        player.stop()
+        player.release()
+    }
+
     private fun start() {
         player.start()
         changeState(State.PLAYING)
