@@ -37,6 +37,7 @@ class MusicPlayer(
             changeState(State.PREPARED)
         }
         player.setOnCompletionListener {
+            player.seekTo(0)
             changeState(State.END)
         }
     }
