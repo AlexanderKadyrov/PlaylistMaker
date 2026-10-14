@@ -47,6 +47,16 @@ class TrackActivity : AppCompatActivity() {
     private lateinit var favoriteButton: ToggleButton
     private lateinit var playPauseButton: ToggleButton
 
+    override fun onPause() {
+        super.onPause()
+        player.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        player.onDestroy()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_track)
