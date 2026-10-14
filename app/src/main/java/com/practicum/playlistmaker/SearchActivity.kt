@@ -27,9 +27,13 @@ class SearchActivity : AppCompatActivity() {
     private val searchRunnable = Runnable { fetchTrackList() }
     private val handler = Handler(Looper.getMainLooper())
 
+    private var isAllowedClick = true
+
     private val trackConcatAdapter = TrackConcatAdapter(
         onItemClick = { track ->
-            startTrackActivity(track)
+            if (clickDebounce()) {
+                startTrackActivity(track)
+            }
         }
     )
 
@@ -149,8 +153,18 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
+    private fun clickDebounce() : Boolean {
+        val current = isAllowedClick
+        if (isAllowedClick) {
+            isAllowedClick = false
+            handler.postDelayed({ isAllowedClick = true }, CLICK_DEBOUNCE_DELAY)
+        }
+        return current
+    }
+
     companion object {
         const val SEARCH_INSTANCE_STATE_KEY = "SEARCH_INSTANCE_STATE_KEY"
         private const val SEARCH_DEBOUNCE_DELAY = 2000L
+        private const val CLICK_DEBOUNCE_DELAY = 1000L
     }
 }
