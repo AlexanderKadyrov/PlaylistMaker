@@ -68,7 +68,6 @@
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/ys_display_regular"
                             android:textSize="16sp"
-                            android:imeOptions="actionDone"
                             android:singleLine="true" />
                         <ImageView
                             android:id="@+id/clearImageView"
