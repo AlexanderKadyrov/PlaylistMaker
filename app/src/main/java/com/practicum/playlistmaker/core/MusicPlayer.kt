@@ -18,7 +18,7 @@ class MusicPlayer(
 
     private var player = MediaPlayer()
 
-    private fun prepare(url: String) {
+    fun prepare(url: String) {
         player.setDataSource(url)
         player.prepareAsync()
         player.setOnPreparedListener {
