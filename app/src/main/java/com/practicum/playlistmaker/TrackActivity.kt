@@ -16,30 +16,41 @@ import android.widget.ToggleButton
 import android.widget.ImageView
 import android.widget.TextView
 
+import android.icu.text.SimpleDateFormat
+
 import android.view.View
 
 import android.os.Bundle
 
+import java.util.Locale
+
 class TrackActivity : AppCompatActivity() {
 
-    private var player = MusicPlayer { state ->
-        when (state) {
-            MusicPlayer.State.PREPARED -> {
-                setPlaybackEnabled()
+    private var player = MusicPlayer(
+        onChangeState = { state ->
+            when (state) {
+                MusicPlayer.State.PREPARED -> {
+                    setPlaybackEnabled()
+                }
+                MusicPlayer.State.PLAYING -> {
+                    setIsPlaying(true)
+                }
+                MusicPlayer.State.PAUSED -> {
+                    setIsPlaying(false)
+                }
+                MusicPlayer.State.END -> {
+                    setIsPlaying(false)
+                    setTrackTime(getString(R.string.track_time_zero))
+                }
+                else -> {}
             }
-            MusicPlayer.State.PLAYING -> {
-                setIsPlaying(true)
-            }
-            MusicPlayer.State.PAUSED -> {
-                setIsPlaying(false)
-            }
-            MusicPlayer.State.END -> {
-                setIsPlaying(false)
-                setTrackTime(getString(R.string.track_time_zero))
-            }
-            else -> {}
+        },
+        onChangeCurrentPosition = { currentPosition ->
+            val vale = SimpleDateFormat("mm:ss", Locale.getDefault())
+                .format(currentPosition)
+            setTrackTime(vale)
         }
-    }
+    )
 
     @SuppressLint("StaticFieldLeak")
     private lateinit var trackTimeValueTextView: TextView
