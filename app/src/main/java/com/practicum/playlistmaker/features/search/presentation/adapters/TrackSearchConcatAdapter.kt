@@ -10,7 +10,7 @@ class TrackSearchConcatAdapter(
     private val baseConcatAdapter = BaseConcatAdapter()
 
     fun showStoredTrackList(
-        trackList: ArrayList<Track>,
+        trackList: List<Track>,
         onClearHistoryClick: () -> Unit
     ) {
         if (trackList.isEmpty()) {
