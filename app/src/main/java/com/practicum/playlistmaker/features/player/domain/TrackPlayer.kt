@@ -4,8 +4,8 @@ import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
 
-class MusicPlayer(
-    private val onChangeState: ((State) -> Unit),
+class TrackPlayer(
+    private val onChangeState: ((com.practicum.playlistmaker.features.player.domain.MusicPlayer.State) -> Unit),
     private val onChangeCurrentPosition: ((Int) -> Unit)
 ) {
 
@@ -77,7 +77,7 @@ class MusicPlayer(
         changeState(State.END)
     }
 
-    private fun changeState(state: State) {
+    private fun changeState(state: com.practicum.playlistmaker.features.player.domain.MusicPlayer.State) {
         when (state) {
             State.PLAYING -> {
                 handler.post(timerTask)
@@ -89,7 +89,7 @@ class MusicPlayer(
         onChangeState(state)
     }
 
-    companion object {
+    companion object Companion {
         private const val TIMER_DELAY = 500L
     }
 }
