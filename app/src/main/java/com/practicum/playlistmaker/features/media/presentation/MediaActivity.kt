@@ -1,9 +1,9 @@
-package com.practicum.playlistmaker
+package com.practicum.playlistmaker.features.media.presentation
 
-import com.practicum.playlistmaker.extensions.configureToolbar
-
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.practicum.playlistmaker.R
+import com.practicum.playlistmaker.extensions.configureToolbar
 
 class MediaActivity : AppCompatActivity() {
 

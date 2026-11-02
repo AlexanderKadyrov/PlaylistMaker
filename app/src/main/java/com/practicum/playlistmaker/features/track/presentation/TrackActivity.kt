@@ -1,27 +1,20 @@
-package com.practicum.playlistmaker
-
-import com.practicum.playlistmaker.extensions.configureToolbar
-import com.practicum.playlistmaker.extensions.getModel
-import com.practicum.playlistmaker.core.MusicPlayer
-import com.practicum.playlistmaker.models.Track
-
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.Glide
-
-import androidx.appcompat.app.AppCompatActivity
+package com.practicum.playlistmaker.features.track.presentation
 
 import android.annotation.SuppressLint
-
-import android.widget.ToggleButton
+import android.icu.text.SimpleDateFormat
+import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-
-import android.icu.text.SimpleDateFormat
-
-import android.view.View
-
-import android.os.Bundle
-
+import android.widget.ToggleButton
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.practicum.playlistmaker.R
+import com.practicum.playlistmaker.core.MusicPlayer
+import com.practicum.playlistmaker.extensions.configureToolbar
+import com.practicum.playlistmaker.extensions.getModel
+import com.practicum.playlistmaker.models.Track
 import java.util.Locale
 
 class TrackActivity : AppCompatActivity() {
@@ -32,16 +25,20 @@ class TrackActivity : AppCompatActivity() {
                 MusicPlayer.State.PREPARED -> {
                     setPlaybackEnabled()
                 }
+
                 MusicPlayer.State.PLAYING -> {
                     setIsPlaying(true)
                 }
+
                 MusicPlayer.State.PAUSED -> {
                     setIsPlaying(false)
                 }
+
                 MusicPlayer.State.END -> {
                     setIsPlaying(false)
                     setTrackTime(getString(R.string.track_time_zero))
                 }
+
                 else -> {}
             }
         },
@@ -77,7 +74,7 @@ class TrackActivity : AppCompatActivity() {
 
     private fun configureUI() {
         val intentExtra = intent.getModel()
-        val track = intentExtra?.getModel<Track>(Track.TRACK_INTENT_EXTRA)
+        val track = intentExtra?.getModel<Track>(Track.Companion.TRACK_INTENT_EXTRA)
         track?.let { model ->
             player.prepare(model.previewUrl)
             fill(model)

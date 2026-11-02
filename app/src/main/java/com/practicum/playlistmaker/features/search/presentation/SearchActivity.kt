@@ -1,26 +1,25 @@
-package com.practicum.playlistmaker
+package com.practicum.playlistmaker.features.search.presentation
 
-import com.practicum.playlistmaker.repositories.TrackRepository
-import com.practicum.playlistmaker.adapters.TrackConcatAdapter
-import com.practicum.playlistmaker.extensions.configureToolbar
-import com.practicum.playlistmaker.extensions.startActivity
-import com.practicum.playlistmaker.extensions.hideKeyboard
-import com.practicum.playlistmaker.clients.HTTPClientResult
-import com.practicum.playlistmaker.models.IntentExtra
-import com.practicum.playlistmaker.models.Track
-
-import androidx.recyclerview.widget.RecyclerView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.doOnTextChanged
-
-import android.widget.ProgressBar
-import android.widget.ImageView
-import android.widget.EditText
-import android.view.View
-
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.os.Bundle
+import android.view.View
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doOnTextChanged
+import androidx.recyclerview.widget.RecyclerView
+import com.practicum.playlistmaker.R
+import com.practicum.playlistmaker.features.track.presentation.TrackActivity
+import com.practicum.playlistmaker.adapters.TrackConcatAdapter
+import com.practicum.playlistmaker.clients.HTTPClientResult
+import com.practicum.playlistmaker.extensions.configureToolbar
+import com.practicum.playlistmaker.extensions.hideKeyboard
+import com.practicum.playlistmaker.extensions.startActivity
+import com.practicum.playlistmaker.models.IntentExtra
+import com.practicum.playlistmaker.models.Track
+import com.practicum.playlistmaker.repositories.TrackRepository
 
 class SearchActivity : AppCompatActivity() {
 
@@ -148,7 +147,7 @@ class SearchActivity : AppCompatActivity() {
         TrackRepository.store(track)
         startActivity<TrackActivity> {
             val intentExtra = IntentExtra()
-            intentExtra.putModel(Track.TRACK_INTENT_EXTRA, track)
+            intentExtra.putModel(Track.Companion.TRACK_INTENT_EXTRA, track)
             return@startActivity intentExtra
         }
     }

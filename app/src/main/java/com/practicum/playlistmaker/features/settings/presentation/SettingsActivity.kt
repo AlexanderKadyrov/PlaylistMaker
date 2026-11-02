@@ -1,17 +1,14 @@
-package com.practicum.playlistmaker
+package com.practicum.playlistmaker.features.settings.presentation
 
-import com.practicum.playlistmaker.extensions.configureToolbar
-
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
 import android.widget.FrameLayout
 import android.widget.Switch
-
-import com.practicum.playlistmaker.extensions.intentActionSendTo
+import androidx.appcompat.app.AppCompatActivity
+import com.practicum.playlistmaker.R
+import com.practicum.playlistmaker.extensions.configureToolbar
 import com.practicum.playlistmaker.extensions.intentActionSend
+import com.practicum.playlistmaker.extensions.intentActionSendTo
 import com.practicum.playlistmaker.extensions.intentActionView
-
 import com.practicum.playlistmaker.repositories.ThemeRepository
 
 class SettingsActivity : AppCompatActivity() {
