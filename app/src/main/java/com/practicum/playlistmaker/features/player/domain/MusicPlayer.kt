@@ -1,7 +1,6 @@
-package com.practicum.playlistmaker.core
+package com.practicum.playlistmaker.features.player.domain
 
 import android.media.MediaPlayer
-
 import android.os.Handler
 import android.os.Looper
 
