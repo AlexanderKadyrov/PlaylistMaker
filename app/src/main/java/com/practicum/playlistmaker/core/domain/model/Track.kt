@@ -1,9 +1,7 @@
-package com.practicum.playlistmaker.models
-
-import com.practicum.playlistmaker.core.extensions.codable.Codable
+package com.practicum.playlistmaker.core.domain.model
 
 import android.icu.text.SimpleDateFormat
-
+import com.practicum.playlistmaker.core.extensions.codable.Codable
 import java.util.Locale
 
 data class Track(

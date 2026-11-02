@@ -2,7 +2,7 @@ package com.practicum.playlistmaker.adapters
 
 import com.practicum.playlistmaker.views.TrackItemViewHolder
 import com.practicum.playlistmaker.views.TrackViewHolder
-import com.practicum.playlistmaker.models.Track
+import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.R
 
 import androidx.recyclerview.widget.RecyclerView

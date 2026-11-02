@@ -18,7 +18,7 @@ import com.practicum.playlistmaker.extensions.configureToolbar
 import com.practicum.playlistmaker.extensions.hideKeyboard
 import com.practicum.playlistmaker.extensions.startActivity
 import com.practicum.playlistmaker.models.IntentExtra
-import com.practicum.playlistmaker.models.Track
+import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.repositories.TrackRepository
 
 class SearchActivity : AppCompatActivity() {

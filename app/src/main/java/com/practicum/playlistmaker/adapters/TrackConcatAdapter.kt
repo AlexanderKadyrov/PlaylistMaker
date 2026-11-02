@@ -1,7 +1,7 @@
 package com.practicum.playlistmaker.adapters
 
 import androidx.recyclerview.widget.RecyclerView
-import com.practicum.playlistmaker.models.Track
+import com.practicum.playlistmaker.core.domain.model.Track
 
 class TrackConcatAdapter(
     private val onItemClick: (Track) -> Unit

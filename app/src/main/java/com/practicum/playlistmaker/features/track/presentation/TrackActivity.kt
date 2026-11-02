@@ -14,7 +14,7 @@ import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.core.MusicPlayer
 import com.practicum.playlistmaker.extensions.configureToolbar
 import com.practicum.playlistmaker.extensions.getModel
-import com.practicum.playlistmaker.models.Track
+import com.practicum.playlistmaker.core.domain.model.Track
 import java.util.Locale
 
 class TrackActivity : AppCompatActivity() {

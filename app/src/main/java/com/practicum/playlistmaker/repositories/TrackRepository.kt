@@ -6,7 +6,7 @@ import com.practicum.playlistmaker.clients.HTTPClient
 import com.practicum.playlistmaker.services.TrackService
 
 import com.practicum.playlistmaker.models.TrackResponse
-import com.practicum.playlistmaker.models.Track
+import com.practicum.playlistmaker.core.domain.model.Track
 
 import android.content.SharedPreferences
 import android.content.Context

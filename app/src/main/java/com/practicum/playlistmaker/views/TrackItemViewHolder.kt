@@ -3,7 +3,7 @@ package com.practicum.playlistmaker.views
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.Glide
 
-import com.practicum.playlistmaker.models.Track
+import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.R
 
 import android.annotation.SuppressLint
