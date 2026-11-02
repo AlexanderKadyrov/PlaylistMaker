@@ -28,7 +28,11 @@ class HTTPClient<S>(
             override fun onResponse(call: Call<R>, response: Response<R>) {
                 val body = response.body()
                 if (response.isSuccessful) {
-                    completionCallback(HTTPClientResult.Success(body))
+                    body?.let {
+                        completionCallback(HTTPClientResult.SuccessBody(body))
+                    } ?: run {
+                        completionCallback(HTTPClientResult.SuccessEmpty)
+                    }
                 } else {
                     completionCallback(HTTPClientResult.Error(response.code(), response.message()))
                 }
