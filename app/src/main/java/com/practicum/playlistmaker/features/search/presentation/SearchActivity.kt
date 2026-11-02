@@ -14,9 +14,9 @@ import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.features.track.presentation.TrackActivity
 import com.practicum.playlistmaker.adapters.TrackConcatAdapter
 import com.practicum.playlistmaker.clients.HTTPClientResult
-import com.practicum.playlistmaker.extensions.configureToolbar
-import com.practicum.playlistmaker.extensions.hideKeyboard
-import com.practicum.playlistmaker.extensions.startActivity
+import com.practicum.playlistmaker.core.extensions.configureToolbar
+import com.practicum.playlistmaker.core.extensions.hideKeyboard
+import com.practicum.playlistmaker.core.extensions.startActivity
 import com.practicum.playlistmaker.models.IntentExtra
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.repositories.TrackRepository

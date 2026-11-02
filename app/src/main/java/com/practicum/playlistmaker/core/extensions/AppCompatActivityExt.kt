@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.extensions
+package com.practicum.playlistmaker.core.extensions
 
 import com.practicum.playlistmaker.models.IntentExtra
 import com.practicum.playlistmaker.R

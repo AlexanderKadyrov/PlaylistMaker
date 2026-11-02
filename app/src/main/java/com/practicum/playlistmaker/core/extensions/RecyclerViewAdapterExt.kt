@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.extensions
+package com.practicum.playlistmaker.core.extensions
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.annotation.LayoutRes

@@ -3,7 +3,7 @@ package com.practicum.playlistmaker.adapters
 import com.practicum.playlistmaker.views.TrackFooterViewHolder
 import com.practicum.playlistmaker.views.TrackHeaderViewHolder
 import com.practicum.playlistmaker.views.TrackViewHolder
-import com.practicum.playlistmaker.extensions.itemView
+import com.practicum.playlistmaker.core.extensions.itemView
 import com.practicum.playlistmaker.R
 
 import androidx.recyclerview.widget.RecyclerView

@@ -5,10 +5,10 @@ import android.widget.FrameLayout
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.extensions.configureToolbar
-import com.practicum.playlistmaker.extensions.intentActionSend
-import com.practicum.playlistmaker.extensions.intentActionSendTo
-import com.practicum.playlistmaker.extensions.intentActionView
+import com.practicum.playlistmaker.core.extensions.configureToolbar
+import com.practicum.playlistmaker.core.extensions.intentActionSend
+import com.practicum.playlistmaker.core.extensions.intentActionSendTo
+import com.practicum.playlistmaker.core.extensions.intentActionView
 import com.practicum.playlistmaker.repositories.ThemeRepository
 
 class SettingsActivity : AppCompatActivity() {

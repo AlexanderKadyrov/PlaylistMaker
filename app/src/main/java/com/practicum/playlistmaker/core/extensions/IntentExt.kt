@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.extensions
+package com.practicum.playlistmaker.core.extensions
 
 import com.practicum.playlistmaker.core.helpers.codable.JSONDecoder
 import com.practicum.playlistmaker.core.helpers.codable.JSONEncoder
