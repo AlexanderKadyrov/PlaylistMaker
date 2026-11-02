@@ -5,7 +5,7 @@ import com.practicum.playlistmaker.core.domain.model.Track
 
 interface TrackSearchInteractor {
     fun fetchTrackList(text: String, consumer: TrackSearchConsumer)
-    fun fetchStoredTrackList()
+    fun fetchStoredTrackList(): List<Track>
     fun store(track: Track)
     fun clearStoredTrackList()
 
