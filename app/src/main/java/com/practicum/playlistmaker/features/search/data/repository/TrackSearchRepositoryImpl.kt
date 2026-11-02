@@ -40,17 +40,17 @@ class TrackSearchRepositoryImpl(
                 })
     }
 
-    override fun fetchStoredTrackList(): ArrayList<Track> {
+    override fun fetchStoredTrackList(): List<Track> {
         val json = localStorage.getString(SHARED_PREFERENCES_TRACK_KEY)
         if (json.isNullOrEmpty()) {
             return arrayListOf()
         }
-        val type = object : TypeToken<ArrayList<Track>>() {}.type
+        val type = object : TypeToken<List<Track>>() {}.type
         return Gson().fromJson(json, type) ?: arrayListOf()
     }
 
     override fun store(track: Track) {
-        val trackList = fetchStoredTrackList()
+        val trackList = fetchStoredTrackList().toMutableList()
         trackList.removeAll { it.trackId == track.trackId }
         trackList.add(0, track)
         val tenTrackList = trackList.take(10)
