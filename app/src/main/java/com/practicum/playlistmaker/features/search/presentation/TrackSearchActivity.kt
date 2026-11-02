@@ -20,7 +20,7 @@ import com.practicum.playlistmaker.core.extensions.hideKeyboard
 import com.practicum.playlistmaker.core.extensions.startActivity
 import com.practicum.playlistmaker.features.player.presentation.TrackPlayerActivity
 import com.practicum.playlistmaker.features.search.domain.TrackRepository
-import com.practicum.playlistmaker.features.search.presentation.adapters.TrackConcatAdapter
+import com.practicum.playlistmaker.features.search.presentation.adapters.TrackSearchConcatAdapter
 
 import com.practicum.playlistmaker.R
 
@@ -31,7 +31,7 @@ class TrackSearchActivity : AppCompatActivity() {
 
     private var isAllowedClick = true
 
-    private val trackConcatAdapter = TrackConcatAdapter(
+    private val trackSearchConcatAdapter = TrackSearchConcatAdapter(
         onItemClick = { track ->
             if (clickDebounce()) {
                 startTrackActivity(track)
@@ -72,13 +72,13 @@ class TrackSearchActivity : AppCompatActivity() {
             val visibility = visibility(text)
             clearImageView.visibility = visibility
             if (visibility == View.GONE) {
-                trackConcatAdapter.clear()
+                trackSearchConcatAdapter.clear()
             } else {
                 fetchDebounceTrackList()
             }
         }
         clearImageView.setOnClickListener {
-            trackConcatAdapter.clear()
+            trackSearchConcatAdapter.clear()
             searchEditText.text.clear()
             searchEditText.hideKeyboard()
         }
@@ -87,7 +87,7 @@ class TrackSearchActivity : AppCompatActivity() {
 
     private fun configureRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        trackConcatAdapter.connect(recyclerView)
+        trackSearchConcatAdapter.connect(recyclerView)
     }
 
     private fun searchEditText(): EditText {
@@ -119,13 +119,13 @@ class TrackSearchActivity : AppCompatActivity() {
                 is HTTPClientResult.Success -> {
                     val trackList = response.data?.results ?: arrayListOf()
                     if (trackList.isEmpty()) {
-                        trackConcatAdapter.showTrackListEmptyPlaceholder()
+                        trackSearchConcatAdapter.showTrackListEmptyPlaceholder()
                     } else {
-                        trackConcatAdapter.showTrackList(trackList)
+                        trackSearchConcatAdapter.showTrackList(trackList)
                     }
                 }
                 is HTTPClientResult.Error -> {
-                    trackConcatAdapter.showTrackListErrorPlaceholder {
+                    trackSearchConcatAdapter.showTrackListErrorPlaceholder {
                         fetchTrackList()
                     }
                 }
@@ -138,7 +138,7 @@ class TrackSearchActivity : AppCompatActivity() {
 
     private fun showStoredTracks() {
         val trackList = TrackRepository.fetchStoredTrackList()
-        trackConcatAdapter.showStoredTrackList(
+        trackSearchConcatAdapter.showStoredTrackList(
             trackList = trackList,
             onClearHistoryClick = {
                 TrackRepository.clearStoredTrackList()
