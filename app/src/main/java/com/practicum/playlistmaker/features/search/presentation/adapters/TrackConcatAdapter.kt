@@ -42,8 +42,8 @@ class TrackConcatAdapter(
     fun showTrackListErrorPlaceholder(onRefreshClick: () -> Unit) {
         baseConcatAdapter.clear()
         baseConcatAdapter.add(
-            TrackPlaceholderAdapter(
-                viewState = TrackPlaceholderAdapter.ViewState.ERROR,
+            TrackSearchPlaceholderAdapter(
+                viewState = TrackSearchPlaceholderAdapter.ViewState.ERROR,
                 onRefreshClick = onRefreshClick
             )
         )
@@ -52,8 +52,8 @@ class TrackConcatAdapter(
     fun showTrackListEmptyPlaceholder() {
         baseConcatAdapter.clear()
         baseConcatAdapter.add(
-            TrackPlaceholderAdapter(
-                viewState = TrackPlaceholderAdapter.ViewState.EMPTY
+            TrackSearchPlaceholderAdapter(
+                viewState = TrackSearchPlaceholderAdapter.ViewState.EMPTY
             )
         )
     }

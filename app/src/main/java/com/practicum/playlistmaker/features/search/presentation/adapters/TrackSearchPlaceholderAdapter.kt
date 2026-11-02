@@ -10,8 +10,8 @@ import com.practicum.playlistmaker.features.search.presentation.adapters.holders
 import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackErrorViewHolder
 import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackViewHolder
 
-class TrackPlaceholderAdapter(
-    private val viewState: ViewState,
+class TrackSearchPlaceholderAdapter(
+    private val viewState: com.practicum.playlistmaker.features.search.presentation.adapters.TrackPlaceholderAdapter.ViewState,
     private val onRefreshClick: (() -> Unit)? = null
 ): RecyclerView.Adapter<TrackViewHolder>() {
 
