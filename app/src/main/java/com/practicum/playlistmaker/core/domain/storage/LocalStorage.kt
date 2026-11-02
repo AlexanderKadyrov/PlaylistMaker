@@ -1,6 +1,7 @@
 package com.practicum.playlistmaker.core.domain.storage
 
 interface LocalStorage {
+    fun registerOnChangeKeyValueListener(key: String, callback: () -> Unit)
     fun putString(key: String, value: String)
 
     fun getString(key: String): String?
