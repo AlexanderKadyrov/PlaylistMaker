@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
 
-object ThemeRepository {
+object SettingsThemeRepository {
 
     private const val SHARED_PREFERENCES_THEME_REPOSITORY = "shared_preferences_theme_repository"
     private const val SHARED_PREFERENCES_THEME_KEY = "shared_preferences_theme_key"
