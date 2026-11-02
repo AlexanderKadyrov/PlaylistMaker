@@ -1,8 +1,8 @@
 package com.practicum.playlistmaker.models
 
-import com.practicum.playlistmaker.helpers.codable.JSONDecoder
-import com.practicum.playlistmaker.helpers.codable.JSONEncoder
-import com.practicum.playlistmaker.helpers.codable.Codable
+import com.practicum.playlistmaker.core.extensions.codable.JSONDecoder
+import com.practicum.playlistmaker.core.extensions.codable.JSONEncoder
+import com.practicum.playlistmaker.core.extensions.codable.Codable
 
 data class IntentExtra(
     private val items: HashMap<String, String> = hashMapOf()

@@ -1,6 +1,6 @@
 package com.practicum.playlistmaker.models
 
-import com.practicum.playlistmaker.helpers.codable.Codable
+import com.practicum.playlistmaker.core.extensions.codable.Codable
 
 import android.icu.text.SimpleDateFormat
 
