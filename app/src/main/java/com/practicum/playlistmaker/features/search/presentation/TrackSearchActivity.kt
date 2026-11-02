@@ -19,7 +19,7 @@ import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.hideKeyboard
 import com.practicum.playlistmaker.core.extensions.startActivity
 import com.practicum.playlistmaker.features.player.presentation.TrackPlayerActivity
-import com.practicum.playlistmaker.features.search.domain.TrackSearchRepository
+import com.practicum.playlistmaker.features.search.domain.repository.TrackSearchRepository
 import com.practicum.playlistmaker.features.search.presentation.adapters.TrackSearchConcatAdapter
 
 import com.practicum.playlistmaker.R

@@ -9,7 +9,7 @@ import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.core.domain.storage.LocalStorage
 import com.practicum.playlistmaker.features.search.data.mapper.TrackSearchMapper
 import com.practicum.playlistmaker.features.search.data.network.TrackSearchService
-import com.practicum.playlistmaker.features.search.domain.TrackSearchRepository
+import com.practicum.playlistmaker.features.search.domain.repository.TrackSearchRepository
 
 class TrackSearchRepositoryImpl(
     private val localStorage: LocalStorage,
