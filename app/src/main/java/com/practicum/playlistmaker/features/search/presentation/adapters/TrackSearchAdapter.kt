@@ -7,25 +7,25 @@ import androidx.recyclerview.widget.RecyclerView
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackItemViewHolder
-import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackViewHolder
+import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackSearchItemViewHolder
+import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackSearchViewHolder
 
 class TrackSearchAdapter(
     private val onItemClick: (Track) -> Unit
-): RecyclerView.Adapter<TrackViewHolder>() {
+): RecyclerView.Adapter<TrackSearchViewHolder>() {
 
     private var trackList: ArrayList<Track> = arrayListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackSearchViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.track_item_view, parent, false)
-        return TrackItemViewHolder(itemView) { position ->
+        return TrackSearchItemViewHolder(itemView) { position ->
             onItemClick(trackList[position])
         }
     }
 
-    override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TrackSearchViewHolder, position: Int) {
         holder.bind(trackList[position])
     }
 

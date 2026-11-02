@@ -6,34 +6,34 @@ import com.practicum.playlistmaker.R
 import androidx.recyclerview.widget.RecyclerView
 
 import android.view.ViewGroup
-import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackFooterViewHolder
-import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackHeaderViewHolder
-import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackViewHolder
+import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackSearchFooterViewHolder
+import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackSearchHeaderViewHolder
+import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackSearchViewHolder
 
 class TrackSearchSectionAdapter(
     private val viewState: ViewState,
     private val onClick: (() -> Unit)? = null
-): RecyclerView.Adapter<TrackViewHolder>() {
+): RecyclerView.Adapter<TrackSearchViewHolder>() {
 
     enum class ViewState {
         HEADER,
         FOOTER
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackSearchViewHolder {
         return when (viewState) {
             ViewState.HEADER -> {
                 val itemView = itemView(R.layout.track_header_view, parent)
-                TrackHeaderViewHolder(itemView)
+                TrackSearchHeaderViewHolder(itemView)
             }
             ViewState.FOOTER -> {
                 val itemView = itemView(R.layout.track_footer_view, parent)
-                TrackFooterViewHolder(itemView, onClick)
+                TrackSearchFooterViewHolder(itemView, onClick)
             }
         }
     }
 
-    override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {}
+    override fun onBindViewHolder(holder: TrackSearchViewHolder, position: Int) {}
 
     override fun getItemCount(): Int = 1
 }

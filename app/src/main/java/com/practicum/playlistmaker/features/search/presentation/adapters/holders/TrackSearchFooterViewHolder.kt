@@ -5,14 +5,14 @@ import com.practicum.playlistmaker.R
 import android.widget.TextView
 import android.view.View
 
-class TrackErrorViewHolder(
+class TrackSearchFooterViewHolder(
     itemView: View,
     private val onClick: (() -> Unit)?
-): TrackViewHolder(itemView) {
+): TrackSearchViewHolder(itemView) {
 
     init {
-        val refreshButton: TextView = itemView.findViewById(R.id.refreshButton)
-        refreshButton.setOnClickListener {
+        val clearHistoryButton: TextView = itemView.findViewById(R.id.clearHistoryButton)
+        clearHistoryButton.setOnClickListener {
             onClick?.invoke()
         }
     }

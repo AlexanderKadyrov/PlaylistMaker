@@ -14,10 +14,10 @@ import android.view.View
 
 import androidx.recyclerview.widget.RecyclerView
 
-class TrackItemViewHolder(
+class TrackSearchItemViewHolder(
     itemView: View,
     private val onItemClick: (position: Int) -> Unit
-): TrackViewHolder(itemView) {
+): TrackSearchViewHolder(itemView) {
 
     private val trackItemView: LinearLayout = itemView.findViewById(R.id.trackItemView)
     private val trackNameTextView: TextView = itemView.findViewById(R.id.trackNameTextView)

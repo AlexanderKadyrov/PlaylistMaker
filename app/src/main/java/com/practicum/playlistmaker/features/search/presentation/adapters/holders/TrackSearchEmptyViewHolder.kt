@@ -2,6 +2,4 @@ package com.practicum.playlistmaker.features.search.presentation.adapters.holder
 
 import android.view.View
 
-class TrackHeaderViewHolder(
-    itemView: View
-): TrackViewHolder(itemView)
+class TrackSearchEmptyViewHolder(itemView: View): TrackSearchViewHolder(itemView)
