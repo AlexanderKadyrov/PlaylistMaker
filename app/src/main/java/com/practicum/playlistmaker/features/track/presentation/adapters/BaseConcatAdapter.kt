@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.adapters
+package com.practicum.playlistmaker.features.track.presentation.adapters
 
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView

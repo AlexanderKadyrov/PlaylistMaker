@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.adapters
+package com.practicum.playlistmaker.features.track.presentation.adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import com.practicum.playlistmaker.core.domain.model.Track

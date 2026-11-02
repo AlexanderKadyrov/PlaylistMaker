@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.adapters
+package com.practicum.playlistmaker.features.track.presentation.adapters
 
 import com.practicum.playlistmaker.views.TrackFooterViewHolder
 import com.practicum.playlistmaker.views.TrackHeaderViewHolder
