@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackItemViewHolder
 import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackViewHolder
 
-class TrackAdapter(
+class TrackSearchAdapter(
     private val onItemClick: (Track) -> Unit
 ): RecyclerView.Adapter<TrackViewHolder>() {
 

@@ -68,12 +68,12 @@ class TrackConcatAdapter(
 
     private fun trackAdapter(
         trackList: ArrayList<Track>
-    ): TrackAdapter {
-        val trackAdapter = TrackAdapter(
+    ): TrackSearchAdapter {
+        val trackSearchAdapter = TrackSearchAdapter(
             onItemClick = { track ->
                 onItemClick(track)
             })
-        trackAdapter.set(trackList)
-        return trackAdapter
+        trackSearchAdapter.set(trackList)
+        return trackSearchAdapter
     }
 }
