@@ -1,6 +1,6 @@
 package com.practicum.playlistmaker
 
-import com.practicum.playlistmaker.features.track.domain.TrackRepository
+import com.practicum.playlistmaker.features.track.search.domain.TrackRepository
 import com.practicum.playlistmaker.features.settings.domain.ThemeRepository
 
 import android.app.Application

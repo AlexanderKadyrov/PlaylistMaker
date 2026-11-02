@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.features.search.presentation.TrackSearchActivity
+import com.practicum.playlistmaker.features.track.search.presentation.TrackSearchActivity
 import com.practicum.playlistmaker.features.settings.presentation.SettingsActivity
 import com.practicum.playlistmaker.core.extensions.startActivity
 import com.practicum.playlistmaker.features.media.presentation.MediaActivity

@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.features.track.domain
+package com.practicum.playlistmaker.features.track.search.domain
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -8,8 +8,8 @@ import com.google.gson.reflect.TypeToken
 import com.practicum.playlistmaker.core.data.client.HTTPClient
 import com.practicum.playlistmaker.core.data.client.HTTPClientResult
 import com.practicum.playlistmaker.core.domain.model.Track
-import com.practicum.playlistmaker.features.track.data.network.TrackResponse
-import com.practicum.playlistmaker.features.track.data.network.TrackService
+import com.practicum.playlistmaker.features.track.search.data.network.TrackResponse
+import com.practicum.playlistmaker.features.track.search.data.network.TrackService
 
 object TrackRepository {
 

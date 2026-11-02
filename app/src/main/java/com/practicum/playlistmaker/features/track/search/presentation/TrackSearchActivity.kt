@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.features.search.presentation
+package com.practicum.playlistmaker.features.track.search.presentation
 
 import android.os.Bundle
 import android.os.Handler
@@ -11,15 +11,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.features.track.presentation.TrackPlayerActivity
-import com.practicum.playlistmaker.features.search.presentation.adapters.TrackConcatAdapter
+import com.practicum.playlistmaker.features.track.player.presentation.TrackPlayerActivity
+import com.practicum.playlistmaker.features.track.search.presentation.adapters.TrackConcatAdapter
 import com.practicum.playlistmaker.core.data.client.HTTPClientResult
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.hideKeyboard
 import com.practicum.playlistmaker.core.extensions.startActivity
 import com.practicum.playlistmaker.core.domain.model.IntentExtra
 import com.practicum.playlistmaker.core.domain.model.Track
-import com.practicum.playlistmaker.features.track.domain.TrackRepository
+import com.practicum.playlistmaker.features.track.search.domain.TrackRepository
 
 class TrackSearchActivity : AppCompatActivity() {
 

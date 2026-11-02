@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.features.track.data.network
+package com.practicum.playlistmaker.features.track.search.data.network
 
 import retrofit2.Call
 import retrofit2.http.GET
