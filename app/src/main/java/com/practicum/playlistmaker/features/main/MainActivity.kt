@@ -1,11 +1,13 @@
-package com.practicum.playlistmaker
+package com.practicum.playlistmaker.features.main
 
-import com.practicum.playlistmaker.extensions.startActivity
-
-import androidx.appcompat.app.AppCompatActivity
-
-import android.widget.FrameLayout
 import android.os.Bundle
+import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import com.practicum.playlistmaker.MediaActivity
+import com.practicum.playlistmaker.R
+import com.practicum.playlistmaker.SearchActivity
+import com.practicum.playlistmaker.SettingsActivity
+import com.practicum.playlistmaker.extensions.startActivity
 
 class MainActivity : AppCompatActivity() {
 
