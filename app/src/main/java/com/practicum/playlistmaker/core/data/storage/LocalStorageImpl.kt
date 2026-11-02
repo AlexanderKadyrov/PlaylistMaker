@@ -1,8 +1,9 @@
 package com.practicum.playlistmaker.core.data.storage
 
-import com.practicum.playlistmaker.core.domain.storage.LocalStorage
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.core.content.edit
+import com.practicum.playlistmaker.core.domain.storage.LocalStorage
 
 class LocalStorageImpl(
     context: Context
@@ -12,6 +13,15 @@ class LocalStorageImpl(
         SHARED_PREFERENCES_REPOSITORY,
         Context.MODE_PRIVATE
     )
+
+    override fun registerOnChangeKeyValueListener(key: String, callback: () -> Unit) {
+        val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, thisKey ->
+            if (key == thisKey) {
+                callback()
+            }
+        }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+    }
 
     override fun putString(key: String, value: String) {
         sharedPreferences
