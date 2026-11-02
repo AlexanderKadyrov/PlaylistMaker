@@ -1,10 +1,10 @@
 package com.practicum.playlistmaker.core.data.client
 
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.Call
+import retrofit2.converter.gson.GsonConverterFactory
 
 class HTTPClient<S>(
     private val serviceClass: Class<S>,
@@ -19,7 +19,7 @@ class HTTPClient<S>(
         retrofit.create(serviceClass)
     }
 
-    fun <R>fetch(
+    fun <R> fetch(
         serviceCallback: (S) -> Call<R>,
         completionCallback: (HTTPClientResult<R>) -> Unit
     ) {
@@ -29,21 +29,27 @@ class HTTPClient<S>(
                 val body = response.body()
                 if (response.isSuccessful) {
                     body?.let {
-                        completionCallback(HTTPClientResult.SuccessBody(body))
+                        completionCallback(HTTPClientResult.SuccessData(body))
                     } ?: run {
-                        completionCallback(HTTPClientResult.SuccessEmpty)
+                        completionCallback(HTTPClientResult.SuccessNothing)
                     }
                 } else {
                     completionCallback(HTTPClientResult.Error(response.code(), response.message()))
                 }
             }
+
             override fun onFailure(call: Call<R>, t: Throwable) {
-                completionCallback(HTTPClientResult.Error(code = -1, message = t.message ?: "HTTPClient throw exception"))
+                completionCallback(
+                    HTTPClientResult.Error(
+                        code = -1,
+                        message = t.message ?: "HTTPClient throw exception"
+                    )
+                )
             }
         })
     }
 }
 
-inline fun <reified S>HTTPClient(baseUrl: String): HTTPClient<S> {
+inline fun <reified S> HTTPClient(baseUrl: String): HTTPClient<S> {
     return HTTPClient(S::class.java, baseUrl)
 }
