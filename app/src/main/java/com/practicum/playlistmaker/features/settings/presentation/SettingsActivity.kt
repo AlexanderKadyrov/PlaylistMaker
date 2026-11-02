@@ -9,7 +9,7 @@ import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.intentActionSend
 import com.practicum.playlistmaker.core.extensions.intentActionSendTo
 import com.practicum.playlistmaker.core.extensions.intentActionView
-import com.practicum.playlistmaker.features.settings.domain.SettingsThemeRepository
+import com.practicum.playlistmaker.features.settings.domain.SettingsRepository
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -26,9 +26,9 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun setOnClickDarkTheme() {
         val settingsSwitch = findViewById<Switch>(R.id.settings_switch)
-        settingsSwitch.isChecked = SettingsThemeRepository.isDarkTheme()
+        settingsSwitch.isChecked = SettingsRepository.isDarkTheme()
         settingsSwitch.setOnCheckedChangeListener { _, isChecked ->
-            SettingsThemeRepository.switchTheme(isChecked)
+            SettingsRepository.switchTheme(isChecked)
         }
     }
 
