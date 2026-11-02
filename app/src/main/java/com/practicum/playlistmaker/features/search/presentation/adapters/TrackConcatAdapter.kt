@@ -18,14 +18,14 @@ class TrackConcatAdapter(
         }
         baseConcatAdapter.clear()
         baseConcatAdapter.add(
-            TrackSectionAdapter(
-                viewState = TrackSectionAdapter.ViewState.HEADER
+            TrackSearchSectionAdapter(
+                viewState = TrackSearchSectionAdapter.ViewState.HEADER
             )
         )
         baseConcatAdapter.add(trackAdapter(trackList))
         baseConcatAdapter.add(
-            TrackSectionAdapter(
-                viewState = TrackSectionAdapter.ViewState.FOOTER,
+            TrackSearchSectionAdapter(
+                viewState = TrackSearchSectionAdapter.ViewState.FOOTER,
                 onClick = {
                     baseConcatAdapter.clear()
                     onClearHistoryClick()

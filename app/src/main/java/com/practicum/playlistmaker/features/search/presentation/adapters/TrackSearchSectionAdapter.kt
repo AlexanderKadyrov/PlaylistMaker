@@ -10,7 +10,7 @@ import com.practicum.playlistmaker.features.search.presentation.adapters.holders
 import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackHeaderViewHolder
 import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackViewHolder
 
-class TrackSectionAdapter(
+class TrackSearchSectionAdapter(
     private val viewState: ViewState,
     private val onClick: (() -> Unit)? = null
 ): RecyclerView.Adapter<TrackViewHolder>() {
