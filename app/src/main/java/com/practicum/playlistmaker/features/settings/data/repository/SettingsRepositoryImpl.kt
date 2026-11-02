@@ -14,6 +14,7 @@ class SettingsRepositoryImpl(
                 applyTheme(isDarkTheme())
             }
         )
+        switchTheme(isDarkTheme())
     }
 
     fun isDarkTheme(): Boolean {
