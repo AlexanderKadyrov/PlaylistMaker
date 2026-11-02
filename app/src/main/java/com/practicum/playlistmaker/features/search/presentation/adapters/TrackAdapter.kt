@@ -1,7 +1,5 @@
 package com.practicum.playlistmaker.features.search.presentation.adapters
 
-import com.practicum.playlistmaker.features.track.search.presentation.adapters.holders.TrackItemViewHolder
-import com.practicum.playlistmaker.features.track.search.presentation.adapters.holders.TrackViewHolder
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.R
 
@@ -9,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackItemViewHolder
+import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackViewHolder
 
 class TrackAdapter(
     private val onItemClick: (Track) -> Unit
