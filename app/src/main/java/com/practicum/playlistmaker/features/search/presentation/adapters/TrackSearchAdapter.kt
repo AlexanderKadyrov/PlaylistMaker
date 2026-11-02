@@ -14,7 +14,7 @@ class TrackSearchAdapter(
     private val onItemClick: (Track) -> Unit
 ): RecyclerView.Adapter<TrackSearchViewHolder>() {
 
-    private var trackList: ArrayList<Track> = arrayListOf()
+    private var trackList: List<Track> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackSearchViewHolder {
         val itemView = LayoutInflater
@@ -33,7 +33,7 @@ class TrackSearchAdapter(
         return trackList.size
     }
 
-    fun set(trackList: ArrayList<Track>) {
+    fun set(trackList: List<Track>) {
         this.trackList = trackList
         notifyDataSetChanged()
     }
