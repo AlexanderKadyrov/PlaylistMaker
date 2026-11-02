@@ -19,7 +19,7 @@ import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.hideKeyboard
 import com.practicum.playlistmaker.core.extensions.startActivity
 import com.practicum.playlistmaker.features.player.presentation.TrackPlayerActivity
-import com.practicum.playlistmaker.features.search.domain.TrackRepository
+import com.practicum.playlistmaker.features.search.domain.TrackSearchRepository
 import com.practicum.playlistmaker.features.search.presentation.adapters.TrackSearchConcatAdapter
 
 import com.practicum.playlistmaker.R
@@ -114,7 +114,7 @@ class TrackSearchActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
 
         val text = searchEditText().text.toString()
-        TrackRepository.fetchTrackList(text) { response ->
+        TrackSearchRepository.fetchTrackList(text) { response ->
             when (response) {
                 is HTTPClientResult.Success -> {
                     val trackList = response.data?.results ?: arrayListOf()
@@ -137,17 +137,17 @@ class TrackSearchActivity : AppCompatActivity() {
     }
 
     private fun showStoredTracks() {
-        val trackList = TrackRepository.fetchStoredTrackList()
+        val trackList = TrackSearchRepository.fetchStoredTrackList()
         trackSearchConcatAdapter.showStoredTrackList(
             trackList = trackList,
             onClearHistoryClick = {
-                TrackRepository.clearStoredTrackList()
+                TrackSearchRepository.clearStoredTrackList()
             }
         )
     }
 
     private fun startTrackActivity(track: Track) {
-        TrackRepository.store(track)
+        TrackSearchRepository.store(track)
         startActivity<TrackPlayerActivity> {
             val intentExtra = IntentExtra()
             intentExtra.putModel(Track.Companion.TRACK_INTENT_EXTRA, track)

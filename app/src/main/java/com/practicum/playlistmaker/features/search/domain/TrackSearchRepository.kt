@@ -8,17 +8,17 @@ import com.google.gson.reflect.TypeToken
 import com.practicum.playlistmaker.core.data.client.HTTPClient
 import com.practicum.playlistmaker.core.data.client.HTTPClientResult
 import com.practicum.playlistmaker.core.domain.model.Track
-import com.practicum.playlistmaker.features.search.data.network.TrackResponse
-import com.practicum.playlistmaker.features.search.data.network.TrackService
+import com.practicum.playlistmaker.features.search.data.network.TrackSearchResponse
+import com.practicum.playlistmaker.features.search.data.network.TrackSearchService
 
-object TrackRepository {
+object TrackSearchRepository {
 
     private const val SHARED_PREFERENCES_TRACK_REPOSITORY = "shared_preferences_track_repository"
     private const val SHARED_PREFERENCES_TRACK_KEY = "shared_preferences_track_key"
 
     private lateinit var sharedPreferences: SharedPreferences
 
-    private val client = HTTPClient<TrackService>("https://itunes.apple.com/")
+    private val client = HTTPClient<TrackSearchService>("https://itunes.apple.com/")
 
     fun init(context: Context) {
         sharedPreferences = context
@@ -26,7 +26,7 @@ object TrackRepository {
             .getSharedPreferences(SHARED_PREFERENCES_TRACK_REPOSITORY, Context.MODE_PRIVATE)
     }
 
-    fun fetchTrackList(text: String, completion: (HTTPClientResult<TrackResponse>) -> Unit) {
+    fun fetchTrackList(text: String, completion: (HTTPClientResult<TrackSearchResponse>) -> Unit) {
         client.fetch({ it.fetchTrackList(text) }, completion)
     }
 
