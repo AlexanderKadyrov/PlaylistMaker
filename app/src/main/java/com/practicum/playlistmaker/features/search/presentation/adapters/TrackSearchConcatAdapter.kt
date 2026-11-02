@@ -34,7 +34,7 @@ class TrackSearchConcatAdapter(
         )
     }
 
-    fun showTrackList(trackList: ArrayList<Track>) {
+    fun showTrackList(trackList: List<Track>) {
         baseConcatAdapter.clear()
         baseConcatAdapter.add(trackAdapter(trackList))
     }
@@ -67,7 +67,7 @@ class TrackSearchConcatAdapter(
     }
 
     private fun trackAdapter(
-        trackList: ArrayList<Track>
+        trackList: List<Track>
     ): TrackSearchAdapter {
         val trackSearchAdapter = TrackSearchAdapter(
             onItemClick = { track ->
