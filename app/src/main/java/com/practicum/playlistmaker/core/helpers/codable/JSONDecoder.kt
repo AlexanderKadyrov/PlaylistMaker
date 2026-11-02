@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.core.extensions.codable
+package com.practicum.playlistmaker.core.helpers.codable
 
 import com.google.gson.Gson
 

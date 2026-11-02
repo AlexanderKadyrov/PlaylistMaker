@@ -1,3 +1,3 @@
-package com.practicum.playlistmaker.core.extensions.codable
+package com.practicum.playlistmaker.core.helpers.codable
 
 interface Codable: Decodable, Encodable
