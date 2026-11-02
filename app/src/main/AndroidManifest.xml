@@ -24,7 +24,7 @@
             android:name=".features.settings.presentation.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".features.track.presentation.TrackActivity"
+            android:name=".features.track.presentation.TrackPlayerActivity"
             android:exported="false" />
         <activity
             android:name=".features.main.presentation.MainActivity"

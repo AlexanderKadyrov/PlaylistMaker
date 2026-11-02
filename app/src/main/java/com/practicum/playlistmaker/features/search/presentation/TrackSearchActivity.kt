@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.features.track.presentation.TrackActivity
+import com.practicum.playlistmaker.features.track.presentation.TrackPlayerActivity
 import com.practicum.playlistmaker.features.track.presentation.adapters.TrackConcatAdapter
 import com.practicum.playlistmaker.core.data.client.HTTPClientResult
 import com.practicum.playlistmaker.core.extensions.configureToolbar
@@ -145,7 +145,7 @@ class TrackSearchActivity : AppCompatActivity() {
 
     private fun startTrackActivity(track: Track) {
         TrackRepository.store(track)
-        startActivity<TrackActivity> {
+        startActivity<TrackPlayerActivity> {
             val intentExtra = IntentExtra()
             intentExtra.putModel(Track.Companion.TRACK_INTENT_EXTRA, track)
             return@startActivity intentExtra

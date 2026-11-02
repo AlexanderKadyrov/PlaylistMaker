@@ -17,7 +17,7 @@ import com.practicum.playlistmaker.core.extensions.getModel
 import com.practicum.playlistmaker.core.domain.model.Track
 import java.util.Locale
 
-class TrackActivity : AppCompatActivity() {
+class TrackPlayerActivity : AppCompatActivity() {
 
     private var player = MusicPlayer(
         onChangeState = { state ->
