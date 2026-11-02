@@ -1,15 +1,17 @@
 package com.practicum.playlistmaker
 
-import com.practicum.playlistmaker.features.search.domain.TrackSearchRepository
-import com.practicum.playlistmaker.features.settings.domain.SettingsRepository
-
 import android.app.Application
+import com.practicum.playlistmaker.di.Creator
+import com.practicum.playlistmaker.features.settings.domain.SettingsRepository
 
 class App: Application() {
 
+    val creator: Creator by lazy {
+        Creator(this)
+    }
+
     override fun onCreate() {
         super.onCreate()
-        TrackSearchRepository.init(this)
         SettingsRepository.init(this)
         SettingsRepository.switchTheme(SettingsRepository.isDarkTheme())
     }
