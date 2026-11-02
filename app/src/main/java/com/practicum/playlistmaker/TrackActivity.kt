@@ -2,6 +2,7 @@ package com.practicum.playlistmaker
 
 import com.practicum.playlistmaker.extensions.configureToolbar
 import com.practicum.playlistmaker.extensions.getModel
+import com.practicum.playlistmaker.core.MusicPlayer
 import com.practicum.playlistmaker.models.Track
 
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -10,13 +11,62 @@ import com.bumptech.glide.Glide
 import androidx.appcompat.app.AppCompatActivity
 
 import android.annotation.SuppressLint
+
+import android.widget.ToggleButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Button
-import android.os.Bundle
+
+import android.icu.text.SimpleDateFormat
+
 import android.view.View
 
+import android.os.Bundle
+
+import java.util.Locale
+
 class TrackActivity : AppCompatActivity() {
+
+    private var player = MusicPlayer(
+        onChangeState = { state ->
+            when (state) {
+                MusicPlayer.State.PREPARED -> {
+                    setPlaybackEnabled()
+                }
+                MusicPlayer.State.PLAYING -> {
+                    setIsPlaying(true)
+                }
+                MusicPlayer.State.PAUSED -> {
+                    setIsPlaying(false)
+                }
+                MusicPlayer.State.END -> {
+                    setIsPlaying(false)
+                    setTrackTime(getString(R.string.track_time_zero))
+                }
+                else -> {}
+            }
+        },
+        onChangeCurrentPosition = { currentPosition ->
+            val vale = SimpleDateFormat("mm:ss", Locale.getDefault())
+                .format(currentPosition)
+            setTrackTime(vale)
+        }
+    )
+
+    @SuppressLint("StaticFieldLeak")
+    private lateinit var trackTimeValueTextView: TextView
+    private lateinit var playlistButton: ToggleButton
+    private lateinit var favoriteButton: ToggleButton
+    private lateinit var playPauseButton: ToggleButton
+
+    override fun onPause() {
+        super.onPause()
+        player.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        player.onDestroy()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +79,7 @@ class TrackActivity : AppCompatActivity() {
         val intentExtra = intent.getModel()
         val track = intentExtra?.getModel<Track>(Track.TRACK_INTENT_EXTRA)
         track?.let { model ->
+            player.prepare(model.previewUrl)
             fill(model)
         }
     }
@@ -39,11 +90,14 @@ class TrackActivity : AppCompatActivity() {
         val trackNameTextView = findViewById<TextView>(R.id.trackNameTextView)
         val trackArtistNameTextView = findViewById<TextView>(R.id.trackArtistNameTextView)
 
-        val playlistButton = findViewById<Button>(R.id.playlistButton)
-        val playPauseButton = findViewById<Button>(R.id.playPauseButton)
-        val favoriteButton = findViewById<Button>(R.id.favoriteButton)
+        playlistButton = findViewById<ToggleButton>(R.id.playlistButton)
+        favoriteButton = findViewById<ToggleButton>(R.id.favoriteButton)
+        playPauseButton = findViewById<ToggleButton>(R.id.playPauseButton)
+        playPauseButton.setOnClickListener {
+            player.playbackControl()
+        }
 
-        val trackTimeValueTextView = findViewById<TextView>(R.id.trackTimeValueTextView)
+        trackTimeValueTextView = findViewById<TextView>(R.id.trackTimeValueTextView)
         val trackDurationValueTextView = findViewById<TextView>(R.id.trackDurationValueTextView)
 
         val trackAlbumValueTextView = findViewById<TextView>(R.id.trackAlbumValueTextView)
@@ -58,7 +112,6 @@ class TrackActivity : AppCompatActivity() {
         trackNameTextView.text = model.trackName
         trackArtistNameTextView.text = model.artistName
 
-        trackTimeValueTextView.text = "0:30"
         trackDurationValueTextView.text = model.convertTrackTimeString()
 
         val collectionName = model.collectionName ?: ""
@@ -83,5 +136,17 @@ class TrackActivity : AppCompatActivity() {
             .placeholder(R.drawable.ic_track_placeholder)
             .transform(RoundedCorners(10))
             .into(trackCoverImageView)
+    }
+
+    private fun setPlaybackEnabled() {
+        playPauseButton.isEnabled = true
+    }
+
+    private fun setIsPlaying(value: Boolean) {
+        playPauseButton.isChecked = value
+    }
+
+    private fun setTrackTime(value: String) {
+        trackTimeValueTextView.text = value
     }
 }
