@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.features.track.presentation.TrackActivity
 import com.practicum.playlistmaker.adapters.TrackConcatAdapter
-import com.practicum.playlistmaker.clients.HTTPClientResult
+import com.practicum.playlistmaker.core.data.client.HTTPClientResult
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.hideKeyboard
 import com.practicum.playlistmaker.core.extensions.startActivity

@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.clients
+package com.practicum.playlistmaker.core.data.client
 
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Callback

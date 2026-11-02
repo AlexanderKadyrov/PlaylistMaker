@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.clients
+package com.practicum.playlistmaker.core.data.client
 
 sealed class HTTPClientResult<out T> {
     data class Success<out T>(val data: T?): HTTPClientResult<T>()

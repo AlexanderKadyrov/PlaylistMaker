@@ -1,7 +1,7 @@
 package com.practicum.playlistmaker.repositories
 
-import com.practicum.playlistmaker.clients.HTTPClientResult
-import com.practicum.playlistmaker.clients.HTTPClient
+import com.practicum.playlistmaker.core.data.client.HTTPClientResult
+import com.practicum.playlistmaker.core.data.client.HTTPClient
 
 import com.practicum.playlistmaker.services.TrackService
 
