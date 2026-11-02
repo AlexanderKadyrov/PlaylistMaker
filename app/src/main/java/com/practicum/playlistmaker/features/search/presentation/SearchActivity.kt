@@ -17,7 +17,7 @@ import com.practicum.playlistmaker.core.data.client.HTTPClientResult
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.hideKeyboard
 import com.practicum.playlistmaker.core.extensions.startActivity
-import com.practicum.playlistmaker.models.IntentExtra
+import com.practicum.playlistmaker.core.domain.model.IntentExtra
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.features.track.domain.TrackRepository
 

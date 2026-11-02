@@ -2,7 +2,7 @@ package com.practicum.playlistmaker.core.extensions
 
 import com.practicum.playlistmaker.core.helpers.codable.JSONDecoder
 import com.practicum.playlistmaker.core.helpers.codable.JSONEncoder
-import com.practicum.playlistmaker.models.IntentExtra
+import com.practicum.playlistmaker.core.domain.model.IntentExtra
 
 import android.content.Intent
 

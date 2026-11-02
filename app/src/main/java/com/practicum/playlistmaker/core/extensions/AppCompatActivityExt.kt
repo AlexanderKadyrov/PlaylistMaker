@@ -1,6 +1,6 @@
 package com.practicum.playlistmaker.core.extensions
 
-import com.practicum.playlistmaker.models.IntentExtra
+import com.practicum.playlistmaker.core.domain.model.IntentExtra
 import com.practicum.playlistmaker.R
 
 import com.google.android.material.appbar.MaterialToolbar
