@@ -9,14 +9,15 @@ import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.core.domain.storage.LocalStorage
 import com.practicum.playlistmaker.features.search.data.mapper.TrackSearchMapper
 import com.practicum.playlistmaker.features.search.data.network.TrackSearchService
+import com.practicum.playlistmaker.features.search.domain.TrackSearchRepository
 
 class TrackSearchRepositoryImpl(
     private val localStorage: LocalStorage,
     private val client: HTTPClient<TrackSearchService>,
     private val mapper: TrackSearchMapper
-) {
+) : TrackSearchRepository {
 
-    fun fetchTrackList(text: String, completion: (Result<List<Track>>) -> Unit) {
+    override fun fetchTrackList(text: String, completion: (Result<List<Track>>) -> Unit) {
         client
             .fetch(
                 serviceCallback = {
@@ -39,7 +40,7 @@ class TrackSearchRepositoryImpl(
                 })
     }
 
-    fun fetchStoredTrackList(): ArrayList<Track> {
+    override fun fetchStoredTrackList(): ArrayList<Track> {
         val json = localStorage.getString(SHARED_PREFERENCES_TRACK_KEY)
         if (json.isNullOrEmpty()) {
             return arrayListOf()
@@ -48,7 +49,7 @@ class TrackSearchRepositoryImpl(
         return Gson().fromJson(json, type) ?: arrayListOf()
     }
 
-    fun store(track: Track) {
+    override fun store(track: Track) {
         val trackList = fetchStoredTrackList()
         trackList.removeAll { it.trackId == track.trackId }
         trackList.add(0, track)
@@ -57,7 +58,7 @@ class TrackSearchRepositoryImpl(
         localStorage.putString(SHARED_PREFERENCES_TRACK_KEY, json)
     }
 
-    fun clearStoredTrackList() {
+    override fun clearStoredTrackList() {
         localStorage.remove(SHARED_PREFERENCES_TRACK_KEY)
     }
 
