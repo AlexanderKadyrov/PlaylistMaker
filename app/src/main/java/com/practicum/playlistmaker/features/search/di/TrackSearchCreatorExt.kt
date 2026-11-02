@@ -6,7 +6,7 @@ import com.practicum.playlistmaker.features.search.data.mapper.TrackSearchMapper
 import com.practicum.playlistmaker.features.search.data.network.TrackSearchService
 import com.practicum.playlistmaker.features.search.data.repository.TrackSearchRepositoryImpl
 import com.practicum.playlistmaker.features.search.domain.interactor.TrackSearchInteractor
-import com.practicum.playlistmaker.features.search.domain.interactor.imp.TrackSearchInteractorImpl
+import com.practicum.playlistmaker.features.search.domain.interactor.impl.TrackSearchInteractorImpl
 import com.practicum.playlistmaker.features.search.domain.repository.TrackSearchRepository
 
 fun Creator.trackSearchInteractor(): TrackSearchInteractor {
