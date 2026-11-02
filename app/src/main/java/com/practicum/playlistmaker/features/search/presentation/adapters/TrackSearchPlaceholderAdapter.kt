@@ -11,7 +11,7 @@ import com.practicum.playlistmaker.features.search.presentation.adapters.holders
 import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackSearchViewHolder
 
 class TrackSearchPlaceholderAdapter(
-    private val viewState: com.practicum.playlistmaker.features.search.presentation.adapters.TrackPlaceholderAdapter.ViewState,
+    private val viewState: ViewState,
     private val onRefreshClick: (() -> Unit)? = null
 ): RecyclerView.Adapter<TrackSearchViewHolder>() {
 
