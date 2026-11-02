@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.features.track.search.presentation
+package com.practicum.playlistmaker.features.search.presentation
 
 import android.os.Bundle
 import android.os.Handler
@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.features.track.player.presentation.TrackPlayerActivity
+import com.practicum.playlistmaker.features.player.presentation.TrackPlayerActivity
 import com.practicum.playlistmaker.features.track.search.presentation.adapters.TrackConcatAdapter
 import com.practicum.playlistmaker.core.data.client.HTTPClientResult
 import com.practicum.playlistmaker.core.extensions.configureToolbar

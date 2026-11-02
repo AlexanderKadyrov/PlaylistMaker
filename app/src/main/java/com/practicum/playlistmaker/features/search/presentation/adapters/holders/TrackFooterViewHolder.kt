@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.features.track.search.presentation.adapters.holders
+package com.practicum.playlistmaker.features.search.presentation.adapters.holders
 
 import com.practicum.playlistmaker.R
 

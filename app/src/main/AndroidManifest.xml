@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlaylistMaker">
         <activity
-            android:name=".features.track.search.presentation.TrackSearchActivity"
+            android:name=".features.search.presentation.TrackSearchActivity"
             android:exported="false" />
         <activity
             android:name=".features.media.presentation.MediaActivity"
@@ -24,7 +24,7 @@
             android:name=".features.settings.presentation.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".features.track.player.presentation.TrackPlayerActivity"
+            android:name=".features.player.presentation.TrackPlayerActivity"
             android:exported="false" />
         <activity
             android:name=".features.main.presentation.MainActivity"

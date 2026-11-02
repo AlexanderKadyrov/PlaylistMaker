@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.features.track.player.presentation
+package com.practicum.playlistmaker.features.player.presentation
 
 import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat

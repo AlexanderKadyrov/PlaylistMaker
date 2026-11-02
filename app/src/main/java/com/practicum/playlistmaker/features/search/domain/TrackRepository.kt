@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.features.track.search.domain
+package com.practicum.playlistmaker.features.search.domain
 
 import android.content.Context
 import android.content.SharedPreferences
