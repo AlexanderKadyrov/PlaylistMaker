@@ -1,20 +1,15 @@
-package com.practicum.playlistmaker.repositories
+package com.practicum.playlistmaker.features.track.domain
 
-import com.practicum.playlistmaker.core.data.client.HTTPClientResult
-import com.practicum.playlistmaker.core.data.client.HTTPClient
-
-import com.practicum.playlistmaker.services.TrackService
-
-import com.practicum.playlistmaker.features.track.data.TrackResponse
-import com.practicum.playlistmaker.core.domain.model.Track
-
-import android.content.SharedPreferences
 import android.content.Context
-
+import android.content.SharedPreferences
 import androidx.core.content.edit
-
-import com.google.gson.reflect.TypeToken
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.practicum.playlistmaker.core.data.client.HTTPClient
+import com.practicum.playlistmaker.core.data.client.HTTPClientResult
+import com.practicum.playlistmaker.core.domain.model.Track
+import com.practicum.playlistmaker.features.track.data.network.TrackResponse
+import com.practicum.playlistmaker.features.track.data.network.TrackService
 
 object TrackRepository {
 

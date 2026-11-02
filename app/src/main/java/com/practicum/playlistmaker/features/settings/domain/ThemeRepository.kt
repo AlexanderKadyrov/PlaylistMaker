@@ -1,8 +1,7 @@
-package com.practicum.playlistmaker.repositories
+package com.practicum.playlistmaker.features.settings.domain
 
-import android.content.SharedPreferences
 import android.content.Context
-
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
 

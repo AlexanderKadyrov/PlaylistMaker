@@ -9,7 +9,7 @@ import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.intentActionSend
 import com.practicum.playlistmaker.core.extensions.intentActionSendTo
 import com.practicum.playlistmaker.core.extensions.intentActionView
-import com.practicum.playlistmaker.repositories.ThemeRepository
+import com.practicum.playlistmaker.features.settings.domain.ThemeRepository
 
 class SettingsActivity : AppCompatActivity() {
 
