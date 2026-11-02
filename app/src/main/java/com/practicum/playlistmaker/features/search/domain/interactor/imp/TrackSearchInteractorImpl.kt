@@ -17,8 +17,8 @@ class TrackSearchInteractorImpl(
         })
     }
 
-    override fun fetchStoredTrackList() {
-        repository.fetchStoredTrackList()
+    override fun fetchStoredTrackList(): List<Track> {
+        return repository.fetchStoredTrackList()
     }
 
     override fun store(track: Track) {
