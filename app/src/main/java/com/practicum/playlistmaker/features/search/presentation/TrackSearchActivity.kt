@@ -7,24 +7,27 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
-
-import com.practicum.playlistmaker.core.data.client.HTTPClientResult
+import com.practicum.playlistmaker.App
+import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.core.domain.model.IntentExtra
+import com.practicum.playlistmaker.core.domain.model.Result
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.hideKeyboard
 import com.practicum.playlistmaker.core.extensions.startActivity
 import com.practicum.playlistmaker.features.player.presentation.TrackPlayerActivity
-import com.practicum.playlistmaker.features.search.domain.repository.TrackSearchRepository
+import com.practicum.playlistmaker.features.search.di.trackSearchInteractor
+import com.practicum.playlistmaker.features.search.domain.interactor.TrackSearchInteractor
 import com.practicum.playlistmaker.features.search.presentation.adapters.TrackSearchConcatAdapter
 
-import com.practicum.playlistmaker.R
-
 class TrackSearchActivity : AppCompatActivity() {
+
+    private val trackSearchInteractor by lazy {
+        (applicationContext as App).creator.trackSearchInteractor()
+    }
 
     private val searchRunnable = Runnable { fetchTrackList() }
     private val handler = Handler(Looper.getMainLooper())
@@ -114,40 +117,43 @@ class TrackSearchActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
 
         val text = searchEditText().text.toString()
-        TrackSearchRepository.fetchTrackList(text) { response ->
-            when (response) {
-                is HTTPClientResult.Success -> {
-                    val trackList = response.data?.results ?: arrayListOf()
-                    if (trackList.isEmpty()) {
-                        trackSearchConcatAdapter.showTrackListEmptyPlaceholder()
-                    } else {
-                        trackSearchConcatAdapter.showTrackList(trackList)
-                    }
-                }
-                is HTTPClientResult.Error -> {
-                    trackSearchConcatAdapter.showTrackListErrorPlaceholder {
-                        fetchTrackList()
-                    }
-                }
-            }
+        trackSearchInteractor.fetchTrackList(
+            text = text,
+            consumer = object : TrackSearchInteractor.TrackSearchConsumer {
+                override fun consume(result: Result<List<Track>>) {
+                    when (result) {
+                        is Result.Success -> {
+                            if (result.data.isEmpty()) {
+                                trackSearchConcatAdapter.showTrackListEmptyPlaceholder()
+                            } else {
+                                trackSearchConcatAdapter.showTrackList(result.data)
+                            }
+                        }
 
-            recyclerView.visibility = View.VISIBLE
-            progressBar.visibility = View.GONE
-        }
+                        is Result.Error -> {
+                            trackSearchConcatAdapter.showTrackListErrorPlaceholder {
+                                fetchTrackList()
+                            }
+                        }
+                    }
+                    recyclerView.visibility = View.VISIBLE
+                    progressBar.visibility = View.GONE
+                }
+            })
     }
 
     private fun showStoredTracks() {
-        val trackList = TrackSearchRepository.fetchStoredTrackList()
+        val trackList = trackSearchInteractor.fetchStoredTrackList()
         trackSearchConcatAdapter.showStoredTrackList(
             trackList = trackList,
             onClearHistoryClick = {
-                TrackSearchRepository.clearStoredTrackList()
+                trackSearchInteractor.clearStoredTrackList()
             }
         )
     }
 
     private fun startTrackActivity(track: Track) {
-        TrackSearchRepository.store(track)
+        trackSearchInteractor.store(track)
         startActivity<TrackPlayerActivity> {
             val intentExtra = IntentExtra()
             intentExtra.putModel(Track.Companion.TRACK_INTENT_EXTRA, track)
@@ -155,7 +161,7 @@ class TrackSearchActivity : AppCompatActivity() {
         }
     }
 
-    private fun clickDebounce() : Boolean {
+    private fun clickDebounce(): Boolean {
         val current = isAllowedClick
         if (isAllowedClick) {
             isAllowedClick = false
