@@ -4,14 +4,19 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
+import com.practicum.playlistmaker.App
 import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.intentActionSend
 import com.practicum.playlistmaker.core.extensions.intentActionSendTo
 import com.practicum.playlistmaker.core.extensions.intentActionView
-import com.practicum.playlistmaker.features.settings.domain.SettingsRepository
+import com.practicum.playlistmaker.features.settings.di.settingsInteractor
 
 class SettingsActivity : AppCompatActivity() {
+
+    private val settingsInteractor by lazy {
+        (applicationContext as App).creator.settingsInteractor()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +31,9 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun setOnClickDarkTheme() {
         val settingsSwitch = findViewById<Switch>(R.id.settings_switch)
-        settingsSwitch.isChecked = SettingsRepository.isDarkTheme()
+        settingsSwitch.isChecked = settingsInteractor.isDarkTheme()
         settingsSwitch.setOnCheckedChangeListener { _, isChecked ->
-            SettingsRepository.switchTheme(isChecked)
+            settingsInteractor.switchTheme(isChecked)
         }
     }
 
