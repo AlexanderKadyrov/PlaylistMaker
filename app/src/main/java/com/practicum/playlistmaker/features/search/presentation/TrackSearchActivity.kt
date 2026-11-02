@@ -21,7 +21,7 @@ import com.practicum.playlistmaker.core.domain.model.IntentExtra
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.features.track.domain.TrackRepository
 
-class SearchActivity : AppCompatActivity() {
+class TrackSearchActivity : AppCompatActivity() {
 
     private val searchRunnable = Runnable { fetchTrackList() }
     private val handler = Handler(Looper.getMainLooper())
@@ -161,7 +161,7 @@ class SearchActivity : AppCompatActivity() {
         return current
     }
 
-    companion object {
+    companion object Companion {
         const val SEARCH_INSTANCE_STATE_KEY = "SEARCH_INSTANCE_STATE_KEY"
         private const val SEARCH_DEBOUNCE_DELAY = 2000L
         private const val CLICK_DEBOUNCE_DELAY = 1000L
