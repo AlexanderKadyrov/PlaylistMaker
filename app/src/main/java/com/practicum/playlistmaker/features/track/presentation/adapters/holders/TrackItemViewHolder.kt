@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.views
+package com.practicum.playlistmaker.features.track.presentation.adapters.holders
 
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.Glide

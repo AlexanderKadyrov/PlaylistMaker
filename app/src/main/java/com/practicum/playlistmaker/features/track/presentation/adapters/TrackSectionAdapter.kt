@@ -1,8 +1,8 @@
 package com.practicum.playlistmaker.features.track.presentation.adapters
 
-import com.practicum.playlistmaker.views.TrackFooterViewHolder
-import com.practicum.playlistmaker.views.TrackHeaderViewHolder
-import com.practicum.playlistmaker.views.TrackViewHolder
+import com.practicum.playlistmaker.features.track.presentation.adapters.holders.TrackFooterViewHolder
+import com.practicum.playlistmaker.features.track.presentation.adapters.holders.TrackHeaderViewHolder
+import com.practicum.playlistmaker.features.track.presentation.adapters.holders.TrackViewHolder
 import com.practicum.playlistmaker.core.extensions.itemView
 import com.practicum.playlistmaker.R
 

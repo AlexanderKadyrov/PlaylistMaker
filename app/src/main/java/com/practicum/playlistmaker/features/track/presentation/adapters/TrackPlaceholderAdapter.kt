@@ -1,8 +1,8 @@
 package com.practicum.playlistmaker.features.track.presentation.adapters
 
-import com.practicum.playlistmaker.views.TrackEmptyViewHolder
-import com.practicum.playlistmaker.views.TrackErrorViewHolder
-import com.practicum.playlistmaker.views.TrackViewHolder
+import com.practicum.playlistmaker.features.track.presentation.adapters.holders.TrackEmptyViewHolder
+import com.practicum.playlistmaker.features.track.presentation.adapters.holders.TrackErrorViewHolder
+import com.practicum.playlistmaker.features.track.presentation.adapters.holders.TrackViewHolder
 import com.practicum.playlistmaker.core.extensions.itemView
 import com.practicum.playlistmaker.R
 
