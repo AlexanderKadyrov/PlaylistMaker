@@ -1,16 +1,17 @@
 package com.practicum.playlistmaker
 
-import com.practicum.playlistmaker.repositories.TrackRepository
-import com.practicum.playlistmaker.repositories.ThemeRepository
-
 import android.app.Application
+import com.practicum.playlistmaker.di.Creator
+import com.practicum.playlistmaker.features.settings.di.settingsInteractor
 
-class App: Application() {
+class App : Application() {
+
+    val creator: Creator by lazy {
+        Creator(this)
+    }
 
     override fun onCreate() {
         super.onCreate()
-        TrackRepository.init(this)
-        ThemeRepository.init(this)
-        ThemeRepository.switchTheme(ThemeRepository.isDarkTheme())
+        creator.settingsInteractor().switchTheme()
     }
 }

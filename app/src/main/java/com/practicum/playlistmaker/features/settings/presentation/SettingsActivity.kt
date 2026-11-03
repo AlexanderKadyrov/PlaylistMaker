@@ -1,0 +1,71 @@
+package com.practicum.playlistmaker.features.settings.presentation
+
+import android.os.Bundle
+import android.widget.FrameLayout
+import android.widget.Switch
+import androidx.appcompat.app.AppCompatActivity
+import com.practicum.playlistmaker.App
+import com.practicum.playlistmaker.R
+import com.practicum.playlistmaker.core.extensions.configureToolbar
+import com.practicum.playlistmaker.core.extensions.intentActionSend
+import com.practicum.playlistmaker.core.extensions.intentActionSendTo
+import com.practicum.playlistmaker.core.extensions.intentActionView
+import com.practicum.playlistmaker.features.settings.di.settingsInteractor
+
+class SettingsActivity : AppCompatActivity() {
+
+    private val settingsInteractor by lazy {
+        (applicationContext as App).creator.settingsInteractor()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_settings)
+
+        configureToolbar()
+        setOnClickDarkTheme()
+        setOnClickShareTheApp()
+        setOnClickWriteToSupport()
+        setOnClickUserAgreement()
+    }
+
+    private fun setOnClickDarkTheme() {
+        val settingsSwitch = findViewById<Switch>(R.id.settings_switch)
+        settingsSwitch.isChecked = settingsInteractor.isDarkTheme()
+        settingsSwitch.setOnCheckedChangeListener { _, isChecked ->
+            settingsInteractor.switchTheme(isChecked)
+        }
+    }
+
+    private fun setOnClickShareTheApp() {
+        val shareTheApp = findViewById<FrameLayout>(R.id.share_the_app)
+        shareTheApp.setOnClickListener {
+            val intent = intentActionSend(
+                text = getString(R.string.share_the_app_url)
+            )
+            startActivity(intent)
+        }
+    }
+
+    private fun setOnClickWriteToSupport() {
+        val writeToSupport = findViewById<FrameLayout>(R.id.write_to_support)
+        writeToSupport.setOnClickListener {
+            val intent = intentActionSendTo(
+                email = getString(R.string.write_to_support_extra_email),
+                subject = getString(R.string.write_to_support_extra_subject),
+                text = getString(R.string.write_to_support_extra_text)
+            )
+            startActivity(intent)
+        }
+    }
+
+    private fun setOnClickUserAgreement() {
+        val userAgreement = findViewById<FrameLayout>(R.id.user_agreement)
+        userAgreement.setOnClickListener {
+            val intent = intentActionView(
+                uri = getString(R.string.user_agreement_url)
+            )
+            startActivity(intent)
+        }
+    }
+}
