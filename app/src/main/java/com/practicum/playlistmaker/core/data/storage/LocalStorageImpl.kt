@@ -14,12 +14,23 @@ class LocalStorageImpl(
         Context.MODE_PRIVATE
     )
 
+    private val listeners =
+        mutableMapOf<String, SharedPreferences.OnSharedPreferenceChangeListener>()
+
+    override fun unregisterOnChangeKeyValueListener(key: String) {
+        listeners.remove(key)?.let { listener ->
+            sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
+        }
+    }
+
     override fun registerOnChangeKeyValueListener(key: String, callback: () -> Unit) {
+        unregisterOnChangeKeyValueListener(key)
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, thisKey ->
             if (key == thisKey) {
                 callback()
             }
         }
+        listeners[key] = listener
         sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
     }
 
