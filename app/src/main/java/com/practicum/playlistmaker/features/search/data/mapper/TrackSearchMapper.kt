@@ -5,13 +5,13 @@ import com.practicum.playlistmaker.features.search.data.network.TrackDto
 
 class TrackSearchMapper {
 
-    fun mapList(listDto: List<TrackDto>): List<Track> {
+    fun mapListDto(listDto: List<TrackDto>): List<Track> {
         return listDto.map { itemDto ->
-            mapItem(itemDto)
+            mapItemDto(itemDto)
         }
     }
 
-    fun mapItem(itemDto: TrackDto): Track {
+    fun mapItemDto(itemDto: TrackDto): Track {
         return Track(
             trackId = itemDto.trackId,
             trackName = itemDto.trackName,
