@@ -8,6 +8,7 @@ import com.practicum.playlistmaker.core.domain.model.Result
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.core.domain.storage.LocalStorage
 import com.practicum.playlistmaker.features.search.data.mapper.TrackSearchMapper
+import com.practicum.playlistmaker.features.search.data.network.TrackDto
 import com.practicum.playlistmaker.features.search.data.network.TrackSearchService
 import com.practicum.playlistmaker.features.search.domain.repository.TrackSearchRepository
 
@@ -26,7 +27,7 @@ class TrackSearchRepositoryImpl(
                 completionCallback = { result ->
                     when (result) {
                         is HTTPClientResult.SuccessData -> {
-                            completion(Result.Success(mapper.map(result.data)))
+                            completion(Result.Success(mapper.map(result.data.results)))
                         }
 
                         is HTTPClientResult.SuccessNothing -> {
@@ -43,10 +44,15 @@ class TrackSearchRepositoryImpl(
     override fun fetchStoredTrackList(): List<Track> {
         val json = localStorage.getString(SHARED_PREFERENCES_TRACK_KEY)
         if (json.isNullOrEmpty()) {
-            return arrayListOf()
+            return emptyList()
         }
-        val type = object : TypeToken<List<Track>>() {}.type
-        return Gson().fromJson(json, type) ?: arrayListOf()
+        return try {
+            val type = object : TypeToken<List<TrackDto>>() {}.type
+            val listDto: List<TrackDto> = Gson().fromJson(json, type) ?: emptyList()
+            mapper.map(listDto)
+        } catch (e: Exception) {
+            emptyList()
+        }
     }
 
     override fun store(track: Track) {
@@ -54,7 +60,8 @@ class TrackSearchRepositoryImpl(
         trackList.removeAll { it.trackId == track.trackId }
         trackList.add(0, track)
         val tenTrackList = trackList.take(10)
-        val json = Gson().toJson(tenTrackList)
+        val tenTrackListDto = mapper.mapToDto(tenTrackList)
+        val json = Gson().toJson(tenTrackListDto)
         localStorage.putString(SHARED_PREFERENCES_TRACK_KEY, json)
     }
 
