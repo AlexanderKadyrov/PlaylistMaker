@@ -1,7 +1,6 @@
 package com.practicum.playlistmaker.features.player.presentation
 
 import android.annotation.SuppressLint
-import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -10,44 +9,19 @@ import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.practicum.playlistmaker.App
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.features.player.domain.AudioPlayer
+import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.getModel
-import com.practicum.playlistmaker.core.domain.model.Track
-import java.util.Locale
+import com.practicum.playlistmaker.features.player.di.trackPlayerInteractor
+import com.practicum.playlistmaker.features.player.domain.interactor.TrackPlayerInteractor
 
 class TrackPlayerActivity : AppCompatActivity() {
 
-    private var player = AudioPlayer(
-        onChangeState = { state ->
-            when (state) {
-                AudioPlayer.State.PREPARED -> {
-                    setPlaybackEnabled()
-                }
-
-                AudioPlayer.State.PLAYING -> {
-                    setIsPlaying(true)
-                }
-
-                AudioPlayer.State.PAUSED -> {
-                    setIsPlaying(false)
-                }
-
-                AudioPlayer.State.END -> {
-                    setIsPlaying(false)
-                    setTrackTime(getString(R.string.track_time_zero))
-                }
-
-                else -> {}
-            }
-        },
-        onChangeCurrentPosition = { currentPosition ->
-            val vale = SimpleDateFormat("mm:ss", Locale.getDefault())
-                .format(currentPosition)
-            setTrackTime(vale)
-        }
-    )
+    private val trackPlayerInteractor by lazy {
+        (applicationContext as App).creator.trackPlayerInteractor()
+    }
 
     @SuppressLint("StaticFieldLeak")
     private lateinit var trackTimeValueTextView: TextView
@@ -57,12 +31,12 @@ class TrackPlayerActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        player.onPause()
+        trackPlayerInteractor.onPause()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        player.onDestroy()
+        trackPlayerInteractor.onDestroy()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,9 +50,37 @@ class TrackPlayerActivity : AppCompatActivity() {
         val intentExtra = intent.getModel()
         val track = intentExtra?.getModel<Track>(Track.Companion.TRACK_INTENT_EXTRA)
         track?.let { model ->
-            player.prepare(model.previewUrl)
+            configurePlayer(model.previewUrl)
             fill(model)
         }
+    }
+
+    private fun configurePlayer(url: String) {
+        trackPlayerInteractor.configure(
+            url = url,
+            consumer = object : TrackPlayerInteractor.TrackPlayerConsumer {
+                override fun consumeChangeCurrentPosition(value: String) {
+                    setTrackTime(value)
+                }
+
+                override fun consumePrepared() {
+                    setPlaybackEnabled()
+                }
+
+                override fun consumePlaying() {
+                    setIsPlaying(true)
+                }
+
+                override fun consumePaused() {
+                    setIsPlaying(false)
+                }
+
+                override fun consumeEnd() {
+                    setIsPlaying(false)
+                    setTrackTime(getString(R.string.track_time_zero))
+                }
+            }
+        )
     }
 
     @SuppressLint("SetTextI18n")
@@ -91,7 +93,7 @@ class TrackPlayerActivity : AppCompatActivity() {
         favoriteButton = findViewById<ToggleButton>(R.id.favoriteButton)
         playPauseButton = findViewById<ToggleButton>(R.id.playPauseButton)
         playPauseButton.setOnClickListener {
-            player.playbackControl()
+            trackPlayerInteractor.playbackControl()
         }
 
         trackTimeValueTextView = findViewById<TextView>(R.id.trackTimeValueTextView)
