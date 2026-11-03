@@ -24,14 +24,12 @@ class AudioPlayerImpl : AudioPlayer {
     private var player = MediaPlayer()
 
     override fun configure(
+        url: String,
         onChangeState: ((AudioPlayerState) -> Unit),
         onChangeCurrentPosition: ((Int) -> Unit)
     ) {
         this.onChangeState = onChangeState
         this.onChangeCurrentPosition = onChangeCurrentPosition
-    }
-
-    override fun prepare(url: String) {
         player.setDataSource(url)
         player.prepareAsync()
         player.setOnPreparedListener {
