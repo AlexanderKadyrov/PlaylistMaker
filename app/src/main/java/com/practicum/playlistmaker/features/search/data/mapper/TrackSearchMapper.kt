@@ -1,12 +1,12 @@
 package com.practicum.playlistmaker.features.search.data.mapper
 
-import com.practicum.playlistmaker.features.search.data.network.TrackSearchResponse
 import com.practicum.playlistmaker.core.domain.model.Track
+import com.practicum.playlistmaker.features.search.data.network.TrackDto
 
 class TrackSearchMapper {
 
-    fun map(response: TrackSearchResponse): List<Track> {
-        return response.results.map { dto ->
+    fun map(list: List<TrackDto>): List<Track> {
+        return list.map { dto ->
             Track(
                 trackId = dto.trackId,
                 trackName = dto.trackName,
