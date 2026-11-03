@@ -3,9 +3,10 @@ package com.practicum.playlistmaker.features.player.data.datastore
 import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
+import com.practicum.playlistmaker.features.player.domain.AudioPlayer
 import com.practicum.playlistmaker.features.player.domain.AudioPlayerState
 
-class AudioPlayerImpl {
+class AudioPlayerImpl : AudioPlayer {
 
     private var onChangeState: ((AudioPlayerState) -> Unit)? = null
     private var onChangeCurrentPosition: ((Int) -> Unit)? = null
@@ -22,7 +23,7 @@ class AudioPlayerImpl {
 
     private var player = MediaPlayer()
 
-    fun configure(
+    override fun configure(
         onChangeState: ((AudioPlayerState) -> Unit),
         onChangeCurrentPosition: ((Int) -> Unit)
     ) {
@@ -30,7 +31,7 @@ class AudioPlayerImpl {
         this.onChangeCurrentPosition = onChangeCurrentPosition
     }
 
-    fun prepare(url: String) {
+    override fun prepare(url: String) {
         player.setDataSource(url)
         player.prepareAsync()
         player.setOnPreparedListener {
@@ -42,7 +43,7 @@ class AudioPlayerImpl {
         }
     }
 
-    fun playbackControl() {
+    override fun playbackControl() {
         when (state) {
             AudioPlayerState.PLAYING -> {
                 pause()
@@ -56,11 +57,11 @@ class AudioPlayerImpl {
         }
     }
 
-    fun onPause() {
+    override fun onPause() {
         pause()
     }
 
-    fun onDestroy() {
+    override fun onDestroy() {
         stop()
         player.release()
     }
