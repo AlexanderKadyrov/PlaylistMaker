@@ -1,95 +1,13 @@
 package com.practicum.playlistmaker.features.player.domain
 
-import android.media.MediaPlayer
-import android.os.Handler
-import android.os.Looper
+interface AudioPlayer {
+    fun configure(
+        onChangeState: ((AudioPlayerState) -> Unit),
+        onChangeCurrentPosition: ((Int) -> Unit)
+    )
 
-class AudioPlayer(
-    private val onChangeState: ((com.practicum.playlistmaker.features.player.domain.TrackPlayer.State) -> Unit),
-    private val onChangeCurrentPosition: ((Int) -> Unit)
-) {
-
-    enum class State {
-        DEFAULT,
-        PREPARED,
-        PLAYING,
-        PAUSED,
-        END
-    }
-
-    private val handler = Handler(Looper.getMainLooper())
-    private val timerTask = object : Runnable {
-        override fun run() {
-            onChangeCurrentPosition(player.currentPosition)
-            handler.postDelayed(this, TIMER_DELAY)
-        }
-    }
-
-    private var state = State.DEFAULT
-
-    private var player = MediaPlayer()
-
-    fun prepare(url: String) {
-        player.setDataSource(url)
-        player.prepareAsync()
-        player.setOnPreparedListener {
-            changeState(State.PREPARED)
-        }
-        player.setOnCompletionListener {
-            player.seekTo(0)
-            changeState(State.END)
-        }
-    }
-
-    fun playbackControl() {
-        when(state) {
-            State.PLAYING -> {
-                pause()
-            }
-            State.PREPARED, State.PAUSED, State.END -> {
-                start()
-            }
-            else -> {}
-        }
-    }
-
-    fun onPause() {
-        pause()
-    }
-
-    fun onDestroy() {
-        stop()
-        player.release()
-    }
-
-    private fun start() {
-        player.start()
-        changeState(State.PLAYING)
-    }
-
-    private fun pause() {
-        player.pause()
-        changeState(State.PAUSED)
-    }
-
-    private fun stop() {
-        player.stop()
-        changeState(State.END)
-    }
-
-    private fun changeState(state: com.practicum.playlistmaker.features.player.domain.TrackPlayer.State) {
-        when (state) {
-            State.PLAYING -> {
-                handler.post(timerTask)
-            } else -> {
-                handler.removeCallbacks(timerTask)
-            }
-        }
-        this.state = state
-        onChangeState(state)
-    }
-
-    companion object Companion {
-        private const val TIMER_DELAY = 500L
-    }
+    fun prepare(url: String)
+    fun playbackControl()
+    fun onPause()
+    fun onDestroy()
 }
