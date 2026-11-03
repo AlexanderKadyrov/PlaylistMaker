@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.features.player.domain.TrackPlayer
+import com.practicum.playlistmaker.features.player.domain.AudioPlayer
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.getModel
 import com.practicum.playlistmaker.core.domain.model.Track
@@ -19,22 +19,22 @@ import java.util.Locale
 
 class TrackPlayerActivity : AppCompatActivity() {
 
-    private var player = TrackPlayer(
+    private var player = AudioPlayer(
         onChangeState = { state ->
             when (state) {
-                TrackPlayer.State.PREPARED -> {
+                AudioPlayer.State.PREPARED -> {
                     setPlaybackEnabled()
                 }
 
-                TrackPlayer.State.PLAYING -> {
+                AudioPlayer.State.PLAYING -> {
                     setIsPlaying(true)
                 }
 
-                TrackPlayer.State.PAUSED -> {
+                AudioPlayer.State.PAUSED -> {
                     setIsPlaying(false)
                 }
 
-                TrackPlayer.State.END -> {
+                AudioPlayer.State.END -> {
                     setIsPlaying(false)
                     setTrackTime(getString(R.string.track_time_zero))
                 }

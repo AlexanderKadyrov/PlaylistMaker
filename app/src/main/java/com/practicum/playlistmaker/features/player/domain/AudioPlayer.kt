@@ -4,8 +4,8 @@ import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
 
-class TrackPlayer(
-    private val onChangeState: ((State) -> Unit),
+class AudioPlayer(
+    private val onChangeState: ((com.practicum.playlistmaker.features.player.domain.TrackPlayer.State) -> Unit),
     private val onChangeCurrentPosition: ((Int) -> Unit)
 ) {
 
@@ -77,7 +77,7 @@ class TrackPlayer(
         changeState(State.END)
     }
 
-    private fun changeState(state: State) {
+    private fun changeState(state: com.practicum.playlistmaker.features.player.domain.TrackPlayer.State) {
         when (state) {
             State.PLAYING -> {
                 handler.post(timerTask)
