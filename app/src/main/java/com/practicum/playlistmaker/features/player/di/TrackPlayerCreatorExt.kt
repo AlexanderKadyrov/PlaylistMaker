@@ -7,7 +7,7 @@ import com.practicum.playlistmaker.features.player.domain.interactor.TrackPlayer
 import com.practicum.playlistmaker.features.player.domain.interactor.impl.TrackPlayerInteractorImpl
 import com.practicum.playlistmaker.features.player.presentation.vm.TrackPlayerViewModel
 
-fun Creator.trackSearchViewModel(): TrackPlayerViewModel {
+fun Creator.trackPlayerViewModel(): TrackPlayerViewModel {
     return TrackPlayerViewModel(
         trackPlayerInteractor = trackPlayerInteractor()
     )
