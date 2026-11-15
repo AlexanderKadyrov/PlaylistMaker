@@ -1,11 +1,10 @@
 package com.practicum.playlistmaker.features.search.presentation.adapters
 
-import com.practicum.playlistmaker.core.extensions.itemView
-import com.practicum.playlistmaker.R
-
-import androidx.recyclerview.widget.RecyclerView
-
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.practicum.playlistmaker.core.extensions.inflateBinding
+import com.practicum.playlistmaker.databinding.TrackFooterViewBinding
+import com.practicum.playlistmaker.databinding.TrackHeaderViewBinding
 import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackSearchFooterViewHolder
 import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackSearchHeaderViewHolder
 import com.practicum.playlistmaker.features.search.presentation.adapters.holders.TrackSearchViewHolder
@@ -13,7 +12,7 @@ import com.practicum.playlistmaker.features.search.presentation.adapters.holders
 class TrackSearchSectionAdapter(
     private val viewState: ViewState,
     private val onClick: (() -> Unit)? = null
-): RecyclerView.Adapter<TrackSearchViewHolder>() {
+) : RecyclerView.Adapter<TrackSearchViewHolder>() {
 
     enum class ViewState {
         HEADER,
@@ -23,12 +22,13 @@ class TrackSearchSectionAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackSearchViewHolder {
         return when (viewState) {
             ViewState.HEADER -> {
-                val itemView = itemView(R.layout.track_header_view, parent)
-                TrackSearchHeaderViewHolder(itemView)
+                val binding = parent.inflateBinding(TrackHeaderViewBinding::inflate)
+                TrackSearchHeaderViewHolder(binding)
             }
+
             ViewState.FOOTER -> {
-                val itemView = itemView(R.layout.track_footer_view, parent)
-                TrackSearchFooterViewHolder(itemView, onClick)
+                val binding = parent.inflateBinding(TrackFooterViewBinding::inflate)
+                TrackSearchFooterViewHolder(binding, onClick)
             }
         }
     }
