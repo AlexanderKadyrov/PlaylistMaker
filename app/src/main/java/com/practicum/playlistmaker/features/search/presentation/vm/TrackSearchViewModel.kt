@@ -38,6 +38,7 @@ class TrackSearchViewModel(
             return
         }
         latestSearchText = text
+        _state.postValue(TrackSearchState.Loading)
         handler.removeCallbacksAndMessages(SEARCH_REQUEST_TOKEN)
         handler.postDelayed(
             { fetchImmediatelyTrackList(text) },
