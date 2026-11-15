@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.practicum.playlistmaker.core.domain.model.Track
-import com.practicum.playlistmaker.core.extensions.postUpdate
+import com.practicum.playlistmaker.core.extensions.update
 import com.practicum.playlistmaker.features.player.domain.interactor.TrackPlayerInteractor
 
 class TrackPlayerViewModel(
@@ -20,31 +20,31 @@ class TrackPlayerViewModel(
             url = track.previewUrl,
             consumer = object : TrackPlayerInteractor.TrackPlayerConsumer {
                 override fun consumeChangeCurrentPosition(value: String) {
-                    _state.postUpdate {
+                    _state.update {
                         it.copy(currentPosition = value)
                     }
                 }
 
                 override fun consumePrepared() {
-                    _state.postUpdate {
+                    _state.update {
                         it.copy(isPlayButtonEnabled = true)
                     }
                 }
 
                 override fun consumePlaying() {
-                    _state.postUpdate {
+                    _state.update {
                         it.copy(isPlaying = true)
                     }
                 }
 
                 override fun consumePaused() {
-                    _state.postUpdate {
+                    _state.update {
                         it.copy(isPlaying = false)
                     }
                 }
 
                 override fun consumeEnd() {
-                    _state.postUpdate {
+                    _state.update {
                         it.copy(
                             isPlaying = false,
                             currentPosition = null
