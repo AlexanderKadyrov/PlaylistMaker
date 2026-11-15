@@ -7,7 +7,7 @@ import com.practicum.playlistmaker.features.settings.domain.interactor.impl.Sett
 import com.practicum.playlistmaker.features.settings.domain.repository.SettingsRepository
 import com.practicum.playlistmaker.features.settings.presentation.vm.SettingsViewModel
 
-fun Creator.settings(): SettingsViewModel {
+fun Creator.settingsViewModel(): SettingsViewModel {
     return SettingsViewModel(
         settingsInteractor = settingsInteractor()
     )
