@@ -1,5 +1,6 @@
 package com.practicum.playlistmaker.features.player.di
 
+import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.di.Creator
 import com.practicum.playlistmaker.features.player.data.datastore.AudioPlayerImpl
 import com.practicum.playlistmaker.features.player.domain.AudioPlayer
@@ -7,8 +8,11 @@ import com.practicum.playlistmaker.features.player.domain.interactor.TrackPlayer
 import com.practicum.playlistmaker.features.player.domain.interactor.impl.TrackPlayerInteractorImpl
 import com.practicum.playlistmaker.features.player.presentation.vm.TrackPlayerViewModel
 
-fun Creator.trackPlayerViewModel(): TrackPlayerViewModel {
+fun Creator.trackPlayerViewModel(
+    track: Track
+): TrackPlayerViewModel {
     return TrackPlayerViewModel(
+        track = track,
         trackPlayerInteractor = trackPlayerInteractor()
     )
 }
