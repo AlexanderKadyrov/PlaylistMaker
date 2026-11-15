@@ -14,7 +14,7 @@ import com.practicum.playlistmaker.core.extensions.startActivity
 import com.practicum.playlistmaker.core.extensions.viewModelFactory
 import com.practicum.playlistmaker.databinding.ActivitySearchBinding
 import com.practicum.playlistmaker.di.creator
-import com.practicum.playlistmaker.features.player.presentation.TrackPlayerActivity
+import com.practicum.playlistmaker.features.player.presentation.activity.TrackPlayerActivity
 import com.practicum.playlistmaker.features.search.di.trackSearchViewModel
 import com.practicum.playlistmaker.features.search.presentation.adapters.TrackSearchConcatAdapter
 import com.practicum.playlistmaker.features.search.presentation.vm.TrackSearchState
