@@ -8,8 +8,15 @@ import com.practicum.playlistmaker.features.search.data.repository.TrackSearchRe
 import com.practicum.playlistmaker.features.search.domain.interactor.TrackSearchInteractor
 import com.practicum.playlistmaker.features.search.domain.interactor.impl.TrackSearchInteractorImpl
 import com.practicum.playlistmaker.features.search.domain.repository.TrackSearchRepository
+import com.practicum.playlistmaker.features.search.presentation.vm.TrackSearchViewModel
 
-fun Creator.trackSearchInteractor(): TrackSearchInteractor {
+fun Creator.trackSearchViewModel(): TrackSearchViewModel {
+    return TrackSearchViewModel(
+        trackSearchInteractor = trackSearchInteractor()
+    )
+}
+
+private fun Creator.trackSearchInteractor(): TrackSearchInteractor {
     return TrackSearchInteractorImpl(
         repository = trackSearchRepository()
     )
