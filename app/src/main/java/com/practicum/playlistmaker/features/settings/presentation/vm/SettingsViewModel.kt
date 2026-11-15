@@ -6,5 +6,12 @@ import com.practicum.playlistmaker.features.settings.domain.interactor.SettingsI
 class SettingsViewModel(
     private val settingsInteractor: SettingsInteractor
 ) : ViewModel() {
-    
+
+    fun isDarkTheme(): Boolean {
+        return settingsInteractor.isDarkTheme()
+    }
+
+    fun switchTheme(isDarkTheme: Boolean) {
+        settingsInteractor.switchTheme(isDarkTheme)
+    }
 }
