@@ -21,7 +21,7 @@
             android:name=".features.media.presentation.MediaActivity"
             android:exported="false" />
         <activity
-            android:name=".features.settings.presentation.SettingsActivity"
+            android:name=".features.settings.presentation.activity.SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".features.player.presentation.activity.TrackPlayerActivity"

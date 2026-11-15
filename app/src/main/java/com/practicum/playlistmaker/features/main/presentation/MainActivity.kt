@@ -6,7 +6,7 @@ import com.practicum.playlistmaker.core.extensions.startActivity
 import com.practicum.playlistmaker.databinding.ActivityMainBinding
 import com.practicum.playlistmaker.features.media.presentation.MediaActivity
 import com.practicum.playlistmaker.features.search.presentation.activity.TrackSearchActivity
-import com.practicum.playlistmaker.features.settings.presentation.SettingsActivity
+import com.practicum.playlistmaker.features.settings.presentation.activity.SettingsActivity
 
 class MainActivity : AppCompatActivity() {
 
