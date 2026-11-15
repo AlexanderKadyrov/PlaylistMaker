@@ -19,15 +19,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureUI() = with(binding) {
-        search.setOnClickListener {
+        searchFrameLayout.setOnClickListener {
             startActivity<TrackSearchActivity>()
         }
 
-        media.setOnClickListener {
+        searchFrameLayout.setOnClickListener {
             startActivity<MediaActivity>()
         }
 
-        settings.setOnClickListener {
+        searchFrameLayout.setOnClickListener {
             startActivity<SettingsActivity>()
         }
     }
