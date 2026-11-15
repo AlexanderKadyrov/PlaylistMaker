@@ -3,21 +3,16 @@ package com.practicum.playlistmaker.features.search.presentation.activity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
-import androidx.recyclerview.widget.RecyclerView
-import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.core.domain.model.IntentExtra
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.hideKeyboard
 import com.practicum.playlistmaker.core.extensions.startActivity
 import com.practicum.playlistmaker.core.extensions.viewModelFactory
+import com.practicum.playlistmaker.databinding.ActivitySearchBinding
 import com.practicum.playlistmaker.di.creator
 import com.practicum.playlistmaker.features.player.presentation.TrackPlayerActivity
 import com.practicum.playlistmaker.features.search.di.trackSearchViewModel
@@ -27,6 +22,8 @@ import com.practicum.playlistmaker.features.search.presentation.vm.TrackSearchSt
 class TrackSearchActivity : AppCompatActivity() {
 
     private val viewModel by viewModelFactory { creator.trackSearchViewModel() }
+
+    private val binding by lazy { ActivitySearchBinding.inflate(layoutInflater) }
 
     private val handler = Handler(Looper.getMainLooper())
 
@@ -42,54 +39,36 @@ class TrackSearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+        setContentView(binding.root)
 
         configureToolbar()
         configureUI()
-
         observeViewModel()
     }
 
-    private fun configureUI() {
-        val clearImageView = findViewById<ImageView>(R.id.clearImageView)
-        val searchEditText = searchEditText()
+    private fun configureUI() = with(binding) {
+        trackSearchConcatAdapter.connect(recyclerView)
+
         searchEditText.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus && searchEditText.text.isEmpty()) {
                 viewModel.fetchHistoryTrackList()
             }
         }
+
         searchEditText.doOnTextChanged { charSequence, _, _, _ ->
-            val text = charSequence.toString()
-            val visibility = visibility(text)
-            clearImageView.visibility = visibility
-            if (visibility == View.GONE) {
-                viewModel.clearTrackList()
-            } else {
+            val text = charSequence?.toString().orEmpty()
+            clearImageView.isVisible = text.isNotEmpty()
+            if (text.isNotEmpty()) {
                 viewModel.fetchDelayedTrackList(text)
+            } else {
+                viewModel.clearTrackList()
             }
         }
+
         clearImageView.setOnClickListener {
             viewModel.clearTrackList()
             searchEditText.text.clear()
             searchEditText.hideKeyboard()
-        }
-        configureRecyclerView()
-    }
-
-    private fun configureRecyclerView() {
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        trackSearchConcatAdapter.connect(recyclerView)
-    }
-
-    private fun searchEditText(): EditText {
-        return findViewById<EditText>(R.id.searchEditText)
-    }
-
-    private fun visibility(text: String): Int {
-        return if (text.isEmpty()) {
-            View.GONE
-        } else {
-            View.VISIBLE
         }
     }
 
@@ -99,10 +78,7 @@ class TrackSearchActivity : AppCompatActivity() {
         }
     }
 
-    private fun render(state: TrackSearchState) {
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-
+    private fun render(state: TrackSearchState) = with(binding) {
         recyclerView.isVisible = state !is TrackSearchState.Loading
         progressBar.isVisible = state is TrackSearchState.Loading
 
@@ -127,7 +103,7 @@ class TrackSearchActivity : AppCompatActivity() {
             }
 
             is TrackSearchState.Error -> {
-                val text = searchEditText().text.toString()
+                val text = searchEditText.text.toString()
                 trackSearchConcatAdapter.showTrackListErrorPlaceholder {
                     viewModel.fetchImmediatelyTrackList(text)
                 }
