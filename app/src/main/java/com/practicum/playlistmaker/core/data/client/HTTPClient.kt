@@ -3,21 +3,10 @@ package com.practicum.playlistmaker.core.data.client
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class HTTPClient<S>(
-    private val serviceClass: Class<S>,
-    private val baseUrl: String
+    private val service: S
 ) {
-    private val retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(baseUrl)
-        .build()
-
-    private val service: S by lazy {
-        retrofit.create(serviceClass)
-    }
 
     fun <R> fetch(
         serviceCallback: (S) -> Call<R>,
@@ -48,8 +37,4 @@ class HTTPClient<S>(
             }
         })
     }
-}
-
-inline fun <reified S> HTTPClient(baseUrl: String): HTTPClient<S> {
-    return HTTPClient(S::class.java, baseUrl)
 }

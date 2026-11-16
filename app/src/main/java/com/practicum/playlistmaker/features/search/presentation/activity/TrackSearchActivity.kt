@@ -6,22 +6,20 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
-import com.practicum.playlistmaker.core.domain.model.IntentExtra
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.hideKeyboard
 import com.practicum.playlistmaker.core.extensions.startActivity
-import com.practicum.playlistmaker.core.extensions.viewModelFactory
 import com.practicum.playlistmaker.databinding.ActivitySearchBinding
-import com.practicum.playlistmaker.di.creator
 import com.practicum.playlistmaker.features.player.presentation.activity.TrackPlayerActivity
-import com.practicum.playlistmaker.features.search.di.trackSearchViewModel
 import com.practicum.playlistmaker.features.search.presentation.adapters.TrackSearchConcatAdapter
 import com.practicum.playlistmaker.features.search.presentation.vm.TrackSearchState
+import com.practicum.playlistmaker.features.search.presentation.vm.TrackSearchViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TrackSearchActivity : AppCompatActivity() {
 
-    private val viewModel by viewModelFactory { creator.trackSearchViewModel() }
+    private val viewModel by viewModel<TrackSearchViewModel>()
 
     private val binding by lazy { ActivitySearchBinding.inflate(layoutInflater) }
 
@@ -113,11 +111,10 @@ class TrackSearchActivity : AppCompatActivity() {
 
     private fun startTrackActivity(track: Track) {
         viewModel.store(track)
-        startActivity<TrackPlayerActivity> {
-            val intentExtra = IntentExtra()
-            intentExtra.putModel(Track.Companion.TRACK_INTENT_EXTRA, track)
-            return@startActivity intentExtra
-        }
+        startActivity<TrackPlayerActivity>(
+            key = Track.TRACK_INTENT_EXTRA,
+            data = track
+        )
     }
 
     private fun clickDebounce(): Boolean {

@@ -1,9 +1,11 @@
 package com.practicum.playlistmaker.core.domain.model
 
-import com.practicum.playlistmaker.core.helpers.codable.Codable
+import android.os.Parcelable
 import com.practicum.playlistmaker.core.utils.formatToMinutesAndSeconds
 import com.practicum.playlistmaker.core.utils.formatToYear
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Track(
     val trackId: Long,
     val trackName: String,
@@ -15,7 +17,7 @@ data class Track(
     val country: String,
     val collectionName: String?,
     val releaseDate: String?
-) : Codable {
+) : Parcelable {
 
     fun convertTrackTimeString(): String {
         return formatToMinutesAndSeconds(trackTimeMillis)

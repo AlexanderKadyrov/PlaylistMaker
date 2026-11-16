@@ -1,14 +1,12 @@
 package com.practicum.playlistmaker.core.extensions
 
-import com.practicum.playlistmaker.core.domain.model.IntentExtra
-import com.practicum.playlistmaker.R
-
-import com.google.android.material.appbar.MaterialToolbar
-
-import androidx.appcompat.app.AppCompatActivity
-
 import android.content.Intent
 import android.net.Uri
+import android.os.Parcelable
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.IntentCompat.getParcelableExtra
+import com.google.android.material.appbar.MaterialToolbar
+import com.practicum.playlistmaker.R
 
 fun AppCompatActivity.configureToolbar() {
     val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
@@ -17,12 +15,25 @@ fun AppCompatActivity.configureToolbar() {
     }
 }
 
-inline fun <reified T: Any>AppCompatActivity.startActivity(noinline putExtraCallback: (() -> IntentExtra)? = null) {
+inline fun <reified T : Parcelable> AppCompatActivity.getParcelableModel(
+    key: String
+): T? {
+    return getParcelableExtra(intent, key, T::class.java)
+}
+
+inline fun <reified T : Any> AppCompatActivity.startActivity(
+    key: String,
+    data: Parcelable
+) {
     val intent = Intent(this, T::class.java)
-    putExtraCallback?.let { callback ->
-        val model = callback()
-        intent.putModel(model)
-    }
+        .apply {
+            putExtra(key, data)
+        }
+    startActivity(intent)
+}
+
+inline fun <reified T : Any> AppCompatActivity.startActivity() {
+    val intent = Intent(this, T::class.java)
     startActivity(intent)
 }
 

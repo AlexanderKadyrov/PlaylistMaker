@@ -1,28 +1,30 @@
 package com.practicum.playlistmaker.features.player.di
 
 import com.practicum.playlistmaker.core.domain.model.Track
-import com.practicum.playlistmaker.di.Creator
 import com.practicum.playlistmaker.features.player.data.datastore.AudioPlayerImpl
 import com.practicum.playlistmaker.features.player.domain.AudioPlayer
 import com.practicum.playlistmaker.features.player.domain.interactor.TrackPlayerInteractor
 import com.practicum.playlistmaker.features.player.domain.interactor.impl.TrackPlayerInteractorImpl
 import com.practicum.playlistmaker.features.player.presentation.vm.TrackPlayerViewModel
+import org.koin.core.module.dsl.viewModel
+import org.koin.dsl.module
 
-fun Creator.trackPlayerViewModel(
-    track: Track
-): TrackPlayerViewModel {
-    return TrackPlayerViewModel(
-        track = track,
-        trackPlayerInteractor = trackPlayerInteractor()
-    )
-}
+val playerFeatureModule = module {
 
-private fun Creator.trackPlayerInteractor(): TrackPlayerInteractor {
-    return TrackPlayerInteractorImpl(
-        audioPlayer = audioPlayer()
-    )
-}
+    factory<AudioPlayer> {
+        AudioPlayerImpl()
+    }
 
-private fun Creator.audioPlayer(): AudioPlayer {
-    return AudioPlayerImpl()
+    factory<TrackPlayerInteractor> {
+        TrackPlayerInteractorImpl(
+            audioPlayer = get()
+        )
+    }
+
+    viewModel { (track: Track) ->
+        TrackPlayerViewModel(
+            track = track,
+            trackPlayerInteractor = get()
+        )
+    }
 }

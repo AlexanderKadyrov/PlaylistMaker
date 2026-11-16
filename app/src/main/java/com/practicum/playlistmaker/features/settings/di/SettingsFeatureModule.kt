@@ -1,26 +1,30 @@
 package com.practicum.playlistmaker.features.settings.di
 
-import com.practicum.playlistmaker.di.Creator
 import com.practicum.playlistmaker.features.settings.data.repository.SettingsRepositoryImpl
 import com.practicum.playlistmaker.features.settings.domain.interactor.SettingsInteractor
 import com.practicum.playlistmaker.features.settings.domain.interactor.impl.SettingsInteractorImpl
 import com.practicum.playlistmaker.features.settings.domain.repository.SettingsRepository
 import com.practicum.playlistmaker.features.settings.presentation.vm.SettingsViewModel
+import org.koin.core.module.dsl.viewModel
+import org.koin.dsl.module
 
-fun Creator.settingsViewModel(): SettingsViewModel {
-    return SettingsViewModel(
-        settingsInteractor = settingsInteractor()
-    )
-}
+val settingsFeatureModule = module {
 
-fun Creator.settingsInteractor(): SettingsInteractor {
-    return SettingsInteractorImpl(
-        settingsRepository = settingsRepository()
-    )
-}
+    single<SettingsRepository> {
+        SettingsRepositoryImpl(
+            localStorage = get()
+        )
+    }
 
-private fun Creator.settingsRepository(): SettingsRepository {
-    return SettingsRepositoryImpl(
-        localStorage = localStorage
-    )
+    factory<SettingsInteractor> {
+        SettingsInteractorImpl(
+            settingsRepository = get()
+        )
+    }
+
+    viewModel {
+        SettingsViewModel(
+            settingsInteractor = get()
+        )
+    }
 }
