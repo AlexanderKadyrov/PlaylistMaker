@@ -3,7 +3,7 @@ package com.practicum.playlistmaker.features.search.data.mapper
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.features.search.data.network.TrackDto
 
-class TrackSearchMapper {
+object TrackSearchMapper {
 
     fun map(from: List<TrackDto>): List<Track> = from.map { map(it) }
 
