@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-fun formatToMinutesAndSeconds(timeMillis: Long): String {
+fun formatToMinutesAndSeconds(timeMillis: Int): String {
     return SimpleDateFormat("mm:ss", Locale.getDefault()).apply {
         timeZone = TimeZone.getTimeZone("UTC")
     }.format(timeMillis)
