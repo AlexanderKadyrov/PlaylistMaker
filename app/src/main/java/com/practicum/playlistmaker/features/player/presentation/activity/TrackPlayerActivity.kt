@@ -46,14 +46,15 @@ class TrackPlayerActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.state.observe(this) { state ->
+        viewModel.trackModelState.observe(this) { track ->
+            render(track)
+        }
+        viewModel.trackPlayerState.observe(this) { state ->
             render(state)
         }
     }
 
-    private fun render(state: TrackPlayerState) = with(binding) {
-        val track = state.track
-
+    private fun render(track: Track) = with(binding) {
         trackNameTextView.text = track.trackName
         trackArtistNameTextView.text = track.artistName
 
@@ -77,7 +78,9 @@ class TrackPlayerActivity : AppCompatActivity() {
             .placeholder(R.drawable.ic_track_placeholder)
             .transform(RoundedCorners(10))
             .into(trackCoverImageView)
+    }
 
+    private fun render(state: TrackPlayerState) = with(binding) {
         trackTimeValueTextView.text = state.currentPosition ?: getString(R.string.track_time_zero)
         playPauseButton.isEnabled = state.isPlayButtonEnabled
         playPauseButton.isChecked = state.isPlaying
