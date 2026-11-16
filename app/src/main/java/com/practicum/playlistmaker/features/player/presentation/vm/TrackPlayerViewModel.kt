@@ -12,11 +12,11 @@ class TrackPlayerViewModel(
     private val trackPlayerInteractor: TrackPlayerInteractor
 ) : ViewModel() {
 
-    private val _trackPlayerState = MutableLiveData(TrackPlayerState())
-    val state: LiveData<TrackPlayerState> = _trackPlayerState
-
     private val _trackModelState = MutableLiveData(track)
     val trackModelState: LiveData<Track> = _trackModelState
+
+    private val _trackPlayerState = MutableLiveData(TrackPlayerState())
+    val trackPlayerState: LiveData<TrackPlayerState> = _trackPlayerState
 
     init {
         trackPlayerInteractor.configure(
