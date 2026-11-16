@@ -19,7 +19,7 @@ fun formatToYear(isoDate: String?): String? {
         val outputFormat = SimpleDateFormat("yyyy", Locale.getDefault())
         val date = inputFormat.parse(isoDate)
         date?.let { outputFormat.format(it) }
-    } catch (e: Exception) {
+    } catch (_: Exception) {
         null
     }
 }
