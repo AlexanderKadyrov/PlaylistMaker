@@ -1,8 +1,9 @@
 package com.practicum.playlistmaker.core.domain.model
 
-import android.icu.text.SimpleDateFormat
 import com.practicum.playlistmaker.core.helpers.codable.Codable
+import java.text.SimpleDateFormat
 import java.util.Locale
+import java.util.TimeZone
 
 data class Track(
     val trackId: Long,
@@ -15,20 +16,22 @@ data class Track(
     val country: String,
     val collectionName: String?,
     val releaseDate: String?
-): Codable {
+) : Codable {
 
     fun convertTrackTimeString(): String {
-        return SimpleDateFormat("mm:ss", Locale.getDefault()).format(trackTimeMillis)
+        val formatter = SimpleDateFormat("mm:ss", Locale.getDefault()).apply {
+            timeZone = TimeZone.getTimeZone("UTC")
+        }
+        return formatter.format(trackTimeMillis)
     }
 
     fun convertTrackYearString(): String? {
-        releaseDate?.let { value ->
+        return releaseDate?.let { value ->
             val dateFormatInput = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
             val dateFormatOutput = SimpleDateFormat("yyyy", Locale.getDefault())
             val date = dateFormatInput.parse(value)
-            return dateFormatOutput.format(date)
+            date?.let { dateFormatOutput.format(it) }
         }
-        return null
     }
 
     fun artworkUrl(): String {
