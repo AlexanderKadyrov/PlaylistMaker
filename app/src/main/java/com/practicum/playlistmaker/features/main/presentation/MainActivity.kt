@@ -23,11 +23,11 @@ class MainActivity : AppCompatActivity() {
             startActivity<TrackSearchActivity>()
         }
 
-        searchFrameLayout.setOnClickListener {
+        mediaFrameLayout.setOnClickListener {
             startActivity<MediaActivity>()
         }
 
-        searchFrameLayout.setOnClickListener {
+        settingsFrameLayout.setOnClickListener {
             startActivity<SettingsActivity>()
         }
     }
