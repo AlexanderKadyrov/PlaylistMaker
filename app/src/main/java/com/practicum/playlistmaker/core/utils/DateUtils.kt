@@ -9,3 +9,17 @@ fun formatToMinutesAndSeconds(timeMillis: Long): String {
         timeZone = TimeZone.getTimeZone("UTC")
     }.format(timeMillis)
 }
+
+fun formatToYear(isoDate: String?): String? {
+    if (isoDate.isNullOrBlank()) {
+        return null
+    }
+    return try {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("yyyy", Locale.getDefault())
+        val date = inputFormat.parse(isoDate)
+        date?.let { outputFormat.format(it) }
+    } catch (e: Exception) {
+        null
+    }
+}
