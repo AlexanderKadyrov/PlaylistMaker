@@ -9,19 +9,19 @@ import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.getModel
-import com.practicum.playlistmaker.core.extensions.viewModelFactory
 import com.practicum.playlistmaker.databinding.ActivityTrackBinding
-import com.practicum.playlistmaker.di.creator
-import com.practicum.playlistmaker.features.player.di.trackPlayerViewModel
 import com.practicum.playlistmaker.features.player.presentation.vm.TrackPlayerState
+import com.practicum.playlistmaker.features.player.presentation.vm.TrackPlayerViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class TrackPlayerActivity : AppCompatActivity() {
 
-    private val viewModel by viewModelFactory {
+    private val viewModel: TrackPlayerViewModel by viewModel {
         val intentExtra = intent.getModel()
         val track = intentExtra?.getModel<Track>(Track.TRACK_INTENT_EXTRA)
             ?: error("Track must be passed to TrackPlayerActivity")
-        creator.trackPlayerViewModel(track)
+        parametersOf(track)
     }
 
     private val binding by lazy { ActivityTrackBinding.inflate(layoutInflater) }
