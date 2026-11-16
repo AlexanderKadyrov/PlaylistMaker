@@ -13,7 +13,7 @@ fun Creator.settingsViewModel(): SettingsViewModel {
     )
 }
 
-private fun Creator.settingsInteractor(): SettingsInteractor {
+fun Creator.settingsInteractor(): SettingsInteractor {
     return SettingsInteractorImpl(
         settingsRepository = settingsRepository()
     )
