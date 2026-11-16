@@ -23,10 +23,10 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(binding.root)
         configureToolbar()
         configureUI()
+        observeViewModel()
     }
 
     private fun configureUI() = with(binding) {
-        settingsSwitch.isChecked = viewModel.isDarkTheme()
         settingsSwitch.setOnCheckedChangeListener { _, isChecked ->
             viewModel.switchTheme(isChecked)
         }
@@ -53,5 +53,15 @@ class SettingsActivity : AppCompatActivity() {
             )
             startActivity(intent)
         }
+    }
+
+    private fun observeViewModel() {
+        viewModel.state.observe(this) { isDarkTheme ->
+            render(isDarkTheme)
+        }
+    }
+
+    private fun render(isDarkTheme: Boolean) = with(binding) {
+        settingsSwitch.isChecked = isDarkTheme
     }
 }
