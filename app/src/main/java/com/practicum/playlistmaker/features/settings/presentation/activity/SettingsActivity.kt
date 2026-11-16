@@ -2,20 +2,19 @@ package com.practicum.playlistmaker.features.settings.presentation.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.practicum.playlistmaker.App
 import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.intentActionSend
 import com.practicum.playlistmaker.core.extensions.intentActionSendTo
 import com.practicum.playlistmaker.core.extensions.intentActionView
+import com.practicum.playlistmaker.core.extensions.viewModelFactory
 import com.practicum.playlistmaker.databinding.ActivitySettingsBinding
-import com.practicum.playlistmaker.features.settings.di.settingsInteractor
+import com.practicum.playlistmaker.di.creator
+import com.practicum.playlistmaker.features.settings.di.settingsViewModel
 
 class SettingsActivity : AppCompatActivity() {
 
-    private val settingsInteractor by lazy {
-        (applicationContext as App).creator.settingsInteractor()
-    }
+    private val viewModel by viewModelFactory { creator.settingsViewModel() }
 
     private val binding by lazy { ActivitySettingsBinding.inflate(layoutInflater) }
 
@@ -27,9 +26,9 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun configureUI() = with(binding) {
-        settingsSwitch.isChecked = settingsInteractor.isDarkTheme()
+        settingsSwitch.isChecked = viewModel.isDarkTheme()
         settingsSwitch.setOnCheckedChangeListener { _, isChecked ->
-            settingsInteractor.switchTheme(isChecked)
+            viewModel.switchTheme(isChecked)
         }
 
         shareTheApp.setOnClickListener {
