@@ -1,10 +1,9 @@
 package com.practicum.playlistmaker.features.player.domain.interactor.impl
 
-import android.icu.text.SimpleDateFormat
+import com.practicum.playlistmaker.core.utils.formatToMinutesAndSeconds
 import com.practicum.playlistmaker.features.player.domain.AudioPlayer
 import com.practicum.playlistmaker.features.player.domain.AudioPlayerState
 import com.practicum.playlistmaker.features.player.domain.interactor.TrackPlayerInteractor
-import java.util.Locale
 
 class TrackPlayerInteractorImpl(
     private val audioPlayer: AudioPlayer
@@ -38,9 +37,7 @@ class TrackPlayerInteractorImpl(
                 }
             },
             onChangeCurrentPosition = { currentPosition ->
-                val vale = SimpleDateFormat("mm:ss", Locale.getDefault())
-                    .format(currentPosition)
-                consumer.consumeChangeCurrentPosition(vale)
+                consumer.consumeChangeCurrentPosition(formatToMinutesAndSeconds(currentPosition))
             }
         )
     }

@@ -62,10 +62,6 @@ class TrackSearchConcatAdapter(
         baseConcatAdapter.connect(recyclerView)
     }
 
-    fun clear() {
-        baseConcatAdapter.clear()
-    }
-
     private fun trackAdapter(
         trackList: List<Track>
     ): TrackSearchAdapter {

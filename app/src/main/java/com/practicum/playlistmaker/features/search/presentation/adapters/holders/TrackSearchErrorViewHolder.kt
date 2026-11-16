@@ -1,18 +1,14 @@
 package com.practicum.playlistmaker.features.search.presentation.adapters.holders
 
-import com.practicum.playlistmaker.R
-
-import android.widget.TextView
-import android.view.View
+import com.practicum.playlistmaker.databinding.TrackErrorViewBinding
 
 class TrackSearchErrorViewHolder(
-    itemView: View,
+    binding: TrackErrorViewBinding,
     private val onClick: (() -> Unit)?
-): TrackSearchViewHolder(itemView) {
+) : TrackSearchViewHolder(binding.root) {
 
     init {
-        val refreshButton: TextView = itemView.findViewById(R.id.refreshButton)
-        refreshButton.setOnClickListener {
+        binding.refreshButton.setOnClickListener {
             onClick?.invoke()
         }
     }

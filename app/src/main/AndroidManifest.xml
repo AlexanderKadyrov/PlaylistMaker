@@ -15,16 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlaylistMaker">
         <activity
-            android:name=".features.search.presentation.TrackSearchActivity"
+            android:name=".features.search.presentation.activity.TrackSearchActivity"
             android:exported="false" />
         <activity
             android:name=".features.media.presentation.MediaActivity"
             android:exported="false" />
         <activity
-            android:name=".features.settings.presentation.SettingsActivity"
+            android:name=".features.settings.presentation.activity.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".features.player.presentation.TrackPlayerActivity"
+            android:name=".features.player.presentation.activity.TrackPlayerActivity"
             android:exported="false" />
         <activity
             android:name=".features.main.presentation.MainActivity"

@@ -1,7 +1,7 @@
 package com.practicum.playlistmaker.features.search.presentation.adapters.holders
 
-import android.view.View
+import com.practicum.playlistmaker.databinding.TrackHeaderViewBinding
 
 class TrackSearchHeaderViewHolder(
-    itemView: View
-): TrackSearchViewHolder(itemView)
+    binding: TrackHeaderViewBinding
+) : TrackSearchViewHolder(binding.root)

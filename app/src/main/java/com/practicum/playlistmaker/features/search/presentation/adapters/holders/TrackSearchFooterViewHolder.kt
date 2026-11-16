@@ -1,18 +1,14 @@
 package com.practicum.playlistmaker.features.search.presentation.adapters.holders
 
-import com.practicum.playlistmaker.R
-
-import android.widget.TextView
-import android.view.View
+import com.practicum.playlistmaker.databinding.TrackFooterViewBinding
 
 class TrackSearchFooterViewHolder(
-    itemView: View,
+    binding: TrackFooterViewBinding,
     private val onClick: (() -> Unit)?
-): TrackSearchViewHolder(itemView) {
+) : TrackSearchViewHolder(binding.root) {
 
     init {
-        val clearHistoryButton: TextView = itemView.findViewById(R.id.clearHistoryButton)
-        clearHistoryButton.setOnClickListener {
+        binding.clearHistoryButton.setOnClickListener {
             onClick?.invoke()
         }
     }

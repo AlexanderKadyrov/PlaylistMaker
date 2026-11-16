@@ -5,6 +5,13 @@ import com.practicum.playlistmaker.features.settings.data.repository.SettingsRep
 import com.practicum.playlistmaker.features.settings.domain.interactor.SettingsInteractor
 import com.practicum.playlistmaker.features.settings.domain.interactor.impl.SettingsInteractorImpl
 import com.practicum.playlistmaker.features.settings.domain.repository.SettingsRepository
+import com.practicum.playlistmaker.features.settings.presentation.vm.SettingsViewModel
+
+fun Creator.settingsViewModel(): SettingsViewModel {
+    return SettingsViewModel(
+        settingsInteractor = settingsInteractor()
+    )
+}
 
 fun Creator.settingsInteractor(): SettingsInteractor {
     return SettingsInteractorImpl(

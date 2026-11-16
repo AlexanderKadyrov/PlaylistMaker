@@ -28,7 +28,7 @@
         android:paddingEnd="8dp">
 
         <FrameLayout
-            android:id="@+id/search"
+            android:id="@+id/searchFrameLayout"
             style="@style/MainLinearLayoutStyle">
             <Button
                 android:drawableLeft="@drawable/ic_search"
@@ -37,7 +37,7 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/media"
+            android:id="@+id/mediaFrameLayout"
             style="@style/MainLinearLayoutStyle">
             <Button
                 android:drawableLeft="@drawable/ic_media"
@@ -46,7 +46,7 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/settings"
+            android:id="@+id/settingsFrameLayout"
             style="@style/MainLinearLayoutStyle">
             <Button
                 android:drawableLeft="@drawable/ic_settings"

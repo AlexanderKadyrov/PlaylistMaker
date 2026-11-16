@@ -1,12 +1,23 @@
 package com.practicum.playlistmaker.features.player.di
 
+import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.di.Creator
 import com.practicum.playlistmaker.features.player.data.datastore.AudioPlayerImpl
 import com.practicum.playlistmaker.features.player.domain.AudioPlayer
 import com.practicum.playlistmaker.features.player.domain.interactor.TrackPlayerInteractor
 import com.practicum.playlistmaker.features.player.domain.interactor.impl.TrackPlayerInteractorImpl
+import com.practicum.playlistmaker.features.player.presentation.vm.TrackPlayerViewModel
 
-fun Creator.trackPlayerInteractor(): TrackPlayerInteractor {
+fun Creator.trackPlayerViewModel(
+    track: Track
+): TrackPlayerViewModel {
+    return TrackPlayerViewModel(
+        track = track,
+        trackPlayerInteractor = trackPlayerInteractor()
+    )
+}
+
+private fun Creator.trackPlayerInteractor(): TrackPlayerInteractor {
     return TrackPlayerInteractorImpl(
         audioPlayer = audioPlayer()
     )
