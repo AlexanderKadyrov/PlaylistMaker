@@ -1,7 +1,6 @@
 package com.practicum.playlistmaker.features.search.di
 
 import com.practicum.playlistmaker.core.data.client.HTTPClient
-import com.practicum.playlistmaker.features.search.data.mapper.TrackSearchMapper
 import com.practicum.playlistmaker.features.search.data.network.TrackSearchService
 import com.practicum.playlistmaker.features.search.data.repository.TrackSearchRepositoryImpl
 import com.practicum.playlistmaker.features.search.domain.interactor.TrackSearchInteractor
@@ -17,15 +16,10 @@ val searchFeatureModule = module {
         HTTPClient<TrackSearchService>("https://itunes.apple.com/")
     }
 
-    factory {
-        TrackSearchMapper()
-    }
-
     single<TrackSearchRepository> {
         TrackSearchRepositoryImpl(
             localStorage = get(),
-            client = get(),
-            mapper = get()
+            client = get()
         )
     }
 
