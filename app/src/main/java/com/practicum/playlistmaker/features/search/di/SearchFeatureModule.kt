@@ -9,17 +9,26 @@ import com.practicum.playlistmaker.features.search.domain.repository.TrackSearch
 import com.practicum.playlistmaker.features.search.presentation.vm.TrackSearchViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
+import retrofit2.Retrofit
 
 val searchFeatureModule = module {
 
-    single {
-        HTTPClient<TrackSearchService>("https://itunes.apple.com/")
+    single<TrackSearchService> {
+        get<Retrofit.Builder>()
+            .baseUrl("https://itunes.apple.com/")
+            .build()
+            .create(TrackSearchService::class.java)
+    }
+
+    single<HTTPClient<TrackSearchService>> {
+        HTTPClient(service = get<TrackSearchService>())
     }
 
     single<TrackSearchRepository> {
         TrackSearchRepositoryImpl(
             localStorage = get(),
-            client = get()
+            client = get(),
+            gson = get()
         )
     }
 

@@ -14,7 +14,8 @@ import com.practicum.playlistmaker.features.search.domain.repository.TrackSearch
 
 class TrackSearchRepositoryImpl(
     private val localStorage: LocalStorage,
-    private val client: HTTPClient<TrackSearchService>
+    private val client: HTTPClient<TrackSearchService>,
+    private val gson: Gson
 ) : TrackSearchRepository {
 
     override fun fetchTrackList(text: String, completion: (Result<List<Track>>) -> Unit) {
@@ -47,7 +48,7 @@ class TrackSearchRepositoryImpl(
         }
         return try {
             val type = object : TypeToken<List<TrackDto>>() {}.type
-            val listDto: List<TrackDto> = Gson().fromJson(json, type) ?: emptyList()
+            val listDto: List<TrackDto> = gson.fromJson(json, type) ?: emptyList()
             TrackSearchMapper.map(listDto)
         } catch (e: Exception) {
             emptyList()
@@ -60,7 +61,7 @@ class TrackSearchRepositoryImpl(
         trackList.add(0, track)
         val tenTrackList = trackList.take(10)
         val tenTrackListDto = TrackSearchMapper.mapToDto(tenTrackList)
-        val json = Gson().toJson(tenTrackListDto)
+        val json = gson.toJson(tenTrackListDto)
         localStorage.putString(SHARED_PREFERENCES_TRACK_KEY, json)
     }
 
