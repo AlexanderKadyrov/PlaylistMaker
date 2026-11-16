@@ -8,11 +8,11 @@ import com.practicum.playlistmaker.core.extensions.update
 import com.practicum.playlistmaker.features.player.domain.interactor.TrackPlayerInteractor
 
 class TrackPlayerViewModel(
-    val track: Track,
+    private val track: Track,
     private val trackPlayerInteractor: TrackPlayerInteractor
 ) : ViewModel() {
 
-    private val _state = MutableLiveData(TrackPlayerState())
+    private val _state = MutableLiveData(TrackPlayerState(track))
     val state: LiveData<TrackPlayerState> = _state
 
     init {
