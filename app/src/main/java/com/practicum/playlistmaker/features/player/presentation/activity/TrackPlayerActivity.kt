@@ -43,30 +43,6 @@ class TrackPlayerActivity : AppCompatActivity() {
         playPauseButton.setOnClickListener {
             viewModel.playbackControl()
         }
-
-        trackNameTextView.text = viewModel.track.trackName
-        trackArtistNameTextView.text = viewModel.track.artistName
-
-        trackDurationValueTextView.text = viewModel.track.convertTrackTimeString()
-
-        val collectionName = viewModel.track.collectionName.orEmpty()
-        trackAlbumValueTextView.text = collectionName
-        trackAlbumValueTextView.isVisible = collectionName.isNotEmpty()
-        trackAlbumNameTextView.isVisible = collectionName.isNotEmpty()
-
-        val trackYear = viewModel.track.convertTrackYearString().orEmpty()
-        trackYearValueTextView.text = trackYear
-        trackYearValueTextView.isVisible = trackYear.isNotEmpty()
-        trackYearNameTextView.isVisible = trackYear.isNotEmpty()
-
-        trackGenreValueTextView.text = viewModel.track.primaryGenreName
-        trackCountryValueTextView.text = viewModel.track.country
-
-        Glide.with(this@TrackPlayerActivity)
-            .load(viewModel.track.artworkUrl())
-            .placeholder(R.drawable.ic_track_placeholder)
-            .transform(RoundedCorners(10))
-            .into(trackCoverImageView)
     }
 
     private fun observeViewModel() {
@@ -76,6 +52,32 @@ class TrackPlayerActivity : AppCompatActivity() {
     }
 
     private fun render(state: TrackPlayerState) = with(binding) {
+        val track = state.track
+
+        trackNameTextView.text = track.trackName
+        trackArtistNameTextView.text = track.artistName
+
+        trackDurationValueTextView.text = track.convertTrackTimeString()
+
+        val collectionName = track.collectionName.orEmpty()
+        trackAlbumValueTextView.text = collectionName
+        trackAlbumValueTextView.isVisible = collectionName.isNotEmpty()
+        trackAlbumNameTextView.isVisible = collectionName.isNotEmpty()
+
+        val trackYear = track.convertTrackYearString().orEmpty()
+        trackYearValueTextView.text = trackYear
+        trackYearValueTextView.isVisible = trackYear.isNotEmpty()
+        trackYearNameTextView.isVisible = trackYear.isNotEmpty()
+
+        trackGenreValueTextView.text = track.primaryGenreName
+        trackCountryValueTextView.text = track.country
+
+        Glide.with(this@TrackPlayerActivity)
+            .load(track.artworkUrl())
+            .placeholder(R.drawable.ic_track_placeholder)
+            .transform(RoundedCorners(10))
+            .into(trackCoverImageView)
+
         trackTimeValueTextView.text = state.currentPosition ?: getString(R.string.track_time_zero)
         playPauseButton.isEnabled = state.isPlayButtonEnabled
         playPauseButton.isChecked = state.isPlaying
