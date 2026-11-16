@@ -8,7 +8,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.core.extensions.configureToolbar
-import com.practicum.playlistmaker.core.extensions.getModel
+import com.practicum.playlistmaker.core.extensions.getParcelableModel
 import com.practicum.playlistmaker.databinding.ActivityTrackBinding
 import com.practicum.playlistmaker.features.player.presentation.vm.TrackPlayerState
 import com.practicum.playlistmaker.features.player.presentation.vm.TrackPlayerViewModel
@@ -18,8 +18,7 @@ import org.koin.core.parameter.parametersOf
 class TrackPlayerActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<TrackPlayerViewModel> {
-        val intentExtra = intent.getModel()
-        val track = intentExtra?.getModel<Track>(Track.TRACK_INTENT_EXTRA)
+        val track = getParcelableModel<Track>(Track.TRACK_INTENT_EXTRA)
             ?: error("Track must be passed to TrackPlayerActivity")
         parametersOf(track)
     }

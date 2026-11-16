@@ -6,7 +6,6 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
-import com.practicum.playlistmaker.core.domain.model.IntentExtra
 import com.practicum.playlistmaker.core.domain.model.Track
 import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.hideKeyboard
@@ -112,11 +111,10 @@ class TrackSearchActivity : AppCompatActivity() {
 
     private fun startTrackActivity(track: Track) {
         viewModel.store(track)
-        startActivity<TrackPlayerActivity> {
-            val intentExtra = IntentExtra()
-            intentExtra.putModel(Track.Companion.TRACK_INTENT_EXTRA, track)
-            return@startActivity intentExtra
-        }
+        startActivity<TrackPlayerActivity>(
+            key = Track.TRACK_INTENT_EXTRA,
+            data = track
+        )
     }
 
     private fun clickDebounce(): Boolean {
