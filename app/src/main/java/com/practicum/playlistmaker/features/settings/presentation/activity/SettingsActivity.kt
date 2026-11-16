@@ -7,14 +7,13 @@ import com.practicum.playlistmaker.core.extensions.configureToolbar
 import com.practicum.playlistmaker.core.extensions.intentActionSend
 import com.practicum.playlistmaker.core.extensions.intentActionSendTo
 import com.practicum.playlistmaker.core.extensions.intentActionView
-import com.practicum.playlistmaker.core.extensions.viewModelFactory
 import com.practicum.playlistmaker.databinding.ActivitySettingsBinding
-import com.practicum.playlistmaker.di.creator
-import com.practicum.playlistmaker.features.settings.di.settingsViewModel
+import com.practicum.playlistmaker.features.settings.presentation.vm.SettingsViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsActivity : AppCompatActivity() {
 
-    private val viewModel by viewModelFactory { creator.settingsViewModel() }
+    private val viewModel by viewModel<SettingsViewModel>()
 
     private val binding by lazy { ActivitySettingsBinding.inflate(layoutInflater) }
 
