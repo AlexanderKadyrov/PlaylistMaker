@@ -17,7 +17,7 @@ import org.koin.core.parameter.parametersOf
 
 class TrackPlayerActivity : AppCompatActivity() {
 
-    private val viewModel: TrackPlayerViewModel by viewModel {
+    private val viewModel by viewModel<TrackPlayerViewModel> {
         val intentExtra = intent.getModel()
         val track = intentExtra?.getModel<Track>(Track.TRACK_INTENT_EXTRA)
             ?: error("Track must be passed to TrackPlayerActivity")
